@@ -6,6 +6,8 @@ public class Cliente extends Persona
 	private String email;
 	private Cuenta miCuentaAsociada;
 	public String getDireccion() {
+		// Un comenterio de prueba
+		
 		return direccion;
 	}
 	public void setDireccion(String direccion) {

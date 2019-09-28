@@ -7,11 +7,15 @@ public class Administrador extends Persona
 	
 	public Administrador() 
 	{
-		// Un constructor vacio alv
+		// Falta hacer este constructor xd
 	}
 	
-	// :v:v:v
+	public Administrador(String email, String contrasenia)
+	{
+		this.contrasenia = contrasenia;
+	}
 	
+		this.email = email;
 	public String getEmail() {
 		return email;
 	}

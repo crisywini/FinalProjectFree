@@ -15,10 +15,9 @@ public class Administrador extends Persona
 	{
 		this.contrasenia = contrasenia;
 		this.email = email;
-		//la ptm
+		//Hola pirobo
 	}
 	
-		
 	public String getEmail() {
 		return email;
 	}

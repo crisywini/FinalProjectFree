@@ -8,14 +8,17 @@ public class Administrador extends Persona
 	public Administrador() 
 	{
 		// Falta hacer este constructor xd
+		
 	}
 	
 	public Administrador(String email, String contrasenia)
 	{
 		this.contrasenia = contrasenia;
+		this.email = email;
+		//la ptm
 	}
 	
-		this.email = email;
+		
 	public String getEmail() {
 		return email;
 	}

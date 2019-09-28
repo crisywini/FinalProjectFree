@@ -13,9 +13,10 @@ public class Administrador extends Persona
 	public Administrador(String email, String contrasenia)
 	{
 		this.contrasenia = contrasenia;
+		this.email = email;
+		//Hola pirobo
 	}
 	
-		this.email = email;
 	public String getEmail() {
 		return email;
 	}

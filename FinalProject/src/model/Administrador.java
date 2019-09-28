@@ -7,8 +7,10 @@ public class Administrador extends Persona
 	
 	public Administrador() 
 	{
-		
+		// Un constructor vacio alv
 	}
+	
+	// :v:v:v
 	
 	public String getEmail() {
 		return email;

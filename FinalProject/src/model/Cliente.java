@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Cliente extends Persona implements Serializable{
+public class Cliente extends Persona implements Serializable {
 	/**
 	 * 
 	 */
@@ -15,6 +15,7 @@ public class Cliente extends Persona implements Serializable{
 	private EstratoSocioeconomico miEstrato;
 	private EstadoCivil miEstadoCivil;
 	private NivelDeEstudio miNivelDeEstudio;
+	private Cuenta d;
 
 	/**
 	 * Constructor vacio

@@ -68,7 +68,7 @@ public class Seccion implements Serializable{
 		for (int i = 0; i < misPuestos.length; i++) {
 			for (int j = 0; j < misPuestos[i].length; j++) {
 				if (j >= i) {
-					misPuestos[i][j] = new Puesto(letra, numero);
+					misPuestos[i][j] = new Puesto(letra, numero, EstadoPuesto.LIBRE);
 					letra++;
 					numero++;
 				}
@@ -93,7 +93,7 @@ public class Seccion implements Serializable{
 		int finalI  = misPuestos[0].length;
 		for (int i = 0; i < misPuestos.length; i++) {
 			for (int j = 0; j < finalI; j++) {
-				misPuestos[i][j] = new Puesto(letra, numero);
+				misPuestos[i][j] = new Puesto(letra, numero, EstadoPuesto.LIBRE);
 				letra++;
 				numero++;
 				if(letra>'Z')
@@ -119,7 +119,7 @@ public class Seccion implements Serializable{
 		int numero = 1;
 		for (int i = 0; i < misPuestos.length; i++) {
 			for (int j = 0; j < misPuestos[i].length; j++) {
-				misPuestos[i][j] = new Puesto(letra, numero);
+				misPuestos[i][j] = new Puesto(letra, numero, EstadoPuesto.LIBRE);
 				letra++;
 				numero++;
 				if(letra>'Z')
@@ -146,7 +146,7 @@ public class Seccion implements Serializable{
 			for (int j = 0; j < misPuestos[i].length; j++) {
 				if(i>=j)
 				{
-					misPuestos[i][j] = new Puesto(letra, numero);
+					misPuestos[i][j] = new Puesto(letra, numero, EstadoPuesto.LIBRE);
 					letra++;
 					numero++;
 					if(letra>'Z')
@@ -174,7 +174,7 @@ public class Seccion implements Serializable{
 		int inicioJ = misPuestos.length-1;
 		for (int i = 0; i < misPuestos.length; i++) {
 			for (int j = inicioJ; j < misPuestos.length; j++) {
-				misPuestos[inicioI][j] = new Puesto(letra, numero);
+				misPuestos[inicioI][j] = new Puesto(letra, numero, EstadoPuesto.LIBRE);
 			}
 			inicioI++;
 			inicioJ--;

@@ -37,6 +37,7 @@ public class Cuenta implements Serializable
 
 	public void setMiClienteAsociado(Cliente miClienteAsociado) {
 		this.miClienteAsociado = miClienteAsociado;
+		getMiClienteAsociado().setMiCuentaAsociada(this);
 	}
 	public String getId() {
 		return id;
@@ -63,5 +64,10 @@ public class Cuenta implements Serializable
 	public void agregarDinero(double monto)
 	{
 		setDineroTotal(getDineroTotal()+monto);
+	}
+	@Override
+	public String toString() {
+		String info = "Cuenta: "+id+" cliente asociado: "+getMiClienteAsociado().getNombre()+" "+getMiClienteAsociado().getApellido()+" id: "+getMiClienteAsociado().getId()+" \ncupo: "+dineroTotal;
+		return info;
 	}
 }

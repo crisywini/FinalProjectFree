@@ -63,6 +63,7 @@ public class Cliente extends Persona implements Serializable{
 		this.miEstrato = miEstrato;
 		this.miEstadoCivil = miEstadoCivil;
 		this.miNivelDeEstudio = miNivelDeEstudio;
+		getMiCuentaAsociada().setMiClienteAsociado(this);
 	}
 
 	public String getDireccion() {

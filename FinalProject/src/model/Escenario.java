@@ -13,5 +13,4 @@ public class Escenario
 	public void setMisSecciones(ArrayList<Seccion> misSecciones) {
 		this.misSecciones = misSecciones;
 	}
-
 }

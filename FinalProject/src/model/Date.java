@@ -37,4 +37,5 @@ public class Date implements Serializable
 	public static void setYear(int year) {
 		Date.year = year;
 	}
+	
 }

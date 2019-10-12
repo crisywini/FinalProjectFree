@@ -7,38 +7,36 @@ public class Date implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int day;
-	private static int month;
-	private static int year;
+	private int day;
+	private int month;
+	private int year;
 
 	public Date(int day, int month, int year) {
-		setDay(day);
-		setMonth(month);
-		setYear(year);
+
 	}
 
-	public static int getDay() {
+	public int getDay() {
 		return day;
 	}
 
-	public static void setDay(int day) {
-		Date.day = day;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
-	public static int getMonth() {
+	public int getMonth() {
 		return month;
 	}
 
-	public static void setMonth(int month) {
-		Date.month = month;
+	public void setMonth(int month) {
+		this.month = month;
 	}
 
-	public static int getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public static void setYear(int year) {
-		Date.year = year;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	/**

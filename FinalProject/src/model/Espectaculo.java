@@ -6,6 +6,8 @@ import java.util.HashMap;
 import exceptions.AdministradorNoExistenteException;
 import exceptions.AdministradorRepetidoException;
 import exceptions.FechaExistente;
+import exceptions.ReservaNoExisteException;
+import exceptions.ReservaRepetidaException;
 
 /**
  * Clase principal de la logica
@@ -18,12 +20,54 @@ public class Espectaculo {
 	private ArrayList<Escenario> misEscenarios;
 	private HashMap<String, Cliente> misClientes;
 	private HashMap<String, Administrador> misAdministradores;
+	private HashMap<String, Reserva> misReservas;
 
 	public Espectaculo() {
 		fechas = new ArrayList<Date>();
 		misEscenarios = new ArrayList<Escenario>();
 		misClientes = new HashMap<String, Cliente>();
 		misAdministradores = new HashMap<String, Administrador>();
+		setMisReservas(new HashMap<String, Reserva>());
+	}
+
+	public HashMap<String, Administrador> getMisAdministradores() {
+		return misAdministradores;
+	}
+
+	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores) {
+		this.misAdministradores = misAdministradores;
+	}
+
+	public HashMap<String, Reserva> getMisReservas() {
+		return misReservas;
+	}
+
+	public void setMisReservas(HashMap<String, Reserva> misReservas) {
+		this.misReservas = misReservas;
+	}
+
+	public ArrayList<Date> getFechas() {
+		return fechas;
+	}
+
+	public void setFechas(ArrayList<Date> fechas) {
+		this.fechas = fechas;
+	}
+
+	public ArrayList<Escenario> getMisEscenarios() {
+		return misEscenarios;
+	}
+
+	public void setMisEscenarios(ArrayList<Escenario> misEscenarios) {
+		this.misEscenarios = misEscenarios;
+	}
+
+	public HashMap<String, Cliente> getMisClientes() {
+		return misClientes;
+	}
+
+	public void setMisClientes(HashMap<String, Cliente> misClientes) {
+		this.misClientes = misClientes;
 	}
 
 	/**
@@ -90,30 +134,6 @@ public class Espectaculo {
 		}
 	}
 
-	public ArrayList<Date> getFechas() {
-		return fechas;
-	}
-
-	public void setFechas(ArrayList<Date> fechas) {
-		this.fechas = fechas;
-	}
-
-	public ArrayList<Escenario> getMisEscenarios() {
-		return misEscenarios;
-	}
-
-	public void setMisEscenarios(ArrayList<Escenario> misEscenarios) {
-		this.misEscenarios = misEscenarios;
-	}
-
-	public HashMap<String, Cliente> getMisClientes() {
-		return misClientes;
-	}
-
-	public void setMisClientes(HashMap<String, Cliente> misClientes) {
-		this.misClientes = misClientes;
-	}
-
 	/**
 	 * Metodo que permite verificar si existe un cliente en el espectaculo
 	 * 
@@ -172,12 +192,27 @@ public class Espectaculo {
 		return miAdministrador;
 	}
 
-	public HashMap<String, Administrador> getMisAdministradores() {
-		return misAdministradores;
+	/**
+	 * Metodo que permite agregar una reserva
+	 * 
+	 * @param id de la reserva
+	 * @throws ReservaRepetidaException si la reserva esta repetida
+	 */
+	public void agregarReserva(String id) throws ReservaRepetidaException {
+		if (getMisReservas().containsKey(id))
+			throw new ReservaRepetidaException("La reserva: (id) " + id + " ya se encuentra en el espectaculo");
+		getMisReservas().put(id, new Reserva(id));
 	}
-
-	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores) {
-		this.misAdministradores = misAdministradores;
+	/**
+	 * Metodo que permite eliminar una reserva
+	 * @param id de la reserva
+	 * @return la reserva eliminada
+	 * @throws ReservaNoExisteException si la reserva no existe
+	 */
+	public Reserva eliminarReserva(String id) throws ReservaNoExisteException {
+		if(!getMisReservas().containsKey(id))
+			throw new ReservaNoExisteException("La reserva: (id) "+id+" no existe en el espectaculo");
+		return getMisReservas().remove(id);
 	}
-
+	
 }

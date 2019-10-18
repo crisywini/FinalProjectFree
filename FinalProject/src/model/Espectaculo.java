@@ -89,7 +89,6 @@ public class Espectaculo {
 				centi = true;
 				indice = i;
 			}
-
 		}
 		return indice;
 	}

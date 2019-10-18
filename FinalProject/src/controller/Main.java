@@ -25,6 +25,7 @@ public class Main extends Application {
 			Scene scene = new Scene(panelPrincipal);
 			PrincipalController controlador = cargador.getController();
 			controlador.setPrincipal(this);
+			controlador.setPrincipalPane(panelPrincipal);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

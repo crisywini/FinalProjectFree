@@ -1,6 +1,7 @@
 package controller;
 	
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -9,18 +10,26 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		showPrincipalPane(primaryStage);
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	public void showPrincipalPane(Stage primaryStage)
+	{
+		try {
+			FXMLLoader cargador = new FXMLLoader();
+			cargador.setLocation(Main.class.getResource("../view/PrincipalPane.fxml"));
+			BorderPane panelPrincipal = (BorderPane)cargador.load();
+			Scene scene = new Scene(panelPrincipal);
+			PrincipalController controlador = cargador.getController();
+			controlador.setPrincipal(this);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

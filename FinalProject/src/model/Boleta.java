@@ -1,10 +1,10 @@
 package model;
 
-public class Boleta 
-{
+public class Boleta {
 	private String id;
 	private Puesto miPuesto;
 	private Cliente miClienteAsociado;
+<<<<<<< Updated upstream
 	private double valor;
 	private Reserva miReservaAsociada;
 	/**
@@ -26,6 +26,9 @@ public class Boleta
 		this.miClienteAsociado = miClienteAsociado;
 	}
 	
+=======
+
+>>>>>>> Stashed changes
 	public String getId() {
 		return id;
 	}

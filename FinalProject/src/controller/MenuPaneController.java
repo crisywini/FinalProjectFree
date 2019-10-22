@@ -27,7 +27,6 @@ public class MenuPaneController {
         assert radioAdmin != null : "fx:id=\"radioAdmin\" was not injected: check your FXML file 'MenuPane.fxml'.";
         assert grupoRadio != null : "fx:id=\"grupoRadio\" was not injected: check your FXML file 'MenuPane.fxml'.";
         assert radioUser != null : "fx:id=\"radioUser\" was not injected: check your FXML file 'MenuPane.fxml'.";
-
     }
 
 	public PrincipalController getVentanaPrincipal() {

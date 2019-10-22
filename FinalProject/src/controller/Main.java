@@ -24,8 +24,8 @@ public class Main extends Application {
 			BorderPane panelPrincipal = (BorderPane)cargador.load();
 			Scene scene = new Scene(panelPrincipal);
 			PrincipalController controlador = cargador.getController();
-			controlador.setPrincipal(this);
 			controlador.setPrincipalPane(panelPrincipal);
+			controlador.setPrincipal(this);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

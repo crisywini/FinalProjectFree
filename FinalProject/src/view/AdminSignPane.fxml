@@ -17,9 +17,9 @@
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="228.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/59cfc7b7d3b1936210a5ddd5.png" />
+                  <Image url="file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/AdministradorAnalisis1.png" />
                </image>
             </ImageView>
             <GridPane>

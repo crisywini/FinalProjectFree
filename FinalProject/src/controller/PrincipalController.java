@@ -18,10 +18,12 @@ public class PrincipalController {
 	AnchorPane userSignInPane;
 	AnchorPane adminSignUpPane;
 	AnchorPane adminSignPane;
+	AnchorPane userSignUpPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
 	AdminSignController adminSignController;
+	UserSignUpController userSignUpController;
 
 	@FXML
 	void initialize() {
@@ -96,6 +98,21 @@ public class PrincipalController {
 		principalPane.setCenter(adminSignPane);
 	}
 
+	public void cargarUserSignUp() {
+		if (userSignUpPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/UserSignUpPane.fxml"));
+				userSignUpPane = (AnchorPane) cargador.load();
+				userSignUpController = cargador.getController();
+				userSignUpController.setVentanaPrincipal(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(userSignUpPane);
+	}
+
 	public BorderPane getPrincipalPane() {
 		return principalPane;
 	}
@@ -116,7 +133,7 @@ public class PrincipalController {
 
 	@FXML
 	void handleMenuUser() {
-
+		cargarUserSignUp();
 	}
 
 	public void showAlert(String message, String headerText, String title, AlertType alertType) {

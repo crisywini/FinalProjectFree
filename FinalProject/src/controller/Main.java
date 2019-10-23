@@ -55,10 +55,10 @@ public class Main extends Application implements IControlEspectaculo {
 	@Override
 	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
 			String email, Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio)
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio, String contrasenia)
 			throws ClienteRepetidoException {
 		return getMiEspectaculo().agregarCliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada,
-				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio);
+				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio, contrasenia);
 	}
 
 	@Override
@@ -174,8 +174,8 @@ public class Main extends Application implements IControlEspectaculo {
 	public Reserva eliminarReserva(String id) throws ReservaNoExisteException {
 		return getMiEspectaculo().eliminarReserva(id);
 	}
-	public ArrayList<Genero> getMisGeneros()
-	{
+
+	public ArrayList<Genero> getMisGeneros() {
 		return getMiEspectaculo().getMisGeneros();
 	}
 
@@ -187,5 +187,20 @@ public class Main extends Application implements IControlEspectaculo {
 	@Override
 	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException {
 		return getMiEspectaculo().obtenerAdministrador(id);
+	}
+
+	@Override
+	public ArrayList<NivelDeEstudio> getMisEstudios() {
+		return getMiEspectaculo().getMisEstudios();
+	}
+
+	@Override
+	public ArrayList<EstratoSocioeconomico> getEstratos() {
+		return getMiEspectaculo().getEstratos();
+	}
+
+	@Override
+	public ArrayList<EstadoCivil> getEstadosCiviles() {
+		return getMiEspectaculo().getEstadosCiviles();
 	}
 }

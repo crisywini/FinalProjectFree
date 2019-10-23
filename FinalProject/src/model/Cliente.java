@@ -12,6 +12,7 @@ public class Cliente extends Persona implements Serializable {
 	private Cuenta miCuentaAsociada;
 	private Date miFechaDeNacimiento;
 	private String ciudadDeResidencia;
+	private String contrasenia;
 	private EstratoSocioeconomico miEstrato;
 	private EstadoCivil miEstadoCivil;
 	private NivelDeEstudio miNivelDeEstudio;
@@ -53,7 +54,7 @@ public class Cliente extends Persona implements Serializable {
 	 */
 	public Cliente(String nombre, String apellido, String id, Genero miGenero, String direccion, String email,
 			Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio) {
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio, String contrasenia) {
 		super(nombre, apellido, id, miGenero);
 		this.direccion = direccion;
 		this.email = email;
@@ -63,6 +64,7 @@ public class Cliente extends Persona implements Serializable {
 		this.miEstrato = miEstrato;
 		this.miEstadoCivil = miEstadoCivil;
 		this.miNivelDeEstudio = miNivelDeEstudio;
+		this.contrasenia = contrasenia;
 		getMiCuentaAsociada().setMiClienteAsociado(this);
 	}
 
@@ -128,5 +130,18 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setMiEstadoCivil(EstadoCivil miEstadoCivil) {
 		this.miEstadoCivil = miEstadoCivil;
+	}
+	@Override
+	public String toString() {
+		String info = "["+getNombre()+" "+getMiCuentaAsociada().getId()+"]";
+		return info;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 }

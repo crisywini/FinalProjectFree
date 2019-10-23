@@ -13,7 +13,10 @@ import model.Administrador;
 import model.Cliente;
 import model.Date;
 import model.Escenario;
+import model.EstadoCivil;
+import model.EstratoSocioeconomico;
 import model.Genero;
+import model.NivelDeEstudio;
 import model.Reserva;
 
 public interface IControlEspectaculo extends IControlAdministrador {
@@ -59,5 +62,11 @@ public interface IControlEspectaculo extends IControlAdministrador {
 	public Cliente obtenerCliente(String id) throws ClienteNoExistenteException;
 
 	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException;
+
+	public ArrayList<NivelDeEstudio> getMisEstudios();
+
+	public ArrayList<EstratoSocioeconomico> getEstratos();
+
+	public ArrayList<EstadoCivil> getEstadosCiviles();
 
 }

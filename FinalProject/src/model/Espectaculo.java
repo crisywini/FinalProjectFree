@@ -258,13 +258,27 @@ public class Espectaculo {
 	}
 
 	/**
-	 * Agregar un cliente
+	 * Metodo que permite Agregar un cliente
+	 * 
+	 * @param nombre              del cliente
+	 * @param apellido            del cliente
+	 * @param id                  del cliente
+	 * @param miGenero            del cliente
+	 * @param direccion           del cliente
+	 * @param email               del cliente
+	 * @param miCuentaAsociada    del cliente
+	 * @param miFechaDeNacimiento del cliente
+	 * @param ciudadDeResidencia  del cliente
+	 * @param miEstrato           del cliente
+	 * @param miEstadoCivil       del cliente
+	 * @param miNivelDeEstudio    del cliente
+	 * @return un boolean en true si agrego el cliente, si no una exception
+	 * @throws ClienteRepetidoException si el cliente esta repetido
 	 */
-
 	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
 			String email, Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio)
-			throws ClienteRepetidoException {
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio,
+			String contrasenia) throws ClienteRepetidoException {
 		boolean agregadoCompleto = false;
 		if (estaElCliente(id)) {
 			throw new ClienteRepetidoException(
@@ -272,15 +286,18 @@ public class Espectaculo {
 		}
 
 		getMisClientes().put(id, new Cliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada,
-				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio));
+				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio, contrasenia));
 		agregadoCompleto = true;
 		return agregadoCompleto;
 	}
 
 	/**
-	 * Eliminar un cliente
+	 * Metodo que permite remover un cliente
+	 * 
+	 * @param id del cliene
+	 * @return la informacion del cliente eliminado
+	 * @throws ClienteNoExistenteException si el cliente no existe
 	 */
-
 	public Cliente removerCliente(String id) throws ClienteNoExistenteException {
 		if (!estaElCliente(id))
 			throw new ClienteNoExistenteException(
@@ -295,7 +312,7 @@ public class Espectaculo {
 	/**
 	 * Metodo que permite obtener un ArrayList de generos
 	 * 
-	 * @return un arraylist con los generos
+	 * @return un ArrayList con los generos
 	 */
 	public ArrayList<Genero> getMisGeneros() {
 		ArrayList<Genero> misGeneros = new ArrayList<Genero>();
@@ -306,5 +323,53 @@ public class Espectaculo {
 		misGeneros.add(Genero.NO_BINARIO);
 		misGeneros.add(Genero.TRANSGENERO);
 		return misGeneros;
+	}
+
+	/**
+	 * Metodo que permite obtener un ArrayList de los estados civiles
+	 * 
+	 * @return un ArrayList con los estados civiles
+	 */
+	public ArrayList<EstadoCivil> getEstadosCiviles() {
+		ArrayList<EstadoCivil> misEstados = new ArrayList<EstadoCivil>();
+		misEstados.add(EstadoCivil.CASADOA);
+		misEstados.add(EstadoCivil.COMPROMETIDOA);
+		misEstados.add(EstadoCivil.DIVORCIADOA);
+		misEstados.add(EstadoCivil.NOVIAZGO);
+		misEstados.add(EstadoCivil.SEPARADOA);
+		misEstados.add(EstadoCivil.SOLTEROA);
+		misEstados.add(EstadoCivil.UNION_LIBRE);
+		misEstados.add(EstadoCivil.VIUDOA);
+		return misEstados;
+	}
+
+	/**
+	 * Metodo que permite obtener un ArrayList con los estratos socio economicos
+	 * 
+	 * @return un ArrayList con los estratos socio economicos
+	 */
+	public ArrayList<EstratoSocioeconomico> getEstratos() {
+		ArrayList<EstratoSocioeconomico> misEstratos = new ArrayList<EstratoSocioeconomico>();
+		misEstratos.add(EstratoSocioeconomico.ALTO);
+		misEstratos.add(EstratoSocioeconomico.MEDIO_ALTO);
+		misEstratos.add(EstratoSocioeconomico.MEDIO);
+		misEstratos.add(EstratoSocioeconomico.MEDIO_BAJO);
+		misEstratos.add(EstratoSocioeconomico.BAJO);
+		misEstratos.add(EstratoSocioeconomico.BAJO_BAJO);
+		return misEstratos;
+	}
+
+	/**
+	 * Metodo que permite obtener un ArrayList con los niveles de estudio
+	 * 
+	 * @return un ArrayList con los niveles de estudio
+	 */
+	public ArrayList<NivelDeEstudio> getMisEstudios() {
+		ArrayList<NivelDeEstudio> misNiveles = new ArrayList<NivelDeEstudio>();
+		misNiveles.add(NivelDeEstudio.BACHILLER);
+		misNiveles.add(NivelDeEstudio.PREGRADO);
+		misNiveles.add(NivelDeEstudio.MAESTRIA);
+		misNiveles.add(NivelDeEstudio.DOCTORADO);
+		return misNiveles;
 	}
 }

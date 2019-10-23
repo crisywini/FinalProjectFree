@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import exceptions.AdministradorNoExistenteException;
 import exceptions.AdministradorRepetidoException;
+import exceptions.ClienteNoExistenteException;
 import exceptions.FechaExistente;
 import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
@@ -54,4 +55,9 @@ public interface IControlEspectaculo extends IControlAdministrador {
 	public void agregarReserva(String id) throws ReservaRepetidaException;
 
 	public Reserva eliminarReserva(String id) throws ReservaNoExisteException;
+
+	public Cliente obtenerCliente(String id) throws ClienteNoExistenteException;
+
+	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException;
+
 }

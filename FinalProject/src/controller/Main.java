@@ -16,6 +16,7 @@ public class Main extends Application implements IControlEspectaculo {
 
 	@Override
 	public void start(Stage primaryStage) {
+		miEspectaculo = new Espectaculo();
 		showPrincipalPane(primaryStage);
 	}
 
@@ -172,5 +173,19 @@ public class Main extends Application implements IControlEspectaculo {
 	@Override
 	public Reserva eliminarReserva(String id) throws ReservaNoExisteException {
 		return getMiEspectaculo().eliminarReserva(id);
+	}
+	public ArrayList<Genero> getMisGeneros()
+	{
+		return getMiEspectaculo().getMisGeneros();
+	}
+
+	@Override
+	public Cliente obtenerCliente(String id) throws ClienteNoExistenteException {
+		return getMiEspectaculo().obtenerCliente(id);
+	}
+
+	@Override
+	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException {
+		return getMiEspectaculo().obtenerAdministrador(id);
 	}
 }

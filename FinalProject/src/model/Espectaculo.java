@@ -169,10 +169,22 @@ public class Espectaculo {
 			throw new AdministradorRepetidoException("El administrador: " + nombre + " " + apellido + " id: " + id
 					+ " ya se encuentra en el espectaculo");
 		}
-
 		getMisAdministradores().put(id, new Administrador(nombre, apellido, id, miGenero, email, contrasenia, this));
 		agregadoCompleto = true;
 		return agregadoCompleto;
+	}
+
+	/**
+	 * Metodo que permite obtener un administrador
+	 * 
+	 * @param id del administrador
+	 * @return el administrador
+	 * @throws AdministradorNoExistenteException si el administrador no existe
+	 */
+	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException {
+		if (!estaElAdministrador(id))
+			throw new AdministradorNoExistenteException("El administrador: " + id + " no esta registrado");
+		return misAdministradores.get(id);
 	}
 
 	/**
@@ -182,7 +194,6 @@ public class Espectaculo {
 	 * @return
 	 * @throws AdministradorNoExistenteException
 	 */
-
 	public Administrador removerAdministrador(String id) throws AdministradorNoExistenteException {
 
 		if (!estaElAdministrador(id)) {
@@ -191,6 +202,19 @@ public class Espectaculo {
 		}
 		Administrador miAdministrador = getMisAdministradores().remove(id);
 		return miAdministrador;
+	}
+
+	/**
+	 * Metodo que permite obtener una reserca
+	 * 
+	 * @param id de la reserva
+	 * @return la reserva requerida
+	 * @throws ReservaNoExisteException si la reserva no existe
+	 */
+	public Reserva obtenerReserva(String id) throws ReservaNoExisteException {
+		if (!getMisReservas().containsKey(id))
+			throw new ReservaNoExisteException("La reserva: " + id + " no esta registrada");
+		return misReservas.get(id);
 	}
 
 	/**
@@ -216,6 +240,21 @@ public class Espectaculo {
 		if (!getMisReservas().containsKey(id))
 			throw new ReservaNoExisteException("La reserva: (id) " + id + " no existe en el espectaculo");
 		return getMisReservas().remove(id);
+	}
+
+	/**
+	 * Metodo que permite obtener un cliente
+	 * 
+	 * @param id del cliente
+	 * @return un cliente
+	 * @throws ClienteNoExistenteException si el cliente no esta registrado
+	 */
+	public Cliente obtenerCliente(String id) throws ClienteNoExistenteException {
+		Cliente miCliente = null;
+		if (!misClientes.containsKey(id))
+			throw new ClienteNoExistenteException("El Usuario: " + id + " no esta ingresado en los datos");
+		miCliente = misClientes.get(id);
+		return miCliente;
 	}
 
 	/**
@@ -253,4 +292,19 @@ public class Espectaculo {
 	public void programarEvento(Date fechaDePresentacion) {
 	}
 
+	/**
+	 * Metodo que permite obtener un ArrayList de generos
+	 * 
+	 * @return un arraylist con los generos
+	 */
+	public ArrayList<Genero> getMisGeneros() {
+		ArrayList<Genero> misGeneros = new ArrayList<Genero>();
+		misGeneros.add(Genero.CIS_MUJER);
+		misGeneros.add(Genero.CIS_HOMBRE);
+		misGeneros.add(Genero.MUJER);
+		misGeneros.add(Genero.HOMBRE);
+		misGeneros.add(Genero.NO_BINARIO);
+		misGeneros.add(Genero.TRANSGENERO);
+		return misGeneros;
+	}
 }

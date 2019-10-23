@@ -18,8 +18,10 @@ public class PrincipalController {
 	private Stage principalStage;
 	AnchorPane menuPane;
 	AnchorPane userSignInPane;
+	AnchorPane adminSignUpPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
+	AdminSignUpController adminSignUpController;
 	
 	@FXML
 	void initialize() {
@@ -65,6 +67,22 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(userSignInPane);
 	}
+	public void cargarAdminSignUp()
+	{
+		if(adminSignUpPane==null)
+		{
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/AdminSignUpPane.fxml"));
+				adminSignUpPane = (AnchorPane)cargador.load();
+				adminSignUpController = cargador.getController();
+				adminSignUpController.setVentanaPrincipal(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(adminSignUpPane);
+	}
 
 	public BorderPane getPrincipalPane() {
 		return principalPane;
@@ -76,7 +94,7 @@ public class PrincipalController {
 
     @FXML
     void handleMenuAdmin() {
-
+    	cargarAdminSignUp();
     }
 
     @FXML
@@ -97,7 +115,10 @@ public class PrincipalController {
     	alert.setHeaderText(headerText);
     	alert.showAndWait();
     }
-
+    public void volverMenuPrincipal()
+    {
+    	cargarMenu();
+    }
 	public Stage getPrincipalStage() {
 		return principalStage;
 	}

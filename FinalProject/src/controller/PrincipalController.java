@@ -4,20 +4,26 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class PrincipalController {
 
 	@FXML
 	private BorderPane principalPane;
 	private Main principal;
+	private Stage principalStage;
 	AnchorPane menuPane;
+	AnchorPane userSignInPane;
 	MenuPaneController menuController;
+	UserSignInController userSignInController;
+	
 	@FXML
 	void initialize() {
 		cargarMenu();
-
 	}
 
 	public Main getPrincipal() {
@@ -43,6 +49,22 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(menuPane);
 	}
+	public void cargarUserSingIn()
+	{
+		if(userSignInPane==null)
+		{
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/UserSignInPane.fxml"));
+				userSignInPane = (AnchorPane)cargador.load();
+				userSignInController = cargador.getController();
+				userSignInController.setVentanaPrincipal(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(userSignInPane);
+	}
 
 	public BorderPane getPrincipalPane() {
 		return principalPane;
@@ -50,6 +72,38 @@ public class PrincipalController {
 
 	public void setPrincipalPane(BorderPane principalPane) {
 		this.principalPane = principalPane;
+	}
+
+    @FXML
+    void handleMenuAdmin() {
+
+    }
+
+    @FXML
+    void handleMenuSaveData() {
+
+    }
+
+    @FXML
+    void handleMenuUser() {
+
+    }
+    public void showAlert(String message, String headerText, String title, AlertType alertType)
+    {
+    	Alert alert = new Alert(alertType);
+    	alert.setContentText(message);
+    	alert.setTitle(title);
+    	alert.initOwner(getPrincipalStage());
+    	alert.setHeaderText(headerText);
+    	alert.showAndWait();
+    }
+
+	public Stage getPrincipalStage() {
+		return principalStage;
+	}
+
+	public void setPrincipalStage(Stage principalStage) {
+		this.principalStage = principalStage;
 	}
 	
 }

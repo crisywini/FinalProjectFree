@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -18,8 +17,16 @@ public class MenuPaneController {
     private RadioButton radioUser;
 
     @FXML
-    void handleRadios(ActionEvent event) {
-
+    void handleIngresarButton() {
+    	if(radioAdmin.isSelected())
+    	{
+    		System.out.println("Holis admin");
+    		//Mostrar administrador
+    	}
+    	if(radioUser.isSelected())
+    	{
+    		ventanaPrincipal.cargarUserSingIn();
+    	}
     }
 
     @FXML

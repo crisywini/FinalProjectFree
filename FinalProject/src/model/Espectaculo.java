@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import exceptions.AdministradorNoExistenteException;
 import exceptions.AdministradorRepetidoException;
+import exceptions.ClienteNoExistenteException;
+import exceptions.ClienteRepetidoException;
 import exceptions.FechaExistente;
 import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
@@ -202,16 +204,53 @@ public class Espectaculo {
 			throw new ReservaRepetidaException("La reserva: (id) " + id + " ya se encuentra en el espectaculo");
 		getMisReservas().put(id, new Reserva(id));
 	}
+
 	/**
 	 * Metodo que permite eliminar una reserva
+	 * 
 	 * @param id de la reserva
 	 * @return la reserva eliminada
 	 * @throws ReservaNoExisteException si la reserva no existe
 	 */
 	public Reserva eliminarReserva(String id) throws ReservaNoExisteException {
-		if(!getMisReservas().containsKey(id))
-			throw new ReservaNoExisteException("La reserva: (id) "+id+" no existe en el espectaculo");
+		if (!getMisReservas().containsKey(id))
+			throw new ReservaNoExisteException("La reserva: (id) " + id + " no existe en el espectaculo");
 		return getMisReservas().remove(id);
 	}
-	
+
+	/**
+	 * Agregar un cliente
+	 */
+
+	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
+			String email, Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio)
+			throws ClienteRepetidoException {
+		boolean agregadoCompleto = false;
+		if (estaElCliente(id)) {
+			throw new ClienteRepetidoException(
+					"El cliente: " + nombre + " " + apellido + " id: " + id + " ya se encuentra en el espectaculo");
+		}
+
+		getMisClientes().put(id, new Cliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada,
+				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio));
+		agregadoCompleto = true;
+		return agregadoCompleto;
+	}
+
+	/**
+	 * Eliminar un cliente
+	 */
+
+	public Cliente removerCliente(String id) throws ClienteNoExistenteException {
+		if (!estaElCliente(id))
+			throw new ClienteNoExistenteException(
+					"El cliente con id: " + id + " no se encuentra registrado en el espectadulo.");
+		Cliente miCliente = getMisClientes().remove(id);
+		return miCliente;
+	}
+
+	public void programarEvento(Date fechaDePresentacion) {
+	}
+
 }

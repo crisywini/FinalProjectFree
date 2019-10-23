@@ -31,7 +31,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <RadioButton fx:id="radioAdmin" mnemonicParsing="false" onAction="#handleRadios" text="Administrador">
+                        <RadioButton fx:id="radioAdmin" mnemonicParsing="false" text="Administrador">
                            <toggleGroup>
                               <ToggleGroup fx:id="grupoRadio" />
                            </toggleGroup>
@@ -40,14 +40,14 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton fx:id="radioUser" mnemonicParsing="false" onAction="#handleRadios" text="Usuario" toggleGroup="$grupoRadio" />
+                        <RadioButton fx:id="radioUser" mnemonicParsing="false" text="Usuario" toggleGroup="$grupoRadio" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Button mnemonicParsing="false" text="Ingresar" />
+                  <Button mnemonicParsing="false" onAction="#handleIngresarButton" style="-fx-background-radius: 20px;" text="Ingresar" />
                </children>
             </HBox>
          </children>

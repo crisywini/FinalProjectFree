@@ -17,10 +17,12 @@ public class PrincipalController {
 	AnchorPane menuPane;
 	AnchorPane userSignInPane;
 	AnchorPane adminSignUpPane;
+	AnchorPane adminSignPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
-	
+	AdminSignController adminSignController;
+
 	@FXML
 	void initialize() {
 		cargarMenu();
@@ -33,14 +35,13 @@ public class PrincipalController {
 	public void setPrincipal(Main principal) {
 		this.principal = principal;
 	}
-	public void cargarMenu()
-	{
-		if(menuPane==null)
-		{
+
+	public void cargarMenu() {
+		if (menuPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/MenuPane.fxml"));
-				menuPane = (AnchorPane)cargador.load();
+				menuPane = (AnchorPane) cargador.load();
 				menuController = cargador.getController();
 				menuController.setVentanaPrincipal(this);
 			} catch (Exception e) {
@@ -49,14 +50,13 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(menuPane);
 	}
-	public void cargarUserSingIn()
-	{
-		if(userSignInPane==null)
-		{
+
+	public void cargarUserSingIn() {
+		if (userSignInPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/UserSignInPane.fxml"));
-				userSignInPane = (AnchorPane)cargador.load();
+				userSignInPane = (AnchorPane) cargador.load();
 				userSignInController = cargador.getController();
 				userSignInController.setVentanaPrincipal(this);
 			} catch (Exception e) {
@@ -65,14 +65,13 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(userSignInPane);
 	}
-	public void cargarAdminSignUp()
-	{
-		if(adminSignUpPane==null)
-		{
+
+	public void cargarAdminSignUp() {
+		if (adminSignUpPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/AdminSignUpPane.fxml"));
-				adminSignUpPane = (AnchorPane)cargador.load();
+				adminSignUpPane = (AnchorPane) cargador.load();
 				adminSignUpController = cargador.getController();
 				adminSignUpController.setVentanaPrincipal(this);
 			} catch (Exception e) {
@@ -80,6 +79,21 @@ public class PrincipalController {
 			}
 		}
 		principalPane.setCenter(adminSignUpPane);
+	}
+
+	public void cargarAdminSign() {
+		if (adminSignPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/AdminSignPane.fxml"));
+				adminSignPane = (AnchorPane) cargador.load();
+				adminSignController = cargador.getController();
+				adminSignController.setVentanaPrincipal(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(adminSignPane);
 	}
 
 	public BorderPane getPrincipalPane() {
@@ -90,33 +104,34 @@ public class PrincipalController {
 		this.principalPane = principalPane;
 	}
 
-    @FXML
-    void handleMenuAdmin() {
-    	cargarAdminSignUp();
-    }
+	@FXML
+	void handleMenuAdmin() {
+		cargarAdminSignUp();
+	}
 
-    @FXML
-    void handleMenuSaveData() {
+	@FXML
+	void handleMenuSaveData() {
 
-    }
+	}
 
-    @FXML
-    void handleMenuUser() {
+	@FXML
+	void handleMenuUser() {
 
-    }
-    public void showAlert(String message, String headerText, String title, AlertType alertType)
-    {
-    	Alert alert = new Alert(alertType);
-    	alert.setContentText(message);
-    	alert.setTitle(title);
-    	alert.initOwner(getPrincipalStage());
-    	alert.setHeaderText(headerText);
-    	alert.showAndWait();
-    }
-    public void volverMenuPrincipal()
-    {
-    	cargarMenu();
-    }
+	}
+
+	public void showAlert(String message, String headerText, String title, AlertType alertType) {
+		Alert alert = new Alert(alertType);
+		alert.setContentText(message);
+		alert.setTitle(title);
+		alert.initOwner(getPrincipalStage());
+		alert.setHeaderText(headerText);
+		alert.showAndWait();
+	}
+
+	public void volverMenuPrincipal() {
+		cargarMenu();
+	}
+
 	public Stage getPrincipalStage() {
 		return principalStage;
 	}
@@ -124,5 +139,5 @@ public class PrincipalController {
 	public void setPrincipalStage(Stage principalStage) {
 		this.principalStage = principalStage;
 	}
-	
+
 }

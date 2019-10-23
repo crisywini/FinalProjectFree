@@ -20,8 +20,7 @@ public class MenuPaneController {
     void handleIngresarButton() {
     	if(radioAdmin.isSelected())
     	{
-    		System.out.println("Holis admin");
-    		//Mostrar administrador
+    		ventanaPrincipal.cargarAdminSign();
     	}
     	if(radioUser.isSelected())
     	{

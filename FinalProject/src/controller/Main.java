@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.File;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,6 +11,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import model.*;
+import persistencia.Archivo;
+import persistencia.Persistencia;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
@@ -16,7 +21,10 @@ public class Main extends Application implements IControlEspectaculo {
 
 	@Override
 	public void start(Stage primaryStage) {
-		miEspectaculo = new Espectaculo();
+		cargarDatos(Persistencia.ESPECTACULO_RUTA);
+		if (miEspectaculo == null) {
+			miEspectaculo = new Espectaculo();
+		}
 		showPrincipalPane(primaryStage);
 	}
 
@@ -50,13 +58,63 @@ public class Main extends Application implements IControlEspectaculo {
 	public void setMiEspectaculo(Espectaculo miEspectaculo) {
 		this.miEspectaculo = miEspectaculo;
 	}
+	// ------------------Persistencia------------
+
+	public void guardarClientesEnArchivo() throws IOException {
+		Persistencia.guardarClientesEnArchivo(getMisClientes());
+	}
+
+	public void guardarAdministradoresEnArchivo() throws IOException {
+		Persistencia.guardarAdministradoresEnArchivo(getMisAdministradores());
+	}
+
+	public void serializarEspectaculo() throws IOException {
+		guardarAdministradoresEnArchivo();
+		guardarClientesEnArchivo();
+		Persistencia.serializarXML(Persistencia.ESPECTACULO_RUTA, getMiEspectaculo());
+	}
+
+	public void crearArchivos() {
+		if (Archivo.isCreatedFile(Persistencia.CLIENTES_RUTA))
+			try {
+				guardarClientesEnArchivo();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		if (Archivo.isCreatedFile(Persistencia.ADMINISTRADORES_RUTA))
+			try {
+				guardarAdministradoresEnArchivo();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		if (Archivo.isCreatedFile(Persistencia.ESPECTACULO_RUTA))
+			try {
+				serializarEspectaculo();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+
+	public void cargarDatos(String ruta) {
+		Espectaculo miEspectaculoAux = null;
+		File archivo = new File(ruta);
+		if (archivo.exists()) {
+			try {
+				miEspectaculoAux = (Espectaculo) Persistencia.deserializarObjetoXML(ruta);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			setMiEspectaculo(miEspectaculoAux);
+		}
+		crearArchivos();
+	}
 
 	// -----------------Services----------------
 	@Override
 	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
 			String email, Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio, String contrasenia)
-			throws ClienteRepetidoException {
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio,
+			String contrasenia) throws ClienteRepetidoException {
 		return getMiEspectaculo().agregarCliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada,
 				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio, contrasenia);
 	}

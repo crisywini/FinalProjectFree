@@ -1,9 +1,13 @@
 package controller;
 
+import java.io.IOException;
+import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -128,7 +132,15 @@ public class PrincipalController {
 
 	@FXML
 	void handleMenuSaveData() {
-
+		if(elegirGuardar())
+		{
+			try {
+				getPrincipal().serializarEspectaculo();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.exit(0);
 	}
 
 	@FXML
@@ -143,6 +155,20 @@ public class PrincipalController {
 		alert.initOwner(getPrincipalStage());
 		alert.setHeaderText(headerText);
 		alert.showAndWait();
+	}
+
+	public boolean elegirGuardar() {
+		boolean centinela;
+		Alert miAlert = new Alert(AlertType.CONFIRMATION);
+		miAlert.setTitle("Guardar?");
+		miAlert.setContentText("Desea guardar los datos?");
+		miAlert.initOwner(getPrincipalStage());
+		ButtonType buttonTypeOne = new ButtonType("Si");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+		miAlert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+		Optional<ButtonType> resultado = miAlert.showAndWait();
+		centinela = resultado.get() == buttonTypeOne;
+		return centinela;
 	}
 
 	public void volverMenuPrincipal() {

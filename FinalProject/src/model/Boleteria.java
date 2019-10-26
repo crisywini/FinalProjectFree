@@ -236,10 +236,10 @@ public class Boleteria implements Serializable {
 	 * @throws EspectaculoRepetidoException si el espectaculo ya se encuentra en la
 	 *                                      boleteria
 	 */
-	public boolean agregarEspectaculo(String nombre) throws EspectaculoRepetidoException {
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
 		if (estaElEspectaculo(nombre))
 			throw new EspectaculoRepetidoException("El espectaculo: " + nombre + " ya se encuentra en la boleteria");
-		Espectaculo miEspectaculoNuevo = new Espectaculo(nombre);
+		Espectaculo miEspectaculoNuevo = new Espectaculo(nombre, miTipo);
 		misEspectaculos.put(nombre, miEspectaculoNuevo);
 		return true;
 	}

@@ -205,11 +205,6 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	@Override
-	public boolean agregarEspectaculo(String nombre) throws EspectaculoRepetidoException {
-		return miBoleteria.agregarEspectaculo(nombre);
-	}
-
-	@Override
 	public HashMap<String, Espectaculo> getMisEspectaculos() {
 		return miBoleteria.getMisEspectaculos();
 	}
@@ -237,6 +232,11 @@ public class Main extends Application implements IControlBoleteria {
 	@Override
 	public ArrayList<NivelDeEstudio> getMisEstudios() {
 		return miBoleteria.getMisEstudios();
+	}
+
+	@Override
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
+		return miBoleteria.agregarEspectaculo(nombre, miTipo);
 	}
 
 }

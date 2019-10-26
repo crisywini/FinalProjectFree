@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-
 import exceptions.FechaExistenteException;
 import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
@@ -17,9 +16,9 @@ public class Espectaculo implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String nombre;
+	private TipoEspectaculo miTipo;
 	private ArrayList<Date> fechas;
 	private ArrayList<Escenario> misEscenarios;
-
 	private HashMap<String, Cliente> misAsistentes;
 	private HashMap<String, Reserva> misReservas;
 
@@ -28,11 +27,12 @@ public class Espectaculo implements Serializable {
 	 * 
 	 * @param nombre del espectaculo
 	 */
-	public Espectaculo(String nombre) {
+	public Espectaculo(String nombre, TipoEspectaculo miTipo) {
 		this.nombre = nombre;
 		fechas = new ArrayList<Date>();
 		misEscenarios = new ArrayList<Escenario>();
 		misAsistentes = new HashMap<String, Cliente>();
+		this.miTipo = miTipo;
 		setMisReservas(new HashMap<String, Reserva>());
 	}
 
@@ -174,8 +174,6 @@ public class Espectaculo implements Serializable {
 	public void programarEvento(Date fechaDePresentacion) {
 	}
 
-	
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -186,6 +184,14 @@ public class Espectaculo implements Serializable {
 
 	public HashMap<String, Cliente> getMisAsistentes() {
 		return misAsistentes;
+	}
+
+	public TipoEspectaculo getMiTipo() {
+		return miTipo;
+	}
+
+	public void setMiTipo(TipoEspectaculo miTipo) {
+		this.miTipo = miTipo;
 	}
 
 	public void setMisAsistentes(HashMap<String, Cliente> misAsistentes) {

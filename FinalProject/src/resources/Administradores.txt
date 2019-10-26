@@ -1,1 +1,1 @@
-<Tatiana,Linda,123,holisTatiana@tatiana.com,MUJER>
+<Cristian,Sánchez,1006116733,cgsanchezp@uqvirtual.edu.co,HOMBRE>

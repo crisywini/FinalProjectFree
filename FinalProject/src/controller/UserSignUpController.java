@@ -1,6 +1,7 @@
 package controller;
 
 import exceptions.ClienteNoExistenteException;
+
 import exceptions.ClienteRepetidoException;
 import javafx.collections.FXCollections;
 
@@ -11,13 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import model.Cliente;
-import model.Cuenta;
-import model.Date;
-import model.EstadoCivil;
-import model.EstratoSocioeconomico;
-import model.Genero;
-import model.NivelDeEstudio;
+import model.*;
 
 public class UserSignUpController {
 
@@ -73,10 +68,11 @@ public class UserSignUpController {
 			Date fechaDeNacimiento = new Date(datePicker.getValue().getDayOfMonth(),
 					datePicker.getValue().getMonthValue(), datePicker.getValue().getYear());
 			Cliente miClienteNuevo = null;
+			Boleta miBoletaNueva = new Boleta();
 			try {
 				ventanaPrincipal.getPrincipal().agregarCliente(nombreField.getText(), apellidoField.getText(),
 						idField.getText(), generoComboBox.getSelectionModel().getSelectedItem(),
-						direccionField.getText(), correoField.getText(), nuevaCuenta, fechaDeNacimiento,
+						direccionField.getText(), correoField.getText(), nuevaCuenta, miBoletaNueva, fechaDeNacimiento,
 						ciudadDeResidenciaField.getText(), estratoComboBox.getSelectionModel().getSelectedItem(),
 						estadoCivilComboBox.getSelectionModel().getSelectedItem(),
 						nivelDeEstudioComboBox.getSelectionModel().getSelectedItem(), passwordField.getText());

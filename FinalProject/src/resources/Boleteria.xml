@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_231" class="java.beans.XMLDecoder">
- <object class="model.Espectaculo" id="Espectaculo0">
+<java version="1.8.0_211" class="java.beans.XMLDecoder">
+ <object class="model.Boleteria" id="Boleteria0">
   <void property="misAdministradores">
    <void method="put">
-    <string>123</string>
+    <string>1006116733</string>
     <object class="model.Administrador">
      <void property="apellido">
-      <string>Linda</string>
+      <string>Sánchez</string>
      </void>
      <void property="contrasenia">
-      <string>123456</string>
+      <string>103216546541621321</string>
      </void>
      <void property="email">
-      <string>holisTatiana@tatiana.com</string>
+      <string>cgsanchezp@uqvirtual.edu.co</string>
      </void>
      <void property="id">
-      <string>123</string>
+      <string>1006116733</string>
      </void>
-     <void property="miEspectaculoAsociado">
-      <object idref="Espectaculo0"/>
+     <void property="miBoleteriaAsociada">
+      <object idref="Boleteria0"/>
      </void>
      <void property="miGenero">
       <object class="java.lang.Enum" method="valueOf">
        <class>model.Genero</class>
-       <string>MUJER</string>
+       <string>HOMBRE</string>
       </object>
      </void>
      <void property="nombre">
-      <string>Tatiana</string>
+      <string>Cristian</string>
      </void>
     </object>
    </void>

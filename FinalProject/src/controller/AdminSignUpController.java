@@ -52,6 +52,7 @@ public class AdminSignUpController {
 				idField.setText("");
 				correoField.setText("");
 				passwordField.setText("");
+				generoComboBox.setValue(null);
 			} catch (AdministradorRepetidoException e) {
 				ventanaPrincipal.showAlert(e.getMessage(), "Error", "ERROR!", AlertType.ERROR);
 			} catch (AdministradorNoExistenteException e) {

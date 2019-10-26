@@ -132,10 +132,9 @@ public class PrincipalController {
 
 	@FXML
 	void handleMenuSaveData() {
-		if(elegirGuardar())
-		{
+		if (elegirGuardar()) {
 			try {
-				getPrincipal().serializarEspectaculo();
+				getPrincipal().serializarBoleteria();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -239,4 +239,9 @@ public class Main extends Application implements IControlBoleteria {
 		return miBoleteria.agregarEspectaculo(nombre, miTipo);
 	}
 
+	@Override
+	public ArrayList<Espectaculo> obtenerListaEspectaculos() {
+		return miBoleteria.obtenerListaEspectaculos();
+	}
+
 }

@@ -9,6 +9,8 @@ import java.util.Iterator;
 import exceptions.FechaExistenteException;
 import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Espectaculo implements Serializable {
 	/**
@@ -239,5 +241,25 @@ public class Espectaculo implements Serializable {
 				misClientes.add(misAsistentes.get(nombreAux));
 		}
 		return misClientes;
+	}
+
+	/**
+	 * Metodo que permite obtener un {@link StringProperty} con la informacion del
+	 * nombre del espectaculo
+	 * 
+	 * @return un {@link StringProperty}
+	 */
+	public StringProperty nombreProperty() {
+		return new SimpleStringProperty(nombre);
+	}
+
+	/**
+	 * Metodo que permite obtener un {@link StringProperty} con la informacion del
+	 * tipo del espectaculo
+	 * 
+	 * @return un {@link StringProperty}
+	 */
+	public StringProperty tipoProperty() {
+		return new SimpleStringProperty(getMiTipo().toString());
 	}
 }

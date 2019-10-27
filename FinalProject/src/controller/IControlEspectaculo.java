@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import exceptions.EspectaculoNullException;
@@ -19,4 +20,7 @@ public interface IControlEspectaculo {
 	public HashMap<String, Espectaculo> getMisEspectaculos();
 
 	public void setMisEspectaculos(HashMap<String, Espectaculo> misEspectaculos);
+
+	public ArrayList<Espectaculo> obtenerListaEspectaculos();
+
 }

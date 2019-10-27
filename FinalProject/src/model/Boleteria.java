@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import exceptions.*;
 
@@ -306,6 +307,22 @@ public class Boleteria implements Serializable {
 		misNiveles.add(NivelDeEstudio.MAESTRIA);
 		misNiveles.add(NivelDeEstudio.DOCTORADO);
 		return misNiveles;
+	}
+
+	/**
+	 * Metodo que permite obtener una lista de espectaculos
+	 * 
+	 * @return un {@link ArrayList} de espectaculos
+	 */
+	public ArrayList<Espectaculo> obtenerListaEspectaculos() {
+		ArrayList<Espectaculo> misEspectaculosLista = new ArrayList<Espectaculo>();
+		Iterator<String> iterator = misEspectaculos.keySet().iterator();
+		String nombreAux;
+		while (iterator.hasNext()) {
+			nombreAux = iterator.next();
+			misEspectaculosLista.add(misEspectaculos.get(nombreAux));
+		}
+		return misEspectaculosLista;
 	}
 
 }

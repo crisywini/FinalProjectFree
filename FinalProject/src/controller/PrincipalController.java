@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Administrador;
 import model.Cliente;
 
 public class PrincipalController {
@@ -25,12 +26,14 @@ public class PrincipalController {
 	AnchorPane adminSignPane;
 	AnchorPane userSignUpPane;
 	AnchorPane userPane;
+	AnchorPane adminViewPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
 	AdminSignController adminSignController;
 	UserSignUpController userSignUpController;
 	UserPaneController userPaneController;
+	AdminViewController adminViewPaneController;
 
 	@FXML
 	void initialize() {
@@ -135,6 +138,23 @@ public class PrincipalController {
 			}
 		}
 		principalPane.setCenter(userPane);
+	}
+	public void cargarAdminViewPane(Administrador miAdmin)
+	{
+		if(adminViewPane == null)
+		{
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/AdminViewPane.fxml"));
+				adminViewPane = (AnchorPane) cargador.load();
+				adminViewPaneController = cargador.getController();
+				adminViewPaneController.setMiAdmin(miAdmin);
+				adminViewPaneController.setVentanaPrincipal(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(adminViewPane);
 	}
 
 	public BorderPane getPrincipalPane() {

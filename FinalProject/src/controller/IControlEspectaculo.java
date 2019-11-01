@@ -23,4 +23,6 @@ public interface IControlEspectaculo {
 
 	public ArrayList<Espectaculo> obtenerListaEspectaculos();
 
+	public ArrayList<TipoEspectaculo> obtenerListadoTipoEspectaculo();
+
 }

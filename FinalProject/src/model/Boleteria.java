@@ -324,5 +324,16 @@ public class Boleteria implements Serializable {
 		}
 		return misEspectaculosLista;
 	}
+	public ArrayList<TipoEspectaculo> obtenerListadoTipoEspectaculo()
+	{
+		ArrayList<TipoEspectaculo> misTipos = new ArrayList<TipoEspectaculo>();
+		misTipos.add(TipoEspectaculo.CONCIERTO);
+		misTipos.add(TipoEspectaculo.DEPORTE);
+		misTipos.add(TipoEspectaculo.FAMILIA);
+		misTipos.add(TipoEspectaculo.FESTIVALES);
+		misTipos.add(TipoEspectaculo.FORO);
+		misTipos.add(TipoEspectaculo.TEATRO);
+		return misTipos;
+	}
 
 }

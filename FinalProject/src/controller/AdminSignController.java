@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import model.Administrador;
+import model.Cliente;
 
 public class AdminSignController {
 
@@ -22,10 +23,16 @@ public class AdminSignController {
 			try {
 				Administrador miAdmin = getVentanaPrincipal().getPrincipal()
 						.obtenerAdministrador(nickNameField.getText());
+				if(verifyPassword(miAdmin))
+				{
+					ventanaPrincipal.showAlert("Bienvenido: " + miAdmin.getNombre(), "", "Bienvenido",
+							AlertType.INFORMATION);
+					ventanaPrincipal.cargarAdminViewPane(miAdmin);
+				}
 				nickNameField.setText("");
 				passwordField.setText("");
-				ventanaPrincipal.showAlert("Bienvenido: " + miAdmin.getNombre(), "", "Bienvenido",
-						AlertType.INFORMATION);
+				
+				
 			} catch (AdministradorNoExistenteException e) {
 				ventanaPrincipal.showAlert(e.getMessage(), "", "Error", AlertType.ERROR);
 			}
@@ -56,6 +63,22 @@ public class AdminSignController {
 		else
 			getVentanaPrincipal().showAlert(errorMessage, "", "Error", AlertType.WARNING);
 		return isValid;
+	}
+	
+	public boolean verifyPassword(Administrador miAdmin) {
+		boolean isCorrect = true;
+		String passwordClient = miAdmin.getContrasenia();
+		String passwordTyped = passwordField.getText().trim();
+		if (passwordClient.length() == passwordTyped.length()) {
+			for (int i = 0; i < passwordClient.length() && isCorrect; i++) {
+				if (passwordClient.charAt(i) != passwordTyped.charAt(i))
+					isCorrect = false;
+			}
+		} else
+			isCorrect = false;
+		if (!isCorrect)
+			getVentanaPrincipal().showAlert("La contraseña no es correcta!", "", "ERROR", AlertType.ERROR);
+		return isCorrect;
 	}
 
 	public PrincipalController getVentanaPrincipal() {

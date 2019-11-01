@@ -246,6 +246,8 @@ public class Espectaculo implements Serializable {
 		}
 		return misClientes;
 	}
+	
+	
 
 	/**
 	 * Metodo que permite obtener un {@link StringProperty} con la informacion del

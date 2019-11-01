@@ -45,7 +45,6 @@ public class UserSignInController {
 	void initialize() {
 		assert nickNameField != null : "fx:id=\"nickNameField\" was not injected: check your FXML file 'UserSignInPane.fxml'.";
 		assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'UserSignInPane.fxml'.";
-
 	}
 
 	public boolean isInputValid() {

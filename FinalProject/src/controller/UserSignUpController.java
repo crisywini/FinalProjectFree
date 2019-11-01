@@ -93,7 +93,6 @@ public class UserSignUpController {
 				nivelDeEstudioComboBox.setValue(null);
 				passwordField.setText("");
 				ciudadDeResidenciaField.setText("");
-				System.out.println(miClienteNuevo.toString());
 			} catch (ClienteRepetidoException e) {
 				ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
 			} catch (ClienteNoExistenteException e) {

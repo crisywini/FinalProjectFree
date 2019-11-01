@@ -21,9 +21,8 @@ public class Main extends Application implements IControlBoleteria {
 	@Override
 	public void start(Stage primaryStage) {
 		cargarDatos(Persistencia.BOLETERIA_RUTA);
-		if (miBoleteria == null) {
+		if (miBoleteria == null)
 			miBoleteria = new Boleteria();
-		}
 		showPrincipalPane(primaryStage);
 	}
 
@@ -50,7 +49,7 @@ public class Main extends Application implements IControlBoleteria {
 		}
 	}
 
-	// -----------------set y get
+	// -----------------set y get----------------
 
 	public Boleteria getMiBoleteria() {
 		return miBoleteria;
@@ -70,7 +69,7 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	public void guardarEspectaculosEnArchivo() throws IOException {
-		Persistencia.guardarEspectaculosEnArchivo(null);
+		Persistencia.guardarEspectaculosEnArchivo(getMisEspectaculos());
 	}
 
 	public void serializarBoleteria() throws IOException {
@@ -80,31 +79,34 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	public void crearArchivos() {
-		if (Archivo.isCreatedFile(Persistencia.CLIENTES_RUTA))
+		if (!Archivo.isCreatedFile(Persistencia.CLIENTES_RUTA)) {
 			try {
-				guardarClientesEnArchivo();
+				Archivo.crearArchivo(Persistencia.CLIENTES_RUTA);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		if (Archivo.isCreatedFile(Persistencia.ADMINISTRADORES_RUTA))
+		}
+//hola by el negritosensual 
+		if (!Archivo.isCreatedFile(Persistencia.ADMINISTRADORES_RUTA))
 			try {
-				guardarAdministradoresEnArchivo();
+				Archivo.crearArchivo(Persistencia.ADMINISTRADORES_RUTA);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		if (Archivo.isCreatedFile(Persistencia.ESPECTACULOS_RUTA))
+		if (!Archivo.isCreatedFile(Persistencia.ESPECTACULOS_RUTA)) {
 			try {
-				guardarEspectaculosEnArchivo();
+				Archivo.crearArchivo(Persistencia.ESPECTACULOS_RUTA);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		if (Archivo.isCreatedFile(Persistencia.BOLETERIA_RUTA))
+		}
+		if (!Archivo.isCreatedFile(Persistencia.BOLETERIA_RUTA)) {
 			try {
-				serializarBoleteria();
-				;
+				Archivo.crearArchivo(Persistencia.BOLETERIA_RUTA);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
 
 	}
 

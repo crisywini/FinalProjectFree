@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Cliente;
 
 public class PrincipalController {
 
@@ -23,11 +24,13 @@ public class PrincipalController {
 	AnchorPane adminSignUpPane;
 	AnchorPane adminSignPane;
 	AnchorPane userSignUpPane;
+	AnchorPane userPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
 	AdminSignController adminSignController;
 	UserSignUpController userSignUpController;
+	UserPaneController userPaneController;
 
 	@FXML
 	void initialize() {
@@ -116,6 +119,23 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(userSignUpPane);
 	}
+	public void cargarUserPane(Cliente miCliente)
+	{
+		if(userPane==null)
+		{
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/UserPane.fxml"));
+				userPane = (AnchorPane)cargador.load();
+				userPaneController = cargador.getController();
+				userPaneController.setVentanaPrincipal(this);
+				userPaneController.setMiCliente(miCliente);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(userPane);
+	}
 
 	public BorderPane getPrincipalPane() {
 		return principalPane;
@@ -132,10 +152,9 @@ public class PrincipalController {
 
 	@FXML
 	void handleMenuSaveData() {
-		if(elegirGuardar())
-		{
+		if (elegirGuardar()) {
 			try {
-				getPrincipal().serializarEspectaculo();
+				getPrincipal().serializarBoleteria();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -147,6 +166,7 @@ public class PrincipalController {
 	void handleMenuUser() {
 		cargarUserSignUp();
 	}
+	
 
 	public void showAlert(String message, String headerText, String title, AlertType alertType) {
 		Alert alert = new Alert(alertType);

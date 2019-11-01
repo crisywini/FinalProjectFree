@@ -10,6 +10,7 @@ public class Date implements Serializable {
 	private int day;
 	private int month;
 	private int year;
+
 	public Date() {
 		this(0, 0, 00);
 	}
@@ -61,5 +62,11 @@ public class Date implements Serializable {
 		}
 
 		return centi;
+	}
+
+	@Override
+	public String toString() {
+		String info = day + "/" + month + "/" + year;
+		return info;
 	}
 }

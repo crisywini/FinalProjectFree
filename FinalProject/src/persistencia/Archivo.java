@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 public class Archivo {
 	public static void guardarEnArchivo(String ruta, ArrayList<String> contenidoArchivo) throws IOException {
-		FileWriter archivoEscritor = new FileWriter(ruta, false);
+		FileWriter archivoEscritor = new FileWriter(ruta, true);
 		BufferedWriter direccionadorArchivo = new BufferedWriter(archivoEscritor);
 		for (String string : contenidoArchivo) {
 			direccionadorArchivo.write(string);
@@ -44,12 +44,12 @@ public class Archivo {
 		}
 		return salida;
 	}
+
 	/**
 	 * @param ruta
 	 * @return
 	 */
-	public static boolean isCreatedFile(String ruta)
-	{
+	public static boolean isCreatedFile(String ruta) {
 		File archivo = new File(ruta);
 		return archivo.exists();
 	}

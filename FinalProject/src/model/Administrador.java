@@ -10,20 +10,20 @@ public class Administrador extends Persona implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String email;
 	private String contrasenia;
-	private Espectaculo miEspectaculoAsociado;
+	private Boleteria miBoleteriaAsociada;
 
 	public Administrador() {
 		setEmail("@@@");
 		setContrasenia("***");
-		setMiEspectaculoAsociado(new Espectaculo());
+		setMiBoleteriaAsociada(new Boleteria());
 	}
 
 	public Administrador(String nombre, String apellido, String id, Genero miGenero, String email, String contrasenia,
-			Espectaculo miEspectaculoAsociado) {
+			Boleteria miBoleteriaAsociada) {
 		super(nombre, apellido, id, miGenero);
 		this.email = email;
 		this.contrasenia = contrasenia;
-		this.miEspectaculoAsociado = miEspectaculoAsociado;
+		this.setMiBoleteriaAsociada(miBoleteriaAsociada);
 	}
 
 	public Administrador(String email, String contrasenia) {
@@ -47,11 +47,15 @@ public class Administrador extends Persona implements Serializable{
 		this.contrasenia = contrasenia;
 	}
 
-	public Espectaculo getMiEspectaculoAsociado() {
-		return miEspectaculoAsociado;
+	public Boleteria getMiBoleteriaAsociada() {
+		return miBoleteriaAsociada;
 	}
 
-	public void setMiEspectaculoAsociado(Espectaculo miEspectaculoAsociado) {
-		this.miEspectaculoAsociado = miEspectaculoAsociado;
+	public void setMiBoleteriaAsociada(Boleteria miBoleteriaAsociada) {
+		this.miBoleteriaAsociada = miBoleteriaAsociada;
+	}
+	@Override
+	public String toString() {
+		return "Nombre: "+this.getNombre()+" id: "+getId()+" Boleteria: "+miBoleteriaAsociada;
 	}
 }

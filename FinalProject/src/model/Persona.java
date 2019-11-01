@@ -11,7 +11,7 @@ public abstract class Persona implements Serializable {
 	private String apellido;
 	private String id;
 	private Genero miGenero;
-
+	
 	/**
 	 * Constructor completo de la clase persona
 	 * 

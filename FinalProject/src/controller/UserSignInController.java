@@ -21,10 +21,15 @@ public class UserSignInController {
 		if (isInputValid()) {
 			try {
 				Cliente miCliente = getVentanaPrincipal().getPrincipal().obtenerCliente(nickNameField.getText());
+
+				if (verifyPassword(miCliente)) {
+					ventanaPrincipal.showAlert("Bienvenido: " + miCliente.getNombre(), "", "Bienvenido",
+							AlertType.INFORMATION);
+					ventanaPrincipal.cargarUserPane(miCliente);
+				}
 				nickNameField.setText("");
 				passwordField.setText("");
-				ventanaPrincipal.showAlert("Bienvenido: " + miCliente.getNombre(), "", "Bienvenido",
-						AlertType.INFORMATION);
+
 			} catch (ClienteNoExistenteException e) {
 				ventanaPrincipal.showAlert(e.getMessage(), "", "Error", AlertType.ERROR);
 			}
@@ -55,6 +60,23 @@ public class UserSignInController {
 		else
 			getVentanaPrincipal().showAlert(errorMessage, "", "Error", AlertType.WARNING);
 		return isValid;
+	}
+
+	public boolean verifyPassword(Cliente miCliente) {
+		boolean isCorrect = true;
+		String passwordClient = miCliente.getContrasenia();
+		String passwordTyped = passwordField.getText().trim();
+		System.out.println(passwordClient.length() + " <- cliente " + passwordField.getText().length() + " <-typed");
+		if (passwordClient.length() == passwordTyped.length()) {
+			for (int i = 0; i < passwordClient.length() && isCorrect; i++) {
+				if (passwordClient.charAt(i) != passwordTyped.charAt(i))
+					isCorrect = false;
+			}
+		} else
+			isCorrect = false;
+		if (!isCorrect)
+			getVentanaPrincipal().showAlert("La contraseña no es correcta!", "", "ERROR", AlertType.ERROR);
+		return isCorrect;
 	}
 
 	public PrincipalController getVentanaPrincipal() {

@@ -11,19 +11,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import model.*;
-import persistencia.Archivo;
-import persistencia.Persistencia;
+import persistencia.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-public class Main extends Application implements IControlEspectaculo {
-	private Espectaculo miEspectaculo;
+public class Main extends Application implements IControlBoleteria {
+	private Boleteria miBoleteria;
 
 	@Override
 	public void start(Stage primaryStage) {
-		cargarDatos(Persistencia.ESPECTACULO_RUTA);
-		if (miEspectaculo == null) {
-			miEspectaculo = new Espectaculo();
+		cargarDatos(Persistencia.BOLETERIA_RUTA);
+		if (miBoleteria == null) {
+			miBoleteria = new Boleteria();
 		}
 		showPrincipalPane(primaryStage);
 	}
@@ -42,6 +41,7 @@ public class Main extends Application implements IControlEspectaculo {
 			controlador.setPrincipalPane(panelPrincipal);
 			controlador.setPrincipal(this);
 			controlador.setPrincipalStage(primaryStage);
+			primaryStage.setTitle("Boleteria");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -51,12 +51,13 @@ public class Main extends Application implements IControlEspectaculo {
 	}
 
 	// -----------------set y get
-	public Espectaculo getMiEspectaculo() {
-		return miEspectaculo;
+
+	public Boleteria getMiBoleteria() {
+		return miBoleteria;
 	}
 
-	public void setMiEspectaculo(Espectaculo miEspectaculo) {
-		this.miEspectaculo = miEspectaculo;
+	public void setMiBoleteria(Boleteria miBoleteria) {
+		this.miBoleteria = miBoleteria;
 	}
 	// ------------------Persistencia------------
 
@@ -68,10 +69,14 @@ public class Main extends Application implements IControlEspectaculo {
 		Persistencia.guardarAdministradoresEnArchivo(getMisAdministradores());
 	}
 
-	public void serializarEspectaculo() throws IOException {
+	public void guardarEspectaculosEnArchivo() throws IOException {
+		Persistencia.guardarEspectaculosEnArchivo(null);
+	}
+
+	public void serializarBoleteria() throws IOException {
 		guardarAdministradoresEnArchivo();
 		guardarClientesEnArchivo();
-		Persistencia.serializarXML(Persistencia.ESPECTACULO_RUTA, getMiEspectaculo());
+		Persistencia.serializarXML(Persistencia.BOLETERIA_RUTA, getMiBoleteria());
 	}
 
 	public void crearArchivos() {
@@ -87,178 +92,156 @@ public class Main extends Application implements IControlEspectaculo {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		if (Archivo.isCreatedFile(Persistencia.ESPECTACULO_RUTA))
+		if (Archivo.isCreatedFile(Persistencia.ESPECTACULOS_RUTA))
 			try {
-				serializarEspectaculo();
+				guardarEspectaculosEnArchivo();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		if (Archivo.isCreatedFile(Persistencia.BOLETERIA_RUTA))
+			try {
+				serializarBoleteria();
+				;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 	}
 
 	public void cargarDatos(String ruta) {
-		Espectaculo miEspectaculoAux = null;
+		Boleteria miBoleteriaAux = null;
 		File archivo = new File(ruta);
 		if (archivo.exists()) {
 			try {
-				miEspectaculoAux = (Espectaculo) Persistencia.deserializarObjetoXML(ruta);
+				miBoleteriaAux = (Boleteria) Persistencia.deserializarObjetoXML(ruta);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			setMiEspectaculo(miEspectaculoAux);
+			setMiBoleteria(miBoleteriaAux);
 		}
 		crearArchivos();
 	}
-
 	// -----------------Services----------------
-	@Override
-	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
-			String email, Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio,
-			String contrasenia) throws ClienteRepetidoException {
-		return getMiEspectaculo().agregarCliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada,
-				miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio, contrasenia);
-	}
-
-	@Override
-	public Cliente removerCliente(String id) throws ClienteNoExistenteException {
-		return getMiEspectaculo().removerCliente(id);
-	}
-
-	@Override
-	public void programarEvento(Date fechaDePresentacion) {
-		getMiEspectaculo().programarEvento(fechaDePresentacion);
-	}
-
-	@Override
-	public HashMap<String, Administrador> getMisAdministradores() {
-		return getMiEspectaculo().getMisAdministradores();
-	}
-
-	@Override
-	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores) {
-		getMiEspectaculo().setMisAdministradores(misAdministradores);
-
-	}
-
-	@Override
-	public HashMap<String, Reserva> getMisReservas() {
-		return getMiEspectaculo().getMisReservas();
-	}
-
-	@Override
-	public void setMisReservas(HashMap<String, Reserva> misReservas) {
-		getMiEspectaculo().setMisReservas(misReservas);
-
-	}
-
-	@Override
-	public ArrayList<Date> getFechas() {
-		return getMiEspectaculo().getFechas();
-	}
-
-	@Override
-	public void setFechas(ArrayList<Date> fechas) {
-		getMiEspectaculo().setFechas(fechas);
-
-	}
-
-	@Override
-	public ArrayList<Escenario> getMisEscenarios() {
-		return getMiEspectaculo().getMisEscenarios();
-	}
-
-	@Override
-	public void setMisEscenarios(ArrayList<Escenario> misEscenarios) {
-		getMiEspectaculo().setMisEscenarios(misEscenarios);
-
-	}
-
-	@Override
-	public HashMap<String, Cliente> getMisClientes() {
-		return getMiEspectaculo().getMisClientes();
-	}
-
-	@Override
-	public void setMisClientes(HashMap<String, Cliente> misClientes) {
-		getMiEspectaculo().setMisClientes(misClientes);
-
-	}
-
-	@Override
-	public int verificarExistenciaFecha(int day, int month, int year) {
-		return getMiEspectaculo().verificarExistenciaFecha(day, month, year);
-	}
-
-	@Override
-	public void agregarFecha(int day, int month, int year) throws FechaExistente {
-		getMiEspectaculo().agregarFecha(day, month, year);
-
-	}
-
-	@Override
-	public void eliminarFecha(int day, int month, int year) throws FechaExistente {
-		getMiEspectaculo().eliminarFecha(day, month, year);
-
-	}
-
-	@Override
-	public boolean estaElCliente(String id) {
-		return getMiEspectaculo().estaElCliente(id);
-	}
 
 	@Override
 	public boolean estaElAdministrador(String id) {
-		return getMiEspectaculo().estaElAdministrador(id);
+		return miBoleteria.estaElCliente(id);
+	}
+
+	@Override
+	public Administrador removerAdministrador(String id) throws AdministradorNoExistenteException {
+		return miBoleteria.removerAdministrador(id);
+	}
+
+	@Override
+	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException {
+		return miBoleteria.obtenerAdministrador(id);
 	}
 
 	@Override
 	public boolean agregarAdministrador(String nombre, String apellido, String id, Genero miGenero, String email,
 			String contrasenia) throws AdministradorRepetidoException {
-		return getMiEspectaculo().agregarAdministrador(nombre, apellido, id, miGenero, email, contrasenia);
+		return miBoleteria.agregarAdministrador(nombre, apellido, id, miGenero, email, contrasenia);
 	}
 
 	@Override
-	public Administrador removerAdministrador(String id) throws AdministradorNoExistenteException {
-		return getMiEspectaculo().removerAdministrador(id);
+	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores) {
+		miBoleteria.setMisAdministradores(misAdministradores);
 	}
 
 	@Override
-	public void agregarReserva(String id) throws ReservaRepetidaException {
-		getMiEspectaculo().agregarReserva(id);
-
+	public HashMap<String, Administrador> getMisAdministradores() {
+		return miBoleteria.getMisAdministradores();
 	}
 
 	@Override
-	public Reserva eliminarReserva(String id) throws ReservaNoExisteException {
-		return getMiEspectaculo().eliminarReserva(id);
+	public boolean estaElCliente(String id) {
+		return miBoleteria.estaElCliente(id);
 	}
 
-	public ArrayList<Genero> getMisGeneros() {
-		return getMiEspectaculo().getMisGeneros();
+	@Override
+	public Cliente removerCliente(String id) throws ClienteNoExistenteException {
+		return miBoleteria.removerCliente(id);
 	}
 
 	@Override
 	public Cliente obtenerCliente(String id) throws ClienteNoExistenteException {
-		return getMiEspectaculo().obtenerCliente(id);
+		return miBoleteria.obtenerCliente(id);
 	}
 
 	@Override
-	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException {
-		return getMiEspectaculo().obtenerAdministrador(id);
+	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
+			String email, Cuenta miCuentaAsociada, Boleta miBoletaAsociada, Date miFechaDeNacimiento,
+			String ciudadDeResidencia, EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil,
+			NivelDeEstudio miNivelDeEstudio, String contrasenia) throws ClienteRepetidoException {
+		return miBoleteria.agregarCliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada,
+				miBoletaAsociada, miFechaDeNacimiento, ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio,
+				contrasenia);
 	}
 
 	@Override
-	public ArrayList<NivelDeEstudio> getMisEstudios() {
-		return getMiEspectaculo().getMisEstudios();
+	public void setMisClientes(HashMap<String, Cliente> misClientes) {
+		miBoleteria.setMisClientes(misClientes);
 	}
 
 	@Override
-	public ArrayList<EstratoSocioeconomico> getEstratos() {
-		return getMiEspectaculo().getEstratos();
+	public HashMap<String, Cliente> getMisClientes() {
+		return miBoleteria.getMisClientes();
+	}
+
+	@Override
+	public boolean estaElEspectaculo(String nombre) {
+		return miBoleteria.estaElEspectaculo(nombre);
+	}
+
+	@Override
+	public Espectaculo obtenerEspectaculo(String nombre) throws EspectaculoNullException {
+		return miBoleteria.obtenerEspectaculo(nombre);
+	}
+
+	@Override
+	public Espectaculo removerEspectaculo(String nombre) throws EspectaculoNullException {
+		return miBoleteria.removerEspectaculo(nombre);
+	}
+
+	@Override
+	public HashMap<String, Espectaculo> getMisEspectaculos() {
+		return miBoleteria.getMisEspectaculos();
+	}
+
+	@Override
+	public void setMisEspectaculos(HashMap<String, Espectaculo> misEspectaculos) {
+		miBoleteria.setMisEspectaculos(misEspectaculos);
+	}
+
+	@Override
+	public ArrayList<Genero> getMisGeneros() {
+		return miBoleteria.getMisGeneros();
 	}
 
 	@Override
 	public ArrayList<EstadoCivil> getEstadosCiviles() {
-		return getMiEspectaculo().getEstadosCiviles();
+		return miBoleteria.getEstadosCiviles();
 	}
+
+	@Override
+	public ArrayList<EstratoSocioeconomico> getEstratos() {
+		return miBoleteria.getEstratos();
+	}
+
+	@Override
+	public ArrayList<NivelDeEstudio> getMisEstudios() {
+		return miBoleteria.getMisEstudios();
+	}
+
+	@Override
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
+		return miBoleteria.agregarEspectaculo(nombre, miTipo);
+	}
+
+	@Override
+	public ArrayList<Espectaculo> obtenerListaEspectaculos() {
+		return miBoleteria.obtenerListaEspectaculos();
+	}
+
 }

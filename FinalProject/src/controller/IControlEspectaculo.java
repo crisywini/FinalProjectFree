@@ -3,70 +3,24 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import exceptions.AdministradorNoExistenteException;
-import exceptions.AdministradorRepetidoException;
-import exceptions.ClienteNoExistenteException;
-import exceptions.FechaExistente;
-import exceptions.ReservaNoExisteException;
-import exceptions.ReservaRepetidaException;
-import model.Administrador;
-import model.Cliente;
-import model.Date;
-import model.Escenario;
-import model.EstadoCivil;
-import model.EstratoSocioeconomico;
-import model.Genero;
-import model.NivelDeEstudio;
-import model.Reserva;
+import exceptions.EspectaculoNullException;
+import exceptions.EspectaculoRepetidoException;
+import model.Espectaculo;
+import model.TipoEspectaculo;
 
-public interface IControlEspectaculo extends IControlAdministrador {
-	public HashMap<String, Administrador> getMisAdministradores();
+public interface IControlEspectaculo {
+	public boolean estaElEspectaculo(String nombre);
 
-	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores);
+	public Espectaculo obtenerEspectaculo(String nombre) throws EspectaculoNullException;
 
-	public HashMap<String, Reserva> getMisReservas();
+	public Espectaculo removerEspectaculo(String nombre) throws EspectaculoNullException;
 
-	public void setMisReservas(HashMap<String, Reserva> misReservas);
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException;
 
-	public ArrayList<Date> getFechas();
+	public HashMap<String, Espectaculo> getMisEspectaculos();
 
-	public void setFechas(ArrayList<Date> fechas);
+	public void setMisEspectaculos(HashMap<String, Espectaculo> misEspectaculos);
 
-	public ArrayList<Escenario> getMisEscenarios();
-
-	public void setMisEscenarios(ArrayList<Escenario> misEscenarios);
-
-	public HashMap<String, Cliente> getMisClientes();
-
-	public void setMisClientes(HashMap<String, Cliente> misClientes);
-
-	public int verificarExistenciaFecha(int day, int month, int year);
-
-	public void agregarFecha(int day, int month, int year) throws FechaExistente;
-
-	public void eliminarFecha(int day, int month, int year) throws FechaExistente;
-
-	public boolean estaElCliente(String id);
-
-	public boolean estaElAdministrador(String id);
-
-	public boolean agregarAdministrador(String nombre, String apellido, String id, Genero miGenero, String email,
-			String contrasenia) throws AdministradorRepetidoException;
-
-	public Administrador removerAdministrador(String id) throws AdministradorNoExistenteException;
-
-	public void agregarReserva(String id) throws ReservaRepetidaException;
-
-	public Reserva eliminarReserva(String id) throws ReservaNoExisteException;
-
-	public Cliente obtenerCliente(String id) throws ClienteNoExistenteException;
-
-	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException;
-
-	public ArrayList<NivelDeEstudio> getMisEstudios();
-
-	public ArrayList<EstratoSocioeconomico> getEstratos();
-
-	public ArrayList<EstadoCivil> getEstadosCiviles();
+	public ArrayList<Espectaculo> obtenerListaEspectaculos();
 
 }

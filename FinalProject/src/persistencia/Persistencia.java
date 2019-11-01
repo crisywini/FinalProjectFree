@@ -12,11 +12,13 @@ import java.util.Iterator;
 
 import model.Administrador;
 import model.Cliente;
+import model.Espectaculo;
 
 public class Persistencia {
-	public static final String ESPECTACULO_RUTA = "src/resources/Espectaculo.xml";
+	public static final String BOLETERIA_RUTA = "src/resources/Boleteria.xml";
 	public static final String ADMINISTRADORES_RUTA = "src/resources/Administradores.txt";
 	public static final String CLIENTES_RUTA = "src/resources/Clientes.txt";
+	public static final String ESPECTACULOS_RUTA = "src/resources/Espectaculos.txt";
 
 	/**
 	 * Metodo estatico que permite serializar un objeto dada una ruta
@@ -91,6 +93,25 @@ public class Persistencia {
 			contenidoArchivo.add(info);
 		}
 		Archivo.guardarEnArchivo(ADMINISTRADORES_RUTA, contenidoArchivo);
+	}
+
+	/**
+	 * Metodo que permite guardar los espectaculos en archivo
+	 * 
+	 * @param misEspectaculos a guradar en archivo
+	 * @throws IOException Si ocurre un problema con la entrada/salida de datos
+	 */
+	public static void guardarEspectaculosEnArchivo(HashMap<String, Espectaculo> misEspectaculos) throws IOException {
+		Iterator<String> iterator = misEspectaculos.keySet().iterator();
+		ArrayList<String> contenidoArchivo = new ArrayList<String>();
+		String info = "";
+		Espectaculo miEspectaculo;
+		while (iterator.hasNext()) {
+			miEspectaculo = misEspectaculos.get(iterator.next());
+			info += "<" + miEspectaculo.getNombre() + "," + miEspectaculo.getFechas() + ">";
+			contenidoArchivo.add(info);
+		}
+		Archivo.guardarEnArchivo(BOLETERIA_RUTA, contenidoArchivo);
 	}
 
 }

@@ -27,6 +27,7 @@ public class PrincipalController {
 	AnchorPane userSignUpPane;
 	AnchorPane userPane;
 	AnchorPane adminViewPane;
+	AnchorPane actualizarDatosUserPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -34,6 +35,7 @@ public class PrincipalController {
 	UserSignUpController userSignUpController;
 	UserPaneController userPaneController;
 	AdminViewController adminViewPaneController;
+	ActualizarDatosUserPaneController actualizarDatosUserPaneController;
 
 	@FXML
 	void initialize() {
@@ -122,14 +124,13 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(userSignUpPane);
 	}
-	public void cargarUserPane(Cliente miCliente)
-	{
-		if(userPane==null)
-		{
+
+	public void cargarUserPane(Cliente miCliente) {
+		if (userPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/UserPane.fxml"));
-				userPane = (AnchorPane)cargador.load();
+				userPane = (AnchorPane) cargador.load();
 				userPaneController = cargador.getController();
 				userPaneController.setVentanaPrincipal(this);
 				userPaneController.setMiCliente(miCliente);
@@ -155,6 +156,21 @@ public class PrincipalController {
 			}
 		}
 		principalPane.setCenter(adminViewPane);
+	}
+
+	public void cargarActualizarDatosUserPane(Cliente miCliente) {
+		if (actualizarDatosUserPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/ActualizarDatosUserPane.fxml"));
+				actualizarDatosUserPane = (AnchorPane) cargador.load();
+				actualizarDatosUserPaneController = cargador.getController();
+				actualizarDatosUserPaneController.setMiCliente(miCliente);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(actualizarDatosUserPane);
 	}
 
 	public BorderPane getPrincipalPane() {
@@ -186,7 +202,6 @@ public class PrincipalController {
 	void handleMenuUser() {
 		cargarUserSignUp();
 	}
-	
 
 	public void showAlert(String message, String headerText, String title, AlertType alertType) {
 		Alert alert = new Alert(alertType);

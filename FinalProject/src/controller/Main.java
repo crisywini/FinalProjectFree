@@ -20,7 +20,6 @@ public class Main extends Application implements IControlBoleteria {
 
 	@Override
 	public void start(Stage primaryStage) {
-		cargarDatos(Persistencia.BOLETERIA_RUTA);
 		if (miBoleteria == null)
 			miBoleteria = new Boleteria();
 		showPrincipalPane(primaryStage);

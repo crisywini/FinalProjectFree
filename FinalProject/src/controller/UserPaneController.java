@@ -32,7 +32,8 @@ public class UserPaneController {
 
 	@FXML
 	void handleActualizarDatosButton() {
-		// Crear ventana de actualizacion de datos
+		System.out.println(miCliente);
+		ventanaPrincipal.cargarActualizarDatosUserPane(getMiCliente());
 	}
 
 	@FXML

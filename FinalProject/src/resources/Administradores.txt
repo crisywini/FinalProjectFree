@@ -1,4 +1,0 @@
-<Cristian,Sánchez,1006116733,cgsanchezp@uqvirtual.edu.co,HOMBRE>
-<456,456,456,456,CIS_MUJER><Cristian,Sánchez,1006116733,cgsanchezp@uqvirtual.edu.co,HOMBRE>
-<456,456,456,456,CIS_MUJER><Cristian,Sánchez,1006116733,cgsanchezp@uqvirtual.edu.co,HOMBRE>
-<456,456,456,456,CIS_MUJER>

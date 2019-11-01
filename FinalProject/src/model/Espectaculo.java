@@ -11,6 +11,8 @@ import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Espectaculo implements Serializable {
 	/**
@@ -23,6 +25,7 @@ public class Espectaculo implements Serializable {
 	private ArrayList<Escenario> misEscenarios;
 	private HashMap<String, Cliente> misAsistentes;
 	private HashMap<String, Reserva> misReservas;
+	private ImageView imagenMiTipo;
 
 	/**
 	 * Constructor de la clase
@@ -36,6 +39,7 @@ public class Espectaculo implements Serializable {
 		misAsistentes = new HashMap<String, Cliente>();
 		this.miTipo = miTipo;
 		setMisReservas(new HashMap<String, Reserva>());
+		setImage();
 	}
 
 	/**
@@ -261,5 +265,21 @@ public class Espectaculo implements Serializable {
 	 */
 	public StringProperty tipoProperty() {
 		return new SimpleStringProperty(getMiTipo().toString());
+	}
+
+	public ImageView getImagenMiTipo() {
+		return imagenMiTipo;
+	}
+
+	public void setImagenMiTipo(ImageView imagenMiTipo) {
+		this.imagenMiTipo = imagenMiTipo;
+	}
+
+	public void setImage() {
+		if (miTipo == TipoEspectaculo.CONCIERTO) {
+			ImageView imagen = new ImageView(new Image(
+					"file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/ConciertoIconAnalisis.png"));
+			setImagenMiTipo(imagen);
+		}
 	}
 }

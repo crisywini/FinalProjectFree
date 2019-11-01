@@ -54,4 +54,14 @@ public class Archivo {
 		return archivo.exists();
 	}
 
+	/**
+	 * Metodo que permite crear un archivo
+	 * 
+	 * @param ruta del archivo
+	 * @throws IOException si hay algun problema con la entrada/salida de datos
+	 */
+	public static void crearArchivo(String ruta) throws IOException {
+		File archivo = new File(ruta);
+		archivo.createNewFile();
+	}
 }

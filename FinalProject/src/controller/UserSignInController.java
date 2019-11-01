@@ -66,7 +66,6 @@ public class UserSignInController {
 		boolean isCorrect = true;
 		String passwordClient = miCliente.getContrasenia();
 		String passwordTyped = passwordField.getText().trim();
-		System.out.println(passwordClient.length() + " <- cliente " + passwordField.getText().length() + " <-typed");
 		if (passwordClient.length() == passwordTyped.length()) {
 			for (int i = 0; i < passwordClient.length() && isCorrect; i++) {
 				if (passwordClient.charAt(i) != passwordTyped.charAt(i))

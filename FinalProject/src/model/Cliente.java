@@ -12,9 +12,11 @@ public class Cliente extends Persona implements Serializable {
 	private Cuenta miCuentaAsociada;
 	private Date miFechaDeNacimiento;
 	private String ciudadDeResidencia;
+	private String contrasenia;
 	private EstratoSocioeconomico miEstrato;
 	private EstadoCivil miEstadoCivil;
 	private NivelDeEstudio miNivelDeEstudio;
+	private Boleta miBoletaAsociada;
 
 	/**
 	 * Constructor vacio
@@ -52,8 +54,8 @@ public class Cliente extends Persona implements Serializable {
 	 * @param miNivelDeEstudio    Nivel de estudio del cliente
 	 */
 	public Cliente(String nombre, String apellido, String id, Genero miGenero, String direccion, String email,
-			Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio) {
+			Cuenta miCuentaAsociada, Boleta miBoletaAsociada,Date miFechaDeNacimiento, String ciudadDeResidencia,
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio, String contrasenia) {
 		super(nombre, apellido, id, miGenero);
 		this.direccion = direccion;
 		this.email = email;
@@ -63,7 +65,10 @@ public class Cliente extends Persona implements Serializable {
 		this.miEstrato = miEstrato;
 		this.miEstadoCivil = miEstadoCivil;
 		this.miNivelDeEstudio = miNivelDeEstudio;
+		this.contrasenia = contrasenia;
+		this.miBoletaAsociada = miBoletaAsociada;
 		getMiCuentaAsociada().setMiClienteAsociado(this);
+		getMiBoletaAsociada().setMiClienteAsociado(this);
 	}
 
 	public String getDireccion() {
@@ -128,5 +133,26 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setMiEstadoCivil(EstadoCivil miEstadoCivil) {
 		this.miEstadoCivil = miEstadoCivil;
+	}
+	@Override
+	public String toString() {
+		String info = "["+getNombre()+" "+getMiCuentaAsociada().getId()+" "+miBoletaAsociada.getId()+"]";
+		return info;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
+	public Boleta getMiBoletaAsociada() {
+		return miBoletaAsociada;
+	}
+
+	public void setMiBoletaAsociada(Boleta miBoletaAsociada) {
+		this.miBoletaAsociada = miBoletaAsociada;
 	}
 }

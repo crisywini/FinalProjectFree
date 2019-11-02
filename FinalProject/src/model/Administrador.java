@@ -2,31 +2,28 @@ package model;
 
 import java.io.Serializable;
 
-import controller.IControlAdministrador;
-import exceptions.ClienteNoExistenteException;
-import exceptions.ClienteRepetidoException;
 
-public class Administrador extends Persona implements Serializable, IControlAdministrador {
+public class Administrador extends Persona implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String email;
 	private String contrasenia;
-	private Espectaculo miEspectaculoAsociado;
+	private Boleteria miBoleteriaAsociada;
 
 	public Administrador() {
 		setEmail("@@@");
 		setContrasenia("***");
-		setMiEspectaculoAsociado(new Espectaculo());
+		setMiBoleteriaAsociada(new Boleteria());
 	}
 
 	public Administrador(String nombre, String apellido, String id, Genero miGenero, String email, String contrasenia,
-			Espectaculo miEspectaculoAsociado) {
+			Boleteria miBoleteriaAsociada) {
 		super(nombre, apellido, id, miGenero);
 		this.email = email;
 		this.contrasenia = contrasenia;
-		this.miEspectaculoAsociado = miEspectaculoAsociado;
+		this.setMiBoleteriaAsociada(miBoleteriaAsociada);
 	}
 
 	public Administrador(String email, String contrasenia) {
@@ -50,49 +47,15 @@ public class Administrador extends Persona implements Serializable, IControlAdmi
 		this.contrasenia = contrasenia;
 	}
 
-	public Espectaculo getMiEspectaculoAsociado() {
-		return miEspectaculoAsociado;
+	public Boleteria getMiBoleteriaAsociada() {
+		return miBoleteriaAsociada;
 	}
 
-	public void setMiEspectaculoAsociado(Espectaculo miEspectaculoAsociado) {
-		this.miEspectaculoAsociado = miEspectaculoAsociado;
+	public void setMiBoleteriaAsociada(Boleteria miBoleteriaAsociada) {
+		this.miBoleteriaAsociada = miBoleteriaAsociada;
 	}
-
-	/**
-	 * Agregar un cliente
-	 */
-
 	@Override
-	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion,
-			String email, Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio)
-			throws ClienteRepetidoException {
-		boolean agregadoCompleto = false;
-		if (getMiEspectaculoAsociado().estaElCliente(id)) {
-			throw new ClienteRepetidoException(
-					"El cliente: " + nombre + " " + apellido + " id: " + id + " ya se encuentra en el espectaculo");
-		}
-
-		getMiEspectaculoAsociado().getMisClientes().put(id,
-				new Cliente(nombre, apellido, id, miGenero, direccion, email, miCuentaAsociada, miFechaDeNacimiento,
-						ciudadDeResidencia, miEstrato, miEstadoCivil, miNivelDeEstudio));
-		agregadoCompleto = true;
-		return agregadoCompleto;
-	}
-
-	/**
-	 * Eliminar un cliente
-	 */
-	@Override
-	public Cliente removerCliente(String id) throws ClienteNoExistenteException {
-		if (!getMiEspectaculoAsociado().estaElCliente(id))
-			throw new ClienteNoExistenteException(
-					"El cliente con id: " + id + " no se encuentra registrado en el espectadulo.");
-		Cliente miCliente = getMiEspectaculoAsociado().getMisClientes().remove(id);
-		return miCliente;
-	}
-
-	@Override
-	public void programarEvento(Date fechaDePresentacion) {
+	public String toString() {
+		return "Nombre: "+this.getNombre()+" id: "+getId()+" Boleteria: "+miBoleteriaAsociada;
 	}
 }

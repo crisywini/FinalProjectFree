@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="principalPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
+   <top>
+      <MenuBar style="-fx-background-radius: 20px;" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Registrarse">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMenuAdmin" style="-fx-background-radius: 20px;" text="Administrador" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuUser" style="-fx-background-radius: 20px;" text="Usuario" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Salir">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMenuSaveData" style="-fx-background-radius: 20px;" text="Guardar datos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

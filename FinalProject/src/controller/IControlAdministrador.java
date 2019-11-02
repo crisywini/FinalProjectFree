@@ -1,20 +1,23 @@
 package controller;
 
-import exceptions.ClienteNoExistenteException;
-import exceptions.ClienteRepetidoException;
-import model.Cliente;
-import model.Cuenta;
-import model.Date;
-import model.EstadoCivil;
-import model.EstratoSocioeconomico;
+import java.util.HashMap;
+
+import exceptions.AdministradorNoExistenteException;
+import exceptions.AdministradorRepetidoException;
+import model.Administrador;
 import model.Genero;
-import model.NivelDeEstudio;
 
 public interface IControlAdministrador {
-	//Revisar la cantidad de servicios que tiene un administrador
-	public boolean agregarCliente(String nombre, String apellido, String id, Genero miGenero, String direccion, String email,
-			Cuenta miCuentaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio)throws ClienteRepetidoException;
-	public Cliente removerCliente(String id)throws ClienteNoExistenteException;
-	public void programarEvento(Date fechaDePresentacion);
+	public boolean estaElAdministrador(String id);
+
+	public Administrador removerAdministrador(String id) throws AdministradorNoExistenteException;
+
+	public Administrador obtenerAdministrador(String id) throws AdministradorNoExistenteException;
+
+	public boolean agregarAdministrador(String nombre, String apellido, String id, Genero miGenero, String email,
+			String contrasenia) throws AdministradorRepetidoException;
+
+	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores);
+
+	public HashMap<String, Administrador> getMisAdministradores();
 }

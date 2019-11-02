@@ -1,41 +1,55 @@
 package model;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
-import exceptions.AdministradorNoExistenteException;
-import exceptions.AdministradorRepetidoException;
-import exceptions.FechaExistente;
+import exceptions.FechaExistenteException;
 import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-/**
- * Clase principal de la logica
- * 
- * @author Tatiana Mora, Oscar Moreno, Cristian Sánchez
- *
- */
-public class Espectaculo {
+public class Espectaculo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String nombre;
+	private TipoEspectaculo miTipo;
 	private ArrayList<Date> fechas;
 	private ArrayList<Escenario> misEscenarios;
-	private HashMap<String, Cliente> misClientes;
-	private HashMap<String, Administrador> misAdministradores;
+	private HashMap<String, Cliente> misAsistentes;
 	private HashMap<String, Reserva> misReservas;
+	private ImageView imagenMiTipo;
 
-	public Espectaculo() {
+	/**
+	 * Constructor de la clase
+	 * 
+	 * @param nombre del espectaculo
+	 */
+	public Espectaculo(String nombre, TipoEspectaculo miTipo) {
+		this.nombre = nombre;
 		fechas = new ArrayList<Date>();
 		misEscenarios = new ArrayList<Escenario>();
-		misClientes = new HashMap<String, Cliente>();
-		misAdministradores = new HashMap<String, Administrador>();
+		misAsistentes = new HashMap<String, Cliente>();
+		this.miTipo = miTipo;
 		setMisReservas(new HashMap<String, Reserva>());
+		setImage();
 	}
 
-	public HashMap<String, Administrador> getMisAdministradores() {
-		return misAdministradores;
-	}
-
-	public void setMisAdministradores(HashMap<String, Administrador> misAdministradores) {
-		this.misAdministradores = misAdministradores;
+	/**
+	 * Constructor vacio de la clase Espectaculo
+	 */
+	public Espectaculo() {
+		fechas = new ArrayList<Date>();
+		misAsistentes = new HashMap<String, Cliente>();
+		misEscenarios = new ArrayList<Escenario>();
+		setMisReservas(new HashMap<String, Reserva>());
 	}
 
 	public HashMap<String, Reserva> getMisReservas() {
@@ -62,14 +76,6 @@ public class Espectaculo {
 		this.misEscenarios = misEscenarios;
 	}
 
-	public HashMap<String, Cliente> getMisClientes() {
-		return misClientes;
-	}
-
-	public void setMisClientes(HashMap<String, Cliente> misClientes) {
-		this.misClientes = misClientes;
-	}
-
 	/**
 	 * Verificar si una fecha existe
 	 * 
@@ -89,7 +95,6 @@ public class Espectaculo {
 				centi = true;
 				indice = i;
 			}
-
 		}
 		return indice;
 	}
@@ -100,15 +105,15 @@ public class Espectaculo {
 	 * @param day
 	 * @param month
 	 * @param year
-	 * @throws FechaExistente
+	 * @throws FechaExistenteException
 	 */
-	public void agregarFecha(int day, int month, int year) throws FechaExistente {
+	public void agregarFecha(int day, int month, int year) throws FechaExistenteException {
 		if (verificarExistenciaFecha(day, month, year) == -1) {
 			Date fecha = new Date(day, month, year);
 			fechas.add(fecha);
 		} else {
 
-			throw new FechaExistente("La fecha: " + day + "/" + month + "/" + year + " ya existe");
+			throw new FechaExistenteException("La fecha: " + day + "/" + month + "/" + year + " ya existe");
 		}
 	}
 
@@ -118,9 +123,9 @@ public class Espectaculo {
 	 * @param day
 	 * @param month
 	 * @param year
-	 * @throws FechaExistente
+	 * @throws FechaExistenteException
 	 */
-	public void eliminarFecha(int day, int month, int year) throws FechaExistente {
+	public void eliminarFecha(int day, int month, int year) throws FechaExistenteException {
 		for (int i = 0; i < fechas.size(); i++) {
 
 			Date aux = fechas.get(i);
@@ -129,67 +134,22 @@ public class Espectaculo {
 				fechas.remove(aux);
 			} else {
 
-				throw new FechaExistente("La fecha: " + day + "/" + month + "/" + year + " no existe");
+				throw new FechaExistenteException("La fecha: " + day + "/" + month + "/" + year + " no existe");
 			}
 		}
 	}
 
 	/**
-	 * Metodo que permite verificar si existe un cliente en el espectaculo
+	 * Metodo que permite obtener una reserca
 	 * 
-	 * @param id
-	 * @return un booleano verificando la existencia del cliente
+	 * @param id de la reserva
+	 * @return la reserva requerida
+	 * @throws ReservaNoExisteException si la reserva no existe
 	 */
-	public boolean estaElCliente(String id) {
-		return misClientes.containsKey(id);
-	}
-
-	/**
-	 * Metodo que permite verificar si existe un administrador en el espectaculo
-	 * 
-	 * @param id
-	 * @return un booleano verificando la existencia del cliente
-	 */
-	public boolean estaElAdministrador(String id) {
-		return misAdministradores.containsKey(id);
-	}
-
-	/**
-	 * Metodo para agregar un administrador
-	 * 
-	 * @return
-	 */
-
-	public boolean agregarAdministrador(String nombre, String apellido, String id, Genero miGenero, String email,
-			String contrasenia) throws AdministradorRepetidoException {
-		boolean agregadoCompleto = false;
-
-		if (estaElAdministrador(id)) {
-			throw new AdministradorRepetidoException("El administrador: " + nombre + " " + apellido + " id: " + id
-					+ " ya se encuentra en el espectaculo");
-		}
-
-		getMisAdministradores().put(id, new Administrador(nombre, apellido, id, miGenero, email, contrasenia, this));
-		agregadoCompleto = true;
-		return agregadoCompleto;
-	}
-
-	/**
-	 * Metodo para eliminar un administrador
-	 * 
-	 * @param id
-	 * @return
-	 * @throws AdministradorNoExistenteException
-	 */
-
-	public Administrador removerAdministrador(String id) throws AdministradorNoExistenteException {
-
-		if (!estaElAdministrador(id)) {
-			throw new AdministradorNoExistenteException(
-					"El administrador con id: " + id + " no se encuentra registrado en el espectadulo.");
-		}
-		Administrador miAdministrador = getMisAdministradores().remove(id);
-		return miAdministrador;
+	public Reserva obtenerReserva(String id) throws ReservaNoExisteException {
+		if (!getMisReservas().containsKey(id))
+			throw new ReservaNoExisteException("La reserva: " + id + " no esta registrada");
+		return misReservas.get(id);
 	}
 
 	/**
@@ -203,16 +163,125 @@ public class Espectaculo {
 			throw new ReservaRepetidaException("La reserva: (id) " + id + " ya se encuentra en el espectaculo");
 		getMisReservas().put(id, new Reserva(id));
 	}
+
 	/**
 	 * Metodo que permite eliminar una reserva
+	 * 
 	 * @param id de la reserva
 	 * @return la reserva eliminada
 	 * @throws ReservaNoExisteException si la reserva no existe
 	 */
 	public Reserva eliminarReserva(String id) throws ReservaNoExisteException {
-		if(!getMisReservas().containsKey(id))
-			throw new ReservaNoExisteException("La reserva: (id) "+id+" no existe en el espectaculo");
+		if (!getMisReservas().containsKey(id))
+			throw new ReservaNoExisteException("La reserva: (id) " + id + " no existe en el espectaculo");
 		return getMisReservas().remove(id);
 	}
+
+	public void programarEvento(Date fechaDePresentacion) {
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public HashMap<String, Cliente> getMisAsistentes() {
+		return misAsistentes;
+	}
+
+	public TipoEspectaculo getMiTipo() {
+		return miTipo;
+	}
+
+	public void setMiTipo(TipoEspectaculo miTipo) {
+		this.miTipo = miTipo;
+	}
+
+	public void setMisAsistentes(HashMap<String, Cliente> misAsistentes) {
+		this.misAsistentes = misAsistentes;
+	}
+
+	/**
+	 * Metodo que permite obtener un listado de asistentes segun una seccion
+	 * 
+	 * @param miSeccion a buscar
+	 * @return un listado de los clientes asistentes segun la seccion
+	 */
+	public ArrayList<Cliente> obtenerListadoClientesSegunSeccion(Seccion miSeccion) {
+		ArrayList<Cliente> misClientes = new ArrayList<Cliente>();
+		Iterator<String> iterator = misAsistentes.keySet().iterator();
+		String nombreAux = "";
+		Boleta miBoleta;
+		TipoSeccion tipoSeccion;
+		Puesto miPuesto;
+		while (iterator.hasNext()) {
+			nombreAux = iterator.next();
+			miBoleta = misAsistentes.get(nombreAux).getMiBoletaAsociada();
+			miPuesto = miBoleta.getMiPuesto();
+			tipoSeccion = miPuesto.getMiSeccionAsociada().getMiTipo();
+			if (tipoSeccion == miSeccion.getMiTipo())
+				misClientes.add(misAsistentes.get(nombreAux));
+		}
+		return misClientes;
+	}
+
+	/**
+	 * Metodo que permite obtener un listado de clientes segun el estrato socio
+	 * economico
+	 * 
+	 * @param miEstrato estrato socioeconomico
+	 * @return un listado de clientes segun el estrato socioeconomico
+	 */
+	public ArrayList<Cliente> obtenerListadoClientesSegunEstrato(EstratoSocioeconomico miEstrato) {
+		ArrayList<Cliente> misClientes = new ArrayList<Cliente>();
+		Iterator<String> iterator = misAsistentes.keySet().iterator();
+		String nombreAux = "";
+		while (iterator.hasNext()) {
+			nombreAux = iterator.next();
+			if (misAsistentes.get(nombreAux).getMiEstrato() == miEstrato)
+				misClientes.add(misAsistentes.get(nombreAux));
+		}
+		return misClientes;
+	}
 	
+	
+
+	/**
+	 * Metodo que permite obtener un {@link StringProperty} con la informacion del
+	 * nombre del espectaculo
+	 * 
+	 * @return un {@link StringProperty}
+	 */
+	public StringProperty nombreProperty() {
+		return new SimpleStringProperty(nombre);
+	}
+
+	/**
+	 * Metodo que permite obtener un {@link StringProperty} con la informacion del
+	 * tipo del espectaculo
+	 * 
+	 * @return un {@link StringProperty}
+	 */
+	public StringProperty tipoProperty() {
+		return new SimpleStringProperty(getMiTipo().toString());
+	}
+
+	public ImageView getImagenMiTipo() {
+		return imagenMiTipo;
+	}
+
+	public void setImagenMiTipo(ImageView imagenMiTipo) {
+		this.imagenMiTipo = imagenMiTipo;
+	}
+
+	public void setImage() {
+		if (miTipo == TipoEspectaculo.CONCIERTO) {
+			ImageView imagen = new ImageView(new Image(
+					"file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/ConciertoIconAnalisis.png"));
+			setImagenMiTipo(imagen);
+		}
+	}
 }

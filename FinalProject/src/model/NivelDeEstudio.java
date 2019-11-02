@@ -1,8 +1,7 @@
 package model;
 
-public enum NivelDeEstudio {
-	BACHILLER,
-	PREGRADO,
-	MAESTRIA,
-	DOCTORADO;
+import java.io.Serializable;
+
+public enum NivelDeEstudio implements Serializable {
+	BACHILLER, PREGRADO, MAESTRIA, DOCTORADO;
 }

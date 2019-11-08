@@ -13,9 +13,9 @@ public class Correo {
 
 	public static void main(String[] args) {
 
-		String destinatario = "tatianamora1902@gmail.com";
+		String destinatario = "cgsanchezp@uqvirtual.edu.co";
 		String asunto = "texto";
-		String cuerpo = " hola mundo";
+		String cuerpo = "https://docs.google.com/forms/d/e/1FAIpQLScNMt2zkr6j1cJTkREpSlLAELN9LrGXr72ro8V3XH90WjUXLQ/viewform?usp=sf_link";
 		enviarConGMail(destinatario, asunto, cuerpo);
 
 	}

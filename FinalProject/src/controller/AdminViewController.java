@@ -1,8 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import model.Espectaculo;
 
 public class AdminViewController {
 
-	private ObservableList<Espectaculo> espectaculos;
+	private ObservableList<Espectaculo> listEspectaculos;
 	private PrincipalController ventanaPrincipal;
 	private Administrador miAdmin;
 	
@@ -39,12 +40,12 @@ public class AdminViewController {
     @FXML
     void handleAgregarEspectaculo() 
     {
-    	ventanaPrincipal.cargarAgregarEspectaculoPane();
+    	ventanaPrincipal.cargarAgregarEspectaculoPane(miAdmin);
     }
 
     @FXML
     void handleEliminarEspectaculo(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -68,6 +69,16 @@ public class AdminViewController {
 		this.miAdmin = miAdmin;
 	}
 	
+	public void initTableEspectaculos() {
+		nombreTableColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
+		// ImageView se crea un ImageView en Espectaculo el cual se le pone la ruta
+		// dependiendo el tipo
+		tipoTableColumn.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
+
+		ObservableList<Espectaculo> misEspectaculos = FXCollections
+				.observableArrayList(ventanaPrincipal.getPrincipal().obtenerListaEspectaculos());
+		espectaculosTableView.setItems(misEspectaculos);
+	}
     
     
 

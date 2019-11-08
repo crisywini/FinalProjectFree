@@ -174,13 +174,14 @@ public class PrincipalController {
 		principalPane.setCenter(actualizarDatosUserPane);
 	}
 
-	public void cargarAgregarEspectaculoPane() {
+	public void cargarAgregarEspectaculoPane(Administrador adm) {
 		if (agregarEspectaculoPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/AgregarEspectaculoPane.fxml"));
 				agregarEspectaculoPane = (AnchorPane) cargador.load();
 				agregarEspectaculoController = cargador.getController();
+				agregarEspectaculoController.setAdm(adm);
 				agregarEspectaculoController.setVentanaPrincipal(this);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -253,5 +254,6 @@ public class PrincipalController {
 	public void setPrincipalStage(Stage principalStage) {
 		this.principalStage = principalStage;
 	}
+	
 
 }

@@ -2,8 +2,9 @@ package controller;
 
 import java.util.Observable;
 
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,10 +36,20 @@ public class AdminViewController {
     @FXML
     private Button btnVer;
     
-    public void agregarEspectaculo()
+    @FXML
+    void handleAgregarEspectaculo() 
     {
-    	Espectaculo nuevo = new Espectaculo();
-    	espectaculos.add(nuevo);
+    	ventanaPrincipal.cargarAgregarEspectaculoPane();
+    }
+
+    @FXML
+    void handleEliminarEspectaculo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleVerEspectaculo() {
+
     }
 
 	public PrincipalController getVentanaPrincipal() {
@@ -56,6 +67,7 @@ public class AdminViewController {
 	public void setMiAdmin(Administrador miAdmin) {
 		this.miAdmin = miAdmin;
 	}
+	
     
     
 

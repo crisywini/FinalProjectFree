@@ -28,6 +28,7 @@ public class PrincipalController {
 	AnchorPane userPane;
 	AnchorPane adminViewPane;
 	AnchorPane actualizarDatosUserPane;
+	AnchorPane agregarEspectaculoPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -36,10 +37,11 @@ public class PrincipalController {
 	UserPaneController userPaneController;
 	AdminViewController adminViewPaneController;
 	ActualizarDatosUserPaneController actualizarDatosUserPaneController;
+	AgregarEspectaculoController agregarEspectaculoController;
 
 	@FXML
 	void initialize() {
-		cargarMenu();
+		cargarAgregarEspectaculoPane();
 	}
 
 	public Main getPrincipal() {
@@ -171,6 +173,23 @@ public class PrincipalController {
 			}
 		}
 		principalPane.setCenter(actualizarDatosUserPane);
+	}
+	
+	public void cargarAgregarEspectaculoPane()
+	{
+		if(agregarEspectaculoPane == null)
+		{
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/AgregarEspectaculoPane.fxml"));
+				agregarEspectaculoPane = (AnchorPane) cargador.load();
+				agregarEspectaculoController = cargador.getController();
+				agregarEspectaculoController.setVentanaPrincipal(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(agregarEspectaculoPane);
 	}
 
 	public BorderPane getPrincipalPane() {

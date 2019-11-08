@@ -48,15 +48,15 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="300.0">
                <children>
-                  <Button fx:id="btnAgregar" mnemonicParsing="false" text="Agregar" />
+                  <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleAgregarEspectaculo" text="Agregar" />
                   <HBox alignment="CENTER" prefHeight="83.0" prefWidth="98.0">
                      <children>
-                        <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Eliminar" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleEliminarEspectaculo" prefHeight="25.0" prefWidth="62.0" text="Eliminar" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="80.0" prefWidth="99.0">
                      <children>
-                        <Button fx:id="btnVer" mnemonicParsing="false" text="Ver" />
+                        <Button fx:id="btnVer" mnemonicParsing="false" onAction="#handleVerEspectaculo" text="Ver" />
                      </children>
                   </HBox>
                </children>

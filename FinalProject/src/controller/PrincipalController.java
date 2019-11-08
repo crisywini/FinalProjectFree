@@ -41,7 +41,7 @@ public class PrincipalController {
 
 	@FXML
 	void initialize() {
-		cargarAgregarEspectaculoPane();
+		cargarMenu();
 	}
 
 	public Main getPrincipal() {
@@ -142,10 +142,9 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(userPane);
 	}
-	public void cargarAdminViewPane(Administrador miAdmin)
-	{
-		if(adminViewPane == null)
-		{
+
+	public void cargarAdminViewPane(Administrador miAdmin) {
+		if (adminViewPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/AdminViewPane.fxml"));
@@ -174,11 +173,9 @@ public class PrincipalController {
 		}
 		principalPane.setCenter(actualizarDatosUserPane);
 	}
-	
-	public void cargarAgregarEspectaculoPane()
-	{
-		if(agregarEspectaculoPane == null)
-		{
+
+	public void cargarAgregarEspectaculoPane() {
+		if (agregarEspectaculoPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/AgregarEspectaculoPane.fxml"));

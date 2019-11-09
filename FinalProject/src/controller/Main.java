@@ -24,7 +24,7 @@ public class Main extends Application implements IControlBoleteria {
 
 	@Override
 	public void start(Stage primaryStage) {
-		cargarDatos(Persistencia.BOLETERIA_RUTA);
+		cargarDatos(Persistencia.BOLETERIA_RUTA_DAT);
 		showPrincipalPane(primaryStage);
 	}
 
@@ -100,7 +100,7 @@ public class Main extends Application implements IControlBoleteria {
 				e.printStackTrace();
 			}
 		}
-		if (!Archivo.isCreatedFile(Persistencia.BOLETERIA_RUTA)) {
+		if (!Archivo.isCreatedFile(Persistencia.BOLETERIA_RUTA_DAT)) {
 			try {
 				serializarBoleteria();
 			} catch (Exception e) {

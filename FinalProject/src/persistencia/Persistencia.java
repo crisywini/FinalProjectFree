@@ -18,11 +18,11 @@ import model.Cliente;
 import model.Espectaculo;
 
 public class Persistencia {
-	public static final String BOLETERIA_RUTA = "src/resources/BoleteriaArchivo.xml";
 	public static final String ADMINISTRADORES_RUTA = "src/resources/Administradores.txt";
 	public static final String CLIENTES_RUTA = "src/resources/Clientes.txt";
 	public static final String ESPECTACULOS_RUTA = "src/resources/Espectaculos.txt";
 	public static final String BOLETERIA_RUTA_DAT = "src/resources/Boleteria.dat";
+	public static final String BOLETERIA_RUTA_XML = "src/resources/Boleteria.xml";
 
 	/**
 	 * Metodo estatico que permite serializar un objeto dada una ruta
@@ -169,7 +169,7 @@ public class Persistencia {
 			info += "<" + miEspectaculo.getNombre() + "," + miEspectaculo.getFechas() + ">\n";
 			contenidoArchivo.add(info);
 		}
-		Archivo.guardarEnArchivo(BOLETERIA_RUTA, contenidoArchivo);
+		Archivo.guardarEnArchivo(ESPECTACULOS_RUTA, contenidoArchivo);
 	}
 
 }

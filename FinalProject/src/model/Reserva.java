@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -7,7 +8,11 @@ import exceptions.BoletaNoExisteException;
 import exceptions.BoletaRepetidaException;
 import exceptions.LimiteExcedidoException;
 
-public class Reserva {
+public class Reserva implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String ubicacionEntregaBoletas;
 	private static final int LIMITE_DE_PUESTOS = 6;

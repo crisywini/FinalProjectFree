@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.Administrador;
 import model.Cliente;
 import model.Espectaculo;
+import model.Seccion;
 
 public class PrincipalController {
 
@@ -31,6 +32,7 @@ public class PrincipalController {
 	AnchorPane actualizarDatosUserPane;
 	AnchorPane agregarEspectaculoPane;
 	AnchorPane comprarBoletasPane;
+	AnchorPane sillasPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -41,6 +43,7 @@ public class PrincipalController {
 	ActualizarDatosUserPaneController actualizarDatosUserPaneController;
 	AgregarEspectaculoController agregarEspectaculoController;
 	ComprarBoletasPaneController comprarBoletasController;
+	SillasPaneController sillasController;
 
 	@FXML
 	void initialize() {
@@ -209,6 +212,28 @@ public class PrincipalController {
 			}
 		}
 		principalPane.setCenter(comprarBoletasPane);
+	}
+
+	public void cargarSillasPane(Cliente miCliente, Seccion miSeccion, Espectaculo miEspectaculo) {
+		if (sillasPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/SillasPane.fxml"));
+				sillasPane = (AnchorPane) cargador.load();
+				sillasController = cargador.getController();
+				sillasController.setMiSeccion(miSeccion);
+
+				sillasController.setMiCliente(miCliente);
+				sillasController.setMiEspectaculo(miEspectaculo);
+				sillasController.setVentanaPrincipal(this);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		sillasController.getSillasVBox().getChildren().remove(0);
+		sillasController.setMiSeccion(miSeccion);
+		principalPane.setCenter(sillasPane);
 	}
 
 	public BorderPane getPrincipalPane() {

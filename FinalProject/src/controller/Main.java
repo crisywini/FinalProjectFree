@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 import exceptions.*;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import model.*;
@@ -17,9 +19,11 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application implements IControlBoleteria {
 	private Boleteria miBoleteria;
+	public static final ObservableList<Espectaculo> espectaculosData = FXCollections.observableArrayList();
 
 	public Main() {
 		miBoleteria = new Boleteria();
+		espectaculosData.addAll(miBoleteria.obtenerListaEspectaculos());
 	}
 
 	@Override
@@ -243,8 +247,8 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	@Override
-	public boolean agregarEspectaculo(Espectaculo e) throws EspectaculoRepetidoException {
-		return miBoleteria.agregarEspectaculo(e);
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
+		return miBoleteria.agregarEspectaculo(nombre, miTipo);
 	}
 
 	@Override

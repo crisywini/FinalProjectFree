@@ -27,7 +27,13 @@ public class Boleteria implements Serializable {
 	 * Metodo constructor vacio de la clase Boleteria
 	 */
 	public Boleteria() {
+		Espectaculo miEspectaculoAux = new Espectaculo("Auxiliar", TipoEspectaculo.CONCIERTO);
 		misEspectaculos = new HashMap<String, Espectaculo>();
+		try {
+			agregarEspectaculo(miEspectaculoAux.getNombre(), miEspectaculoAux.getMiTipo());
+		} catch (EspectaculoRepetidoException e) {
+			e.printStackTrace();
+		}
 		misAdministradores = new HashMap<String, Administrador>();
 		misClientes = new HashMap<String, Cliente>();
 	}
@@ -237,10 +243,11 @@ public class Boleteria implements Serializable {
 	 * @throws EspectaculoRepetidoException si el espectaculo ya se encuentra en la
 	 *                                      boleteria
 	 */
-	public boolean agregarEspectaculo(Espectaculo e) throws EspectaculoRepetidoException {
-		if (estaElEspectaculo(e.getNombre()))
-			throw new EspectaculoRepetidoException("El espectaculo: " + e.getNombre() + " ya se encuentra en la boleteria");
-		misEspectaculos.put(e.getNombre(), e);
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
+		if (estaElEspectaculo(nombre))
+			throw new EspectaculoRepetidoException("El espectaculo: " + nombre + " ya se encuentra en la boleteria");
+		Espectaculo newEspectaculo = new Espectaculo(nombre, miTipo);
+		misEspectaculos.put(nombre, newEspectaculo);
 		return true;
 	}
 
@@ -323,8 +330,8 @@ public class Boleteria implements Serializable {
 		}
 		return misEspectaculosLista;
 	}
-	public ArrayList<TipoEspectaculo> obtenerListadoTipoEspectaculo()
-	{
+
+	public ArrayList<TipoEspectaculo> obtenerListadoTipoEspectaculo() {
 		ArrayList<TipoEspectaculo> misTipos = new ArrayList<TipoEspectaculo>();
 		misTipos.add(TipoEspectaculo.CONCIERTO);
 		misTipos.add(TipoEspectaculo.DEPORTE);
@@ -334,5 +341,4 @@ public class Boleteria implements Serializable {
 		misTipos.add(TipoEspectaculo.TEATRO);
 		return misTipos;
 	}
-
 }

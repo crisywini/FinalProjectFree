@@ -18,6 +18,7 @@ public class Reserva implements Serializable{
 	private static final int LIMITE_DE_PUESTOS = 6;
 	private HashMap<String, Boleta> misBoletas;
 	private double valorTotalReserva;
+	private Cliente miClienteAsociado;
 
 	/**
 	 * Metodo constructor de la clase Reserva
@@ -147,5 +148,13 @@ public class Reserva implements Serializable{
 			miPuestoAuxiliar = getMisBoletas().get(iterator.next()).getMiPuesto();
 			miPuestoAuxiliar.setMiEstado(EstadoPuesto.OCUPADO);
 		}
+	}
+
+	public Cliente getMiClienteAsociado() {
+		return miClienteAsociado;
+	}
+
+	public void setMiClienteAsociado(Cliente miClienteAsociado) {
+		this.miClienteAsociado = miClienteAsociado;
 	}
 }

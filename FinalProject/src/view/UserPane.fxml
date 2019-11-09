@@ -66,7 +66,6 @@
                <children>
                   <TableView fx:id="espectaculosTableView" prefHeight="187.0" prefWidth="542.0" style="-fx-background-radius: 10px;">
                     <columns>
-                      <TableColumn fx:id="imageTableColumn" prefWidth="75.0" text="C1" />
                       <TableColumn fx:id="nombreTableColumn" prefWidth="75.0" text="Nombre" />
                         <TableColumn fx:id="tipoTableColumn" prefWidth="75.0" text="Tipo" />
                         <TableColumn fx:id="fechasTableColumn" prefWidth="75.0" text="Fechas" />

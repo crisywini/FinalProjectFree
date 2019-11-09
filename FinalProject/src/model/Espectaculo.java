@@ -11,8 +11,6 @@ import exceptions.ReservaNoExisteException;
 import exceptions.ReservaRepetidaException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Espectaculo implements Serializable {
 	/**
@@ -25,7 +23,6 @@ public class Espectaculo implements Serializable {
 	private ArrayList<Escenario> misEscenarios;
 	private HashMap<String, Cliente> misAsistentes;
 	private HashMap<String, Reserva> misReservas;
-	private ImageView imagenMiTipo;
 
 	/**
 	 * Constructor de la clase
@@ -35,11 +32,15 @@ public class Espectaculo implements Serializable {
 	public Espectaculo(String nombre, TipoEspectaculo miTipo) {
 		this.nombre = nombre;
 		fechas = new ArrayList<Date>();
+		fechas.add(new Date());
+
+		Escenario miEscenario = new Escenario();
 		misEscenarios = new ArrayList<Escenario>();
+		misEscenarios.add(miEscenario);
 		misAsistentes = new HashMap<String, Cliente>();
 		this.miTipo = miTipo;
 		setMisReservas(new HashMap<String, Reserva>());
-		setImage();
+		initSecciones();
 	}
 
 	/**
@@ -277,19 +278,26 @@ public class Espectaculo implements Serializable {
 		return new SimpleStringProperty(fechas.get(0).toString() + " ");
 	}
 
-	public ImageView getImagenMiTipo() {
-		return imagenMiTipo;
-	}
+	public void initSecciones() {
+		Escenario miEscenario = getMisEscenarios().get(0);
+		miEscenario.agregarSeccion(TipoSeccion.PLATEA_1);
+		miEscenario.agregarSeccion(TipoSeccion.PLATEA_2);
+		miEscenario.agregarSeccion(TipoSeccion.PLATEA_3);
+		miEscenario.agregarSeccion(TipoSeccion.PRIMER_PISO_1);
+		miEscenario.agregarSeccion(TipoSeccion.PRIMER_PISO_2);
+		miEscenario.agregarSeccion(TipoSeccion.PRIMER_PISO_3);
+		miEscenario.agregarSeccion(TipoSeccion.SEGUNDO_PISO_1);
+		miEscenario.agregarSeccion(TipoSeccion.SEGUNDO_PISO_2);
+		miEscenario.agregarSeccion(TipoSeccion.SEGUNDO_PISO_3);
+		miEscenario.getMisSecciones().get(0).generarMatrizCuadrada(10);
+		miEscenario.getMisSecciones().get(1).generarMatrizTriangularSuperior(10);
+		miEscenario.getMisSecciones().get(2).generarMatrizTriangularSuperiorInversa(10);
+		miEscenario.getMisSecciones().get(3).generarMatrizCuadrada(10);
+		miEscenario.getMisSecciones().get(4).generarMatrizTriangularInferiorInversa(10);
+		miEscenario.getMisSecciones().get(5).generarMatrizTriangularInferior(10);
+		miEscenario.getMisSecciones().get(6).generarMatrizCuadrada(10);
+		miEscenario.getMisSecciones().get(7).generarMatrizTriangularSuperior(10);
+		miEscenario.getMisSecciones().get(8).generarMatrizTriangularSuperiorInversa(10);
 
-	public void setImagenMiTipo(ImageView imagenMiTipo) {
-		this.imagenMiTipo = imagenMiTipo;
-	}
-
-	public void setImage() {
-		if (miTipo == TipoEspectaculo.CONCIERTO) {
-			ImageView imagen = new ImageView(new Image(
-					"file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/ConciertoIconAnalisis.png"));
-			setImagenMiTipo(imagen);
-		}
 	}
 }

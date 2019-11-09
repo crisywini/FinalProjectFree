@@ -1,8 +1,7 @@
 package controller;
 
-import exceptions.BoletaNoExisteException;
-import exceptions.BoletaRepetidaException;
-import exceptions.LimiteExcedidoException;
+import java.util.HashMap;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import model.Boleta;
 import model.Cliente;
 import model.Espectaculo;
 import model.EstadoPuesto;
@@ -24,41 +24,25 @@ public class SillasPaneController {
 	private Seccion miSeccion;
 	private Espectaculo miEspectaculo;
 	private Button[][] sillasButton;
+	private HashMap<String, Boleta> misBoletas = new HashMap<String, Boleta>();
 	final EventHandler<ActionEvent> manejadorSillasButton = new EventHandler<ActionEvent>() {
 
 		@Override
 		public void handle(ActionEvent event) {
 			Button buttonSelected = (Button) event.getSource();
-			for (int i = 0; i < sillasButton.length; i++) {
-				for (int j = 0; j < sillasButton[i].length; j++) {
-					if (buttonSelected.getId().equals(sillasButton[i][j].getId())) {
-						buttonSelected.setStyle("-fx-background-color: #ec711b;");
-						try {
-							System.out.println(miCliente);
-							System.out.println(miCliente.getMiReservaAsociada());
-							miCliente.getMiReservaAsociada().agregarBoleta((i + j) + "",
-									miSeccion.getMisPuestos()[i][j], miCliente);
-						} catch (BoletaRepetidaException e) {
-							ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
-						} catch (BoletaNoExisteException e) {
-							ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
-						} catch (LimiteExcedidoException e) {
-							ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
-						}
-						if (buttonSelected.getStyle().equals("-fx-background-color: #ec711b;")) {
-
-							try {
-								miCliente.getMiReservaAsociada().eliminarBoleta((i + j) + "");
-								buttonSelected.setStyle("-fx-background-color: none;");
-							} catch (BoletaNoExisteException e) {
-								ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
-							}
-						}
-					}
-				}
+			int i = Integer.parseInt(buttonSelected.getId().charAt(0) + "");
+			int j = Integer.parseInt(buttonSelected.getId().charAt(1) + "");
+			if (misBoletas.size() <= 5) {
+				buttonSelected.setStyle("-fx-background-color: orange;");
+				misBoletas.put(buttonSelected.getId() + "",
+						new Boleta(buttonSelected.getId() + "", miSeccion.getMisPuestos()[i][j], miCliente));
+				System.out.println(misBoletas.size());
+			} else {
+				ventanaPrincipal.showAlert("El maximo de puestos a elejir por reserva es: " + 6, "", "ADVERTENCIA",
+						AlertType.WARNING);
 			}
-
 		}
+
 	};
 
 	@FXML
@@ -69,8 +53,13 @@ public class SillasPaneController {
 
 	@FXML
 	void handleAtrasButton() {
-		ventanaPrincipal.cargarComprarBoletasPane(miEspectaculo, miCliente);
+		ventanaPrincipal.cargarEscenarioPane(miEspectaculo, miCliente);
 
+	}
+
+	@FXML
+	void handleComprarButton() {
+		
 	}
 
 	@FXML
@@ -97,13 +86,16 @@ public class SillasPaneController {
 						sillasButton[i][j].setDisable(true);
 					}
 					if (miSeccion.getMisPuestos()[i][j].getMiEstado() == EstadoPuesto.RESERVADO) {
-						sillasButton[i][j].setStyle("-fx-background-color: #ec711b;");
+						sillasButton[i][j].setStyle("-fx-background-color: orange;");
 						sillasButton[i][j].setDisable(true);
 					}
 					sillasButton[i][j].setOnAction(manejadorSillasButton);
 					sillasGridPane.add(sillasButton[i][j], j, i);
 				}
 			}
+			auxiliar++;
+			if (auxiliar == 'Z')
+				auxiliar = 'A';
 		}
 		sillasGridPane.setAlignment(Pos.CENTER);
 		sillasVBox.getChildren().add(sillasGridPane);
@@ -149,6 +141,14 @@ public class SillasPaneController {
 
 	public void setSillasVBox(VBox sillasVBox) {
 		this.sillasVBox = sillasVBox;
+	}
+
+	public HashMap<String, Boleta> getMisBoletas() {
+		return misBoletas;
+	}
+
+	public void setMisBoletas(HashMap<String, Boleta> misBoletas) {
+		this.misBoletas = misBoletas;
 	}
 
 }

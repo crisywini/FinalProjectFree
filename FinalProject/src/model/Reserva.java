@@ -8,7 +8,7 @@ import exceptions.BoletaNoExisteException;
 import exceptions.BoletaRepetidaException;
 import exceptions.LimiteExcedidoException;
 
-public class Reserva implements Serializable{
+public class Reserva implements Serializable {
 	/**
 	 * 
 	 */
@@ -106,8 +106,10 @@ public class Reserva implements Serializable{
 		if (getMisBoletas().containsKey(id))
 			throw new BoletaRepetidaException("La boleta: (id)" + id + " ya se encuentra en la reserva");
 		getMisBoletas().put(id, new Boleta(id, miPuesto, miClienteAsociado));
+		miPuesto.setMiEstado(EstadoPuesto.RESERVADO);
 		if (getMisBoletas().size() > LIMITE_DE_PUESTOS) {
 			eliminarBoleta(id);
+			miPuesto.setMiEstado(EstadoPuesto.LIBRE);
 			throw new LimiteExcedidoException(
 					"No se puede agregar la boleta: (id) " + id + " ya que se ha excedido el limite");
 		}

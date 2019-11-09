@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="490.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.SillasPaneController">
+<AnchorPane prefHeight="490.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SillasPaneController">
    <children>
       <VBox alignment="CENTER" layoutX="250.0" layoutY="145.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -36,6 +35,8 @@
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#handleAtrasButton" style="-fx-background-radius: 20px;" text="Atras" />
+                  <HBox prefHeight="49.0" prefWidth="70.0" />
+                  <Button mnemonicParsing="false" onAction="#handleComprarButton" style="-fx-background-radius: 20px;" text="Comprar" />
                </children>
             </HBox>
          </children>

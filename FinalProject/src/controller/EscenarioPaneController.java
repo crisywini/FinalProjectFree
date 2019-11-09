@@ -8,7 +8,7 @@ import model.Escenario;
 import model.Espectaculo;
 import model.Seccion;
 
-public class ComprarBoletasPaneController {
+public class EscenarioPaneController {
 
 	private PrincipalController ventanaPrincipal;
 	private Cliente miCliente;

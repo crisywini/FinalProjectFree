@@ -41,7 +41,7 @@ public class UserPaneController {
 	@FXML
 	void handleComprarBoletasButton() {
 		if (isSelectedEspectaculo())
-			ventanaPrincipal.cargarComprarBoletasPane(espectaculosTableView.getSelectionModel().getSelectedItem(),
+			ventanaPrincipal.cargarEscenarioPane(espectaculosTableView.getSelectionModel().getSelectedItem(),
 					miCliente);
 		else
 			ventanaPrincipal.showAlert("Debe seleccionar un espectaculo!", "", "ADVERTENCIA", AlertType.WARNING);

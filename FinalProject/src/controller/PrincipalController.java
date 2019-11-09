@@ -31,7 +31,7 @@ public class PrincipalController {
 	AnchorPane adminViewPane;
 	AnchorPane actualizarDatosUserPane;
 	AnchorPane agregarEspectaculoPane;
-	AnchorPane comprarBoletasPane;
+	AnchorPane escenarioPane;
 	AnchorPane sillasPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
@@ -42,7 +42,7 @@ public class PrincipalController {
 	AdminViewController adminViewPaneController;
 	ActualizarDatosUserPaneController actualizarDatosUserPaneController;
 	AgregarEspectaculoController agregarEspectaculoController;
-	ComprarBoletasPaneController comprarBoletasController;
+	EscenarioPaneController escenarioController;
 	SillasPaneController sillasController;
 
 	@FXML
@@ -197,21 +197,21 @@ public class PrincipalController {
 		principalPane.setCenter(agregarEspectaculoPane);
 	}
 
-	public void cargarComprarBoletasPane(Espectaculo miEspectaculo, Cliente miCliente) {
-		if (comprarBoletasPane == null) {
+	public void cargarEscenarioPane(Espectaculo miEspectaculo, Cliente miCliente) {
+		if (escenarioPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
 				cargador.setLocation(Main.class.getResource("../view/ComprarBoletasPane.fxml"));
-				comprarBoletasPane = (AnchorPane) cargador.load();
-				comprarBoletasController = cargador.getController();
-				comprarBoletasController.setVentanaPrincipal(this);
-				comprarBoletasController.setMiCliente(miCliente);
-				comprarBoletasController.setMiEspectaculo(miEspectaculo);
+				escenarioPane = (AnchorPane) cargador.load();
+				escenarioController = cargador.getController();
+				escenarioController.setVentanaPrincipal(this);
+				escenarioController.setMiCliente(miCliente);
+				escenarioController.setMiEspectaculo(miEspectaculo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		principalPane.setCenter(comprarBoletasPane);
+		principalPane.setCenter(escenarioPane);
 	}
 
 	public void cargarSillasPane(Cliente miCliente, Seccion miSeccion, Espectaculo miEspectaculo) {
@@ -280,6 +280,19 @@ public class PrincipalController {
 		Alert miAlert = new Alert(AlertType.CONFIRMATION);
 		miAlert.setTitle("Guardar?");
 		miAlert.setContentText("Desea guardar los datos?");
+		miAlert.initOwner(getPrincipalStage());
+		ButtonType buttonTypeOne = new ButtonType("Si");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+		miAlert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+		Optional<ButtonType> resultado = miAlert.showAndWait();
+		centinela = resultado.get() == buttonTypeOne;
+		return centinela;
+	}
+
+	public boolean elegir(String mensaje) {
+		boolean centinela;
+		Alert miAlert = new Alert(AlertType.CONFIRMATION);
+		miAlert.setContentText(mensaje);
 		miAlert.initOwner(getPrincipalStage());
 		ButtonType buttonTypeOne = new ButtonType("Si");
 		ButtonType buttonTypeTwo = new ButtonType("No");

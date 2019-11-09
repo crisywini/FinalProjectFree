@@ -15,7 +15,7 @@ public interface IControlEspectaculo {
 
 	public Espectaculo removerEspectaculo(String nombre) throws EspectaculoNullException;
 
-	public boolean agregarEspectaculo(Espectaculo e) throws EspectaculoRepetidoException;
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException;
 
 	public HashMap<String, Espectaculo> getMisEspectaculos();
 

@@ -17,6 +17,7 @@ public class Cliente extends Persona implements Serializable {
 	private EstadoCivil miEstadoCivil;
 	private NivelDeEstudio miNivelDeEstudio;
 	private Boleta miBoletaAsociada;
+	private Reserva miReservaAsociada;
 
 	/**
 	 * Constructor vacio
@@ -54,8 +55,9 @@ public class Cliente extends Persona implements Serializable {
 	 * @param miNivelDeEstudio    Nivel de estudio del cliente
 	 */
 	public Cliente(String nombre, String apellido, String id, Genero miGenero, String direccion, String email,
-			Cuenta miCuentaAsociada, Boleta miBoletaAsociada,Date miFechaDeNacimiento, String ciudadDeResidencia,
-			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio, String contrasenia) {
+			Cuenta miCuentaAsociada, Boleta miBoletaAsociada, Date miFechaDeNacimiento, String ciudadDeResidencia,
+			EstratoSocioeconomico miEstrato, EstadoCivil miEstadoCivil, NivelDeEstudio miNivelDeEstudio,
+			String contrasenia) {
 		super(nombre, apellido, id, miGenero);
 		this.direccion = direccion;
 		this.email = email;
@@ -68,7 +70,10 @@ public class Cliente extends Persona implements Serializable {
 		this.contrasenia = contrasenia;
 		this.miBoletaAsociada = miBoletaAsociada;
 		getMiCuentaAsociada().setMiClienteAsociado(this);
-		getMiBoletaAsociada().setMiClienteAsociado(this);
+		miBoletaAsociada = new Boleta();
+		miBoletaAsociada.setMiClienteAsociado(this);
+		miReservaAsociada = new Reserva();
+		miReservaAsociada.setMiClienteAsociado(this);
 	}
 
 	public String getDireccion() {
@@ -134,9 +139,10 @@ public class Cliente extends Persona implements Serializable {
 	public void setMiEstadoCivil(EstadoCivil miEstadoCivil) {
 		this.miEstadoCivil = miEstadoCivil;
 	}
+
 	@Override
 	public String toString() {
-		String info = "["+getNombre()+" "+getMiCuentaAsociada().getId()+" "+miBoletaAsociada.getId()+"]";
+		String info = "[" + getNombre() + " " + getMiCuentaAsociada().getId() + " " + miBoletaAsociada.getId() + "]";
 		return info;
 	}
 
@@ -154,5 +160,13 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setMiBoletaAsociada(Boleta miBoletaAsociada) {
 		this.miBoletaAsociada = miBoletaAsociada;
+	}
+
+	public Reserva getMiReservaAsociada() {
+		return miReservaAsociada;
+	}
+
+	public void setMiReservaAsociada(Reserva miReservaAsociada) {
+		this.miReservaAsociada = miReservaAsociada;
 	}
 }

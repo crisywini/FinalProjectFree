@@ -1,11 +1,14 @@
 package persistencia;
 
+import java.beans.ExceptionListener;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,10 +18,11 @@ import model.Cliente;
 import model.Espectaculo;
 
 public class Persistencia {
-	public static final String BOLETERIA_RUTA = "src/resources/Boleteria.xml";
+	public static final String BOLETERIA_RUTA = "src/resources/BoleteriaArchivo.xml";
 	public static final String ADMINISTRADORES_RUTA = "src/resources/Administradores.txt";
 	public static final String CLIENTES_RUTA = "src/resources/Clientes.txt";
 	public static final String ESPECTACULOS_RUTA = "src/resources/Espectaculos.txt";
+	public static final String BOLETERIA_RUTA_DAT = "src/resources/Boleteria.dat";
 
 	/**
 	 * Metodo estatico que permite serializar un objeto dada una ruta
@@ -31,7 +35,15 @@ public class Persistencia {
 		FileOutputStream archivo = new FileOutputStream(ruta);
 		XMLEncoder codificador = new XMLEncoder(archivo);
 		codificador.writeObject(objeto);
+		codificador.flush();
 		codificador.close();
+		ExceptionListener el = new ExceptionListener() {
+
+			@Override
+			public void exceptionThrown(Exception e) {
+				System.out.println(e.getLocalizedMessage());
+			}
+		};
 	}
 
 	/**
@@ -46,6 +58,52 @@ public class Persistencia {
 		XMLDecoder decodificador = new XMLDecoder(archivo);
 		Object objeto = decodificador.readObject();
 		decodificador.close();
+		ExceptionListener el = new ExceptionListener() {
+
+			@Override
+			public void exceptionThrown(Exception e) {
+				System.out.println(e.getLocalizedMessage());
+			}
+		};
+
+		return objeto;
+	}
+
+	/**
+	 * Metodo que permite serializar un objeto en archivo binario
+	 * 
+	 * @param nombreArchivo
+	 * @param objeto
+	 * @throws IOException si ocurre algun problema con el manejo de flujos
+	 */
+	public static void serializarObjeto(String nombreArchivo, Object objeto) throws IOException {
+		ObjectOutputStream salida = null;
+		FileOutputStream archivoEncapsulado = null;
+
+		archivoEncapsulado = new FileOutputStream(nombreArchivo);
+		salida = new ObjectOutputStream(archivoEncapsulado);
+		salida.writeObject(objeto);
+		salida.flush();
+		salida.close();
+	}
+
+	/**
+	 * Metodo que permite obtener un objeto leyendo un archivo binario
+	 * 
+	 * @param nombreArchivo
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static Object deserializarObjeto(String nombreArchivo) throws IOException, ClassNotFoundException {
+		ObjectInputStream entrada;
+		FileInputStream archivoEntrada = null;
+		Object objeto = null;
+
+		archivoEntrada = new FileInputStream(nombreArchivo);
+		entrada = new ObjectInputStream(archivoEntrada);
+		objeto = entrada.readObject();
+		entrada.close();
 		return objeto;
 	}
 

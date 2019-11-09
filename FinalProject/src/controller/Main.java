@@ -18,9 +18,12 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application implements IControlBoleteria {
 	private Boleteria miBoleteria;
 
+	public Main() {
+		miBoleteria = new Boleteria();
+	}
+
 	@Override
 	public void start(Stage primaryStage) {
-		miBoleteria = new Boleteria();
 		cargarDatos(Persistencia.BOLETERIA_RUTA);
 		showPrincipalPane(primaryStage);
 	}
@@ -73,7 +76,7 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	public void serializarBoleteria() throws IOException {
-		Persistencia.serializarXML(Persistencia.BOLETERIA_RUTA, getMiBoleteria());
+		Persistencia.serializarObjeto(Persistencia.BOLETERIA_RUTA_DAT, miBoleteria);
 	}
 
 	public void crearArchivos() {
@@ -105,8 +108,8 @@ public class Main extends Application implements IControlBoleteria {
 			}
 		}
 	}
-	public void guardarDatos() throws IOException
-	{
+
+	public void guardarDatos() throws IOException {
 		serializarBoleteria();
 		guardarAdministradoresEnArchivo();
 		guardarClientesEnArchivo();
@@ -118,7 +121,7 @@ public class Main extends Application implements IControlBoleteria {
 		File archivo = new File(ruta);
 		if (archivo.exists()) {
 			try {
-				miBoleteriaAux = (Boleteria) Persistencia.deserializarObjetoXML(ruta);
+				miBoleteriaAux = (Boleteria) Persistencia.deserializarObjeto(ruta);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

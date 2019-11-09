@@ -237,8 +237,8 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	@Override
-	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
-		return miBoleteria.agregarEspectaculo(nombre, miTipo);
+	public boolean agregarEspectaculo(Espectaculo e) throws EspectaculoRepetidoException {
+		return miBoleteria.agregarEspectaculo(e);
 	}
 
 	@Override

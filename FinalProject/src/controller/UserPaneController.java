@@ -29,6 +29,8 @@ public class UserPaneController {
 
 	@FXML
 	private TableColumn<Espectaculo, String> tipoTableColumn;
+	@FXML
+	private TableColumn<Espectaculo, String> fechasTableColumn;
 
 	@FXML
 	void handleActualizarDatosButton() {
@@ -39,6 +41,15 @@ public class UserPaneController {
 	void handleVolverButton() {
 		ventanaPrincipal.showAlert("Hasta luego: " + miCliente.getNombre(), "", "Adios", AlertType.INFORMATION);
 		ventanaPrincipal.cargarUserSingIn();
+	}
+
+	@FXML
+	void handleComprarBoletasButton() {
+		if (isSelectedEspectaculo())
+			ventanaPrincipal.cargarComprarBoletasPane(espectaculosTableView.getSelectionModel().getSelectedItem(),
+					miCliente);
+		else
+			ventanaPrincipal.showAlert("Debe seleccionar un espectaculo!", "", "ADVERTENCIA", AlertType.WARNING);
 	}
 
 	@FXML
@@ -74,9 +85,14 @@ public class UserPaneController {
 		// ImageView se crea un ImageView en Espectaculo el cual se le pone la ruta
 		// dependiendo el tipo
 		tipoTableColumn.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
+		fechasTableColumn.setCellValueFactory(cellData -> cellData.getValue().fechasProperty());
 
 		ObservableList<Espectaculo> misEspectaculos = FXCollections
 				.observableArrayList(ventanaPrincipal.getPrincipal().obtenerListaEspectaculos());
 		espectaculosTableView.setItems(misEspectaculos);
+	}
+
+	public boolean isSelectedEspectaculo() {
+		return !espectaculosTableView.getSelectionModel().isEmpty();
 	}
 }

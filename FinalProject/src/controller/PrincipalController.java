@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Administrador;
 import model.Cliente;
+import model.Espectaculo;
 
 public class PrincipalController {
 
@@ -29,6 +30,7 @@ public class PrincipalController {
 	AnchorPane adminViewPane;
 	AnchorPane actualizarDatosUserPane;
 	AnchorPane agregarEspectaculoPane;
+	AnchorPane comprarBoletasPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -38,6 +40,7 @@ public class PrincipalController {
 	AdminViewController adminViewPaneController;
 	ActualizarDatosUserPaneController actualizarDatosUserPaneController;
 	AgregarEspectaculoController agregarEspectaculoController;
+	ComprarBoletasPaneController comprarBoletasController;
 
 	@FXML
 	void initialize() {
@@ -166,6 +169,7 @@ public class PrincipalController {
 				cargador.setLocation(Main.class.getResource("../view/ActualizarDatosUserPane.fxml"));
 				actualizarDatosUserPane = (AnchorPane) cargador.load();
 				actualizarDatosUserPaneController = cargador.getController();
+				actualizarDatosUserPaneController.setVentanaPrincipal(this);
 				actualizarDatosUserPaneController.setMiCliente(miCliente);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -187,6 +191,23 @@ public class PrincipalController {
 			}
 		}
 		principalPane.setCenter(agregarEspectaculoPane);
+	}
+
+	public void cargarComprarBoletasPane(Espectaculo miEspectaculo, Cliente miCliente) {
+		if (comprarBoletasPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/ComprarBoletasPane.fxml"));
+				comprarBoletasPane = (AnchorPane) cargador.load();
+				comprarBoletasController = cargador.getController();
+				comprarBoletasController.setVentanaPrincipal(this);
+				comprarBoletasController.setMiCliente(miCliente);
+				comprarBoletasController.setMiEspectaculo(miEspectaculo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		principalPane.setCenter(comprarBoletasPane);
 	}
 
 	public BorderPane getPrincipalPane() {

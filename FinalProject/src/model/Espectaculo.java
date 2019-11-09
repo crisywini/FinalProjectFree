@@ -246,8 +246,6 @@ public class Espectaculo implements Serializable {
 		}
 		return misClientes;
 	}
-	
-	
 
 	/**
 	 * Metodo que permite obtener un {@link StringProperty} con la informacion del
@@ -267,6 +265,16 @@ public class Espectaculo implements Serializable {
 	 */
 	public StringProperty tipoProperty() {
 		return new SimpleStringProperty(getMiTipo().toString());
+	}
+
+	/**
+	 * Metodo que permite obtener un {@link StringProperty} con la informacion de la
+	 * primera fecha
+	 * 
+	 * @return un {@link StringProperty}
+	 */
+	public StringProperty fechasProperty() {
+		return new SimpleStringProperty(fechas.get(0).toString() + " ");
 	}
 
 	public ImageView getImagenMiTipo() {

@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="490.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.UserPaneController">
+<AnchorPane prefHeight="490.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserPaneController">
    <children>
       <VBox alignment="CENTER" layoutX="270.0" layoutY="125.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -70,6 +69,7 @@
                       <TableColumn fx:id="imageTableColumn" prefWidth="75.0" text="C1" />
                       <TableColumn fx:id="nombreTableColumn" prefWidth="75.0" text="Nombre" />
                         <TableColumn fx:id="tipoTableColumn" prefWidth="75.0" text="Tipo" />
+                        <TableColumn fx:id="fechasTableColumn" prefWidth="75.0" text="Fechas" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -90,7 +90,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-radius: 20px;" text="Comprar boletas" />
+                              <Button mnemonicParsing="false" onAction="#handleComprarBoletasButton" style="-fx-background-radius: 20px;" text="Comprar boletas" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">

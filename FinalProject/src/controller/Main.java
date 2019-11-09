@@ -60,6 +60,7 @@ public class Main extends Application implements IControlBoleteria {
 	// ------------------Persistencia------------
 
 	public void guardarClientesEnArchivo() throws IOException {
+		
 		Persistencia.guardarClientesEnArchivo(getMisClientes());
 	}
 

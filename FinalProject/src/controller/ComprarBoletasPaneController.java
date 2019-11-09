@@ -70,7 +70,6 @@ public class ComprarBoletasPaneController {
 	void initialize() {
 		assert nombreEspectaculoLabel != null : "fx:id=\"nombreEspectaculoLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
 		assert tipoEspectaculoLabel != null : "fx:id=\"tipoEspectaculoLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
-
 	}
 
 	public PrincipalController getVentanaPrincipal() {

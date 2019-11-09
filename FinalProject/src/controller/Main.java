@@ -20,8 +20,8 @@ public class Main extends Application implements IControlBoleteria {
 
 	@Override
 	public void start(Stage primaryStage) {
-		if (miBoleteria == null)
-			miBoleteria = new Boleteria();
+		miBoleteria = new Boleteria();
+		cargarDatos(Persistencia.BOLETERIA_RUTA);
 		showPrincipalPane(primaryStage);
 	}
 
@@ -60,7 +60,7 @@ public class Main extends Application implements IControlBoleteria {
 	// ------------------Persistencia------------
 
 	public void guardarClientesEnArchivo() throws IOException {
-		
+
 		Persistencia.guardarClientesEnArchivo(getMisClientes());
 	}
 
@@ -73,41 +73,44 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	public void serializarBoleteria() throws IOException {
-		guardarAdministradoresEnArchivo();
-		guardarClientesEnArchivo();
 		Persistencia.serializarXML(Persistencia.BOLETERIA_RUTA, getMiBoleteria());
 	}
 
 	public void crearArchivos() {
 		if (!Archivo.isCreatedFile(Persistencia.CLIENTES_RUTA)) {
 			try {
-				Archivo.crearArchivo(Persistencia.CLIENTES_RUTA);
+				guardarClientesEnArchivo();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-//hola by el negritosensual 
 		if (!Archivo.isCreatedFile(Persistencia.ADMINISTRADORES_RUTA))
 			try {
-				Archivo.crearArchivo(Persistencia.ADMINISTRADORES_RUTA);
+				guardarAdministradoresEnArchivo();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		if (!Archivo.isCreatedFile(Persistencia.ESPECTACULOS_RUTA)) {
 			try {
-				Archivo.crearArchivo(Persistencia.ESPECTACULOS_RUTA);
+				guardarEspectaculosEnArchivo();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		if (!Archivo.isCreatedFile(Persistencia.BOLETERIA_RUTA)) {
 			try {
-				Archivo.crearArchivo(Persistencia.BOLETERIA_RUTA);
+				serializarBoleteria();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
+	}
+	public void guardarDatos() throws IOException
+	{
+		serializarBoleteria();
+		guardarAdministradoresEnArchivo();
+		guardarClientesEnArchivo();
+		guardarEspectaculosEnArchivo();
 	}
 
 	public void cargarDatos(String ruta) {

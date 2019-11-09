@@ -66,7 +66,7 @@ public class Persistencia {
 					+ miCliente.getCiudadDeResidencia() + "," + miCliente.getDireccion() + "," + miCliente.getEmail()
 					+ "," + miCliente.getMiEstadoCivil() + ", Estrato: " + miCliente.getMiEstrato() + ","
 					+ miCliente.getMiFechaDeNacimiento() + "," + miCliente.getMiGenero() + ","
-					+ miCliente.getMiNivelDeEstudio() + ">";
+					+ miCliente.getMiNivelDeEstudio() + ">\n";
 			contenidoArchivo.add(info);
 		}
 		Archivo.guardarEnArchivo(CLIENTES_RUTA, contenidoArchivo);
@@ -89,7 +89,7 @@ public class Persistencia {
 			miAdministrador = misAdministradores.get(iterator.next());
 			info = "<" + miAdministrador.getNombre() + "," + miAdministrador.getApellido() + ","
 					+ miAdministrador.getId() + "," + miAdministrador.getEmail() + "," + miAdministrador.getMiGenero()
-					+ ">";
+					+ ">\n";
 			contenidoArchivo.add(info);
 		}
 		Archivo.guardarEnArchivo(ADMINISTRADORES_RUTA, contenidoArchivo);
@@ -108,7 +108,7 @@ public class Persistencia {
 		Espectaculo miEspectaculo;
 		while (iterator.hasNext()) {
 			miEspectaculo = misEspectaculos.get(iterator.next());
-			info += "<" + miEspectaculo.getNombre() + "," + miEspectaculo.getFechas() + ">";
+			info += "<" + miEspectaculo.getNombre() + "," + miEspectaculo.getFechas() + ">\n";
 			contenidoArchivo.add(info);
 		}
 		Archivo.guardarEnArchivo(BOLETERIA_RUTA, contenidoArchivo);

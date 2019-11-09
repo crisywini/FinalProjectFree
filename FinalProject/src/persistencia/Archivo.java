@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 public class Archivo {
 	public static void guardarEnArchivo(String ruta, ArrayList<String> contenidoArchivo) throws IOException {
-		FileWriter archivoEscritor = new FileWriter(ruta, true);
+		FileWriter archivoEscritor = new FileWriter(ruta, false);
 		BufferedWriter direccionadorArchivo = new BufferedWriter(archivoEscritor);
 		for (String string : contenidoArchivo) {
 			direccionadorArchivo.write(string);

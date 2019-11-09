@@ -228,7 +228,7 @@ public class PrincipalController {
 	void handleMenuSaveData() {
 		if (elegirGuardar()) {
 			try {
-				getPrincipal().serializarBoleteria();
+				getPrincipal().guardarDatos();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -275,6 +275,5 @@ public class PrincipalController {
 	public void setPrincipalStage(Stage principalStage) {
 		this.principalStage = principalStage;
 	}
-	
 
 }

@@ -169,5 +169,4 @@ public class ActualizarDatosUserPaneController {
 			ventanaPrincipal.showAlert(errorMessage, "", "ERROR", AlertType.ERROR);
 		return isValid;
 	}
-
 }

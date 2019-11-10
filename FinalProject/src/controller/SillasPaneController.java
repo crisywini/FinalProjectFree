@@ -36,7 +36,6 @@ public class SillasPaneController {
 				buttonSelected.setStyle("-fx-background-color: orange;");
 				misBoletas.put(buttonSelected.getId() + "",
 						new Boleta(buttonSelected.getId() + "", miSeccion.getMisPuestos()[i][j], miCliente));
-				System.out.println(misBoletas.size());
 			} else {
 				ventanaPrincipal.showAlert("El maximo de puestos a elejir por reserva es: " + 6, "", "ADVERTENCIA",
 						AlertType.WARNING);
@@ -54,12 +53,15 @@ public class SillasPaneController {
 	@FXML
 	void handleAtrasButton() {
 		ventanaPrincipal.cargarEscenarioPane(miEspectaculo, miCliente);
-
 	}
+	
 
 	@FXML
 	void handleComprarButton() {
-		
+		if (misBoletas.size() > 0)
+			ventanaPrincipal.cargarRegistrarUsuariosPane(miCliente, miSeccion, miEspectaculo, misBoletas);
+		else
+			ventanaPrincipal.showAlert("Debes seleccionar alguna silla", "", "Informacion", AlertType.INFORMATION);
 	}
 
 	@FXML

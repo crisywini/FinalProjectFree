@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Administrador;
+import model.Boleta;
 import model.Cliente;
 import model.Espectaculo;
 import model.Seccion;
@@ -33,6 +35,7 @@ public class PrincipalController {
 	AnchorPane agregarEspectaculoPane;
 	AnchorPane escenarioPane;
 	AnchorPane sillasPane;
+	AnchorPane registrarUsuariosPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -44,6 +47,7 @@ public class PrincipalController {
 	AgregarEspectaculoController agregarEspectaculoController;
 	EscenarioPaneController escenarioController;
 	SillasPaneController sillasController;
+	RegistrarUsuariosPaneController registrarUsuariosController;
 
 	@FXML
 	void initialize() {
@@ -118,7 +122,8 @@ public class PrincipalController {
 		principalPane.setCenter(adminSignPane);
 	}
 
-	public void cargarUserSignUp() {
+	public void cargarUserSignUp(boolean isOnRegistrarUsuariosPane, Cliente miCliente, Espectaculo miEspectaculo,
+			Seccion miSeccion, HashMap<String, Boleta> misBoletas) {
 		if (userSignUpPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
@@ -126,9 +131,17 @@ public class PrincipalController {
 				userSignUpPane = (AnchorPane) cargador.load();
 				userSignUpController = cargador.getController();
 				userSignUpController.setVentanaPrincipal(this);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		userSignUpController.setOnRegistrarUsuariosPane(isOnRegistrarUsuariosPane);
+		if (isOnRegistrarUsuariosPane) {
+			userSignUpController.setMiCliente(miCliente);
+			userSignUpController.setMiEspectaculo(miEspectaculo);
+			userSignUpController.setMisBoletas(misBoletas);
+			userSignUpController.setMiSeccion(miSeccion);
 		}
 		principalPane.setCenter(userSignUpPane);
 	}
@@ -201,7 +214,7 @@ public class PrincipalController {
 		if (escenarioPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
-				cargador.setLocation(Main.class.getResource("../view/ComprarBoletasPane.fxml"));
+				cargador.setLocation(Main.class.getResource("../view/EscenarioPane.fxml"));
 				escenarioPane = (AnchorPane) cargador.load();
 				escenarioController = cargador.getController();
 				escenarioController.setVentanaPrincipal(this);
@@ -222,7 +235,6 @@ public class PrincipalController {
 				sillasPane = (AnchorPane) cargador.load();
 				sillasController = cargador.getController();
 				sillasController.setMiSeccion(miSeccion);
-
 				sillasController.setMiCliente(miCliente);
 				sillasController.setMiEspectaculo(miEspectaculo);
 				sillasController.setVentanaPrincipal(this);
@@ -234,6 +246,27 @@ public class PrincipalController {
 		sillasController.getSillasVBox().getChildren().remove(0);
 		sillasController.setMiSeccion(miSeccion);
 		principalPane.setCenter(sillasPane);
+	}
+
+	public void cargarRegistrarUsuariosPane(Cliente miCliente, Seccion miSeccion, Espectaculo miEspectaculo,
+			HashMap<String, Boleta> misBoletas) {
+		if (registrarUsuariosPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/RegistrarUsuariosPane.fxml"));
+				registrarUsuariosPane = (AnchorPane) cargador.load();
+				registrarUsuariosController = cargador.getController();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		registrarUsuariosController.setMiCliente(miCliente);
+		registrarUsuariosController.setMiEspectaculo(miEspectaculo);
+		registrarUsuariosController.setMisBoletas(misBoletas);
+		registrarUsuariosController.setMiSeccion(miSeccion);
+		registrarUsuariosController.setVentanaPrincipal(this);
+		principalPane.setCenter(registrarUsuariosPane);
 	}
 
 	public BorderPane getPrincipalPane() {
@@ -263,7 +296,7 @@ public class PrincipalController {
 
 	@FXML
 	void handleMenuUser() {
-		cargarUserSignUp();
+		cargarUserSignUp(false, null, null, null, null);
 	}
 
 	public void showAlert(String message, String headerText, String title, AlertType alertType) {

@@ -92,7 +92,6 @@ public class EscenarioPaneController {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(8);
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
-
 	}
 
 	@FXML

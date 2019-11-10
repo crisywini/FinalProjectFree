@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import exceptions.ClienteNoExistenteException;
 
 import exceptions.ClienteRepetidoException;
@@ -21,6 +25,11 @@ public class UserSignUpController {
 	private ObservableList<EstadoCivil> misEstados;
 	private ObservableList<EstratoSocioeconomico> misEstratos;
 	private ObservableList<NivelDeEstudio> misNiveles;
+	private boolean isOnRegistrarUsuariosPane;
+	private Cliente miCliente;
+	private Espectaculo miEspectaculo;
+	private Seccion miSeccion;
+	private HashMap<String, Boleta> misBoletas;
 
 	@FXML
 	private TextField nombreField;
@@ -103,7 +112,12 @@ public class UserSignUpController {
 
 	@FXML
 	void handleVolverButton() {
-		getVentanaPrincipal().volverMenuPrincipal();
+		if (isOnRegistrarUsuariosPane)
+			getVentanaPrincipal().cargarRegistrarUsuariosPane(miCliente, miSeccion, miEspectaculo, misBoletas);
+		else
+			getVentanaPrincipal().volverMenuPrincipal();
+		Main.clienteData.clear();
+		Main.clienteData.addAll(ventanaPrincipal.getPrincipal().getMiBoleteria().obtenerListadoClientes());
 	}
 
 	@FXML
@@ -135,6 +149,17 @@ public class UserSignUpController {
 			errorMessage += "Debe seleccionar un genero\n";
 		if (correoField.getText() == null || correoField.getText().length() == 0)
 			errorMessage += "Debe ingresar el correo\n";
+		else
+		{
+			Pattern pattern = Pattern
+	                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+	        String email = correoField.getText();
+	        Matcher mather = pattern.matcher(email);
+
+	        if (!mather.find())
+	        	errorMessage += "El correo: "+email+" no es valido.\n";
+		}
 		if (passwordField.getText() == null || passwordField.getText().length() == 0)
 			errorMessage += "Debe ingresar una contrasenia\n";
 		if (datePicker.getValue() == null)
@@ -195,4 +220,45 @@ public class UserSignUpController {
 	public void setMisNiveles(ObservableList<NivelDeEstudio> misNiveles) {
 		this.misNiveles = misNiveles;
 	}
+
+	public boolean isOnRegistrarUsuariosPane() {
+		return isOnRegistrarUsuariosPane;
+	}
+
+	public void setOnRegistrarUsuariosPane(boolean isOnRegistrarUsuariosPane) {
+		this.isOnRegistrarUsuariosPane = isOnRegistrarUsuariosPane;
+	}
+
+	public Cliente getMiCliente() {
+		return miCliente;
+	}
+
+	public void setMiCliente(Cliente miCliente) {
+		this.miCliente = miCliente;
+	}
+
+	public Espectaculo getMiEspectaculo() {
+		return miEspectaculo;
+	}
+
+	public void setMiEspectaculo(Espectaculo miEspectaculo) {
+		this.miEspectaculo = miEspectaculo;
+	}
+
+	public Seccion getMiSeccion() {
+		return miSeccion;
+	}
+
+	public void setMiSeccion(Seccion miSeccion) {
+		this.miSeccion = miSeccion;
+	}
+
+	public HashMap<String, Boleta> getMisBoletas() {
+		return misBoletas;
+	}
+
+	public void setMisBoletas(HashMap<String, Boleta> misBoletas) {
+		this.misBoletas = misBoletas;
+	}
+
 }

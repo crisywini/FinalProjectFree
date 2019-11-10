@@ -21,7 +21,6 @@ public class Correo {
 	}
 
 	private static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
-
 		// Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el
 		// remitente también.
 		String remitente = "analisisdealgoritmos12@gmail.com"; // Para la dirección nombrecuenta@gmail.com

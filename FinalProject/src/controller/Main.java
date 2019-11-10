@@ -20,15 +20,17 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application implements IControlBoleteria {
 	private Boleteria miBoleteria;
 	public static final ObservableList<Espectaculo> espectaculosData = FXCollections.observableArrayList();
+	public static final ObservableList<Cliente> clienteData = FXCollections.observableArrayList();
 
 	public Main() {
 		miBoleteria = new Boleteria();
-		espectaculosData.addAll(miBoleteria.obtenerListaEspectaculos());
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
 		cargarDatos(Persistencia.BOLETERIA_RUTA_DAT);
+		espectaculosData.addAll(miBoleteria.obtenerListaEspectaculos());
+		clienteData.addAll(miBoleteria.obtenerListadoClientes());
 		showPrincipalPane(primaryStage);
 	}
 
@@ -130,8 +132,8 @@ public class Main extends Application implements IControlBoleteria {
 				e.printStackTrace();
 			}
 			setMiBoleteria(miBoleteriaAux);
-		}
-		crearArchivos();
+		} else
+			crearArchivos();
 	}
 	// -----------------Services----------------
 

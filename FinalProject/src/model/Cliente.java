@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Cliente extends Persona implements Serializable {
 	/**
 	 * 
@@ -168,5 +171,17 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setMiReservaAsociada(Reserva miReservaAsociada) {
 		this.miReservaAsociada = miReservaAsociada;
+	}
+
+	public StringProperty nombreProperty() {
+		return new SimpleStringProperty(getNombre());
+	}
+
+	public StringProperty apellidoProperty() {
+		return new SimpleStringProperty(getApellido());
+	}
+
+	public StringProperty idProperty() {
+		return new SimpleStringProperty(getId());
 	}
 }

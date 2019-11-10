@@ -341,4 +341,15 @@ public class Boleteria implements Serializable {
 		misTipos.add(TipoEspectaculo.TEATRO);
 		return misTipos;
 	}
+
+	public ArrayList<Cliente> obtenerListadoClientes() {
+		ArrayList<Cliente> misClientesLista = new ArrayList<Cliente>();
+		Iterator<String> iterator = misClientes.keySet().iterator();
+		String nombreAux = "";
+		while (iterator.hasNext()) {
+			nombreAux = iterator.next();
+			misClientesLista.add(misClientes.get(nombreAux));
+		}
+		return misClientesLista;
+	}
 }

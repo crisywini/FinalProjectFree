@@ -54,7 +54,6 @@ public class SillasPaneController {
 	void handleAtrasButton() {
 		ventanaPrincipal.cargarEscenarioPane(miEspectaculo, miCliente);
 	}
-	
 
 	@FXML
 	void handleComprarButton() {

@@ -27,6 +27,7 @@ public class Reserva implements Serializable {
 	 */
 	public Reserva(String id) {
 		misBoletas = new HashMap<String, Boleta>();
+		ubicacionEntregaBoletas = "";
 		this.id = id;
 	}
 
@@ -84,10 +85,21 @@ public class Reserva implements Serializable {
 			miBoletaAuxiliar = getMisBoletas().get(iterator.next());
 			auxiliar += miBoletaAuxiliar.getValor();
 		}
+		calcularTotalConIntereses(esSeguroDeCobertura, auxiliar);
+	}
+
+	/**
+	 * Metodo que permite calcular el precio total de la reserva con los intereses
+	 * dependiendo del seguro de cobertura y de la ubicacion
+	 * 
+	 * @param esSeguroDeCobertura si el cliente quiere pagar por seguro de cobertura
+	 * @param auxiliar
+	 */
+	public void calcularTotalConIntereses(boolean esSeguroDeCobertura, double auxiliar) {
 		if (ubicacionEntregaBoletas.length() != 0)
-			auxiliar *= (0.8 / 100) + auxiliar;
+			auxiliar = auxiliar * (0.008) + auxiliar;
 		if (esSeguroDeCobertura)
-			auxiliar *= (0.12 / 100) + auxiliar;
+			auxiliar = auxiliar * (0.0012) + auxiliar;
 		setValorTotalReserva(auxiliar);
 	}
 
@@ -158,5 +170,15 @@ public class Reserva implements Serializable {
 
 	public void setMiClienteAsociado(Cliente miClienteAsociado) {
 		this.miClienteAsociado = miClienteAsociado;
+	}
+
+	@Override
+	public String toString() {
+		Iterator<String> iterator = misBoletas.keySet().iterator();
+		String info = "";
+		while (iterator.hasNext())
+			info += "Boleta: " + misBoletas.get(iterator.next());
+
+		return info;
 	}
 }

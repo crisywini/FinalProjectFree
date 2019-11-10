@@ -13,14 +13,14 @@ public class Correo {
 
 	public static void main(String[] args) {
 
-		String destinatario = "cgsanchezp@uqvirtual.edu.co";
-		String asunto = "texto";
-		String cuerpo = "https://docs.google.com/forms/d/e/1FAIpQLScNMt2zkr6j1cJTkREpSlLAELN9LrGXr72ro8V3XH90WjUXLQ/viewform?usp=sf_link";
-		enviarConGMail(destinatario, asunto, cuerpo);
+//		String destinatario = "cgsanchezp@uqvirtual.edu.co";
+//		String asunto = "texto";
+//		String cuerpo = "https://docs.google.com/forms/d/e/1FAIpQLScNMt2zkr6j1cJTkREpSlLAELN9LrGXr72ro8V3XH90WjUXLQ/viewform?usp=sf_link";
+//		enviarConGMail(destinatario, asunto, cuerpo);
 
 	}
 
-	private static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
+	public static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
 		// Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el
 		// remitente también.
 		String remitente = "analisisdealgoritmos12@gmail.com"; // Para la dirección nombrecuenta@gmail.com
@@ -47,7 +47,6 @@ public class Correo {
 			transport.connect("smtp.gmail.com", remitente, "sergiotoc2");
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
-			System.out.println("mensaje enviado");
 		} catch (MessagingException me) {
 			me.printStackTrace(); // Si se produce un error
 		}

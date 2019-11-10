@@ -34,10 +34,9 @@ public class RegistrarUsuariosPaneController {
 	@FXML
 	void handleComprarBoletasButton() {
 		if (misClientes.size() == misBoletas.size()) {
-
+			ventanaPrincipal.cargarComprarBoletasPane(miCliente, miSeccion, miEspectaculo, misClientes, misBoletas);
 		} else
 			ventanaPrincipal.showAlert("Debes seleccionar algun cliente", "", "ADVERTENCIA", AlertType.WARNING);
-
 	}
 
 	@FXML

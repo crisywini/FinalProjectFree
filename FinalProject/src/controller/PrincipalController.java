@@ -36,6 +36,7 @@ public class PrincipalController {
 	AnchorPane escenarioPane;
 	AnchorPane sillasPane;
 	AnchorPane registrarUsuariosPane;
+	AnchorPane comprarBoletasPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -48,6 +49,7 @@ public class PrincipalController {
 	EscenarioPaneController escenarioController;
 	SillasPaneController sillasController;
 	RegistrarUsuariosPaneController registrarUsuariosController;
+	ComprarBoletasPaneController comprarBoletasController;
 
 	@FXML
 	void initialize() {
@@ -267,6 +269,28 @@ public class PrincipalController {
 		registrarUsuariosController.setMiSeccion(miSeccion);
 		registrarUsuariosController.setVentanaPrincipal(this);
 		principalPane.setCenter(registrarUsuariosPane);
+	}
+
+	public void cargarComprarBoletasPane(Cliente miCliente, Seccion miSeccion, Espectaculo miEspectaculo,
+			HashMap<String, Cliente> misClientes, HashMap<String, Boleta> misBoletas) {
+		if (comprarBoletasPane == null) {
+			try {
+				FXMLLoader cargador = new FXMLLoader();
+				cargador.setLocation(Main.class.getResource("../view/ComprarBoletasPane.fxml"));
+				comprarBoletasPane = (AnchorPane) cargador.load();
+				comprarBoletasController = cargador.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		comprarBoletasController.setMiCliente(miCliente);
+		comprarBoletasController.setMiEspectaculo(miEspectaculo);
+		comprarBoletasController.setMisBoletas(misBoletas);
+		comprarBoletasController.setMisClientes(misClientes);
+		comprarBoletasController.setMiSeccion(miSeccion);
+		comprarBoletasController.setVentanaPrincipal(this);
+		principalPane.setCenter(comprarBoletasPane);
 	}
 
 	public BorderPane getPrincipalPane() {

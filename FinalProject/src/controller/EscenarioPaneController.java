@@ -7,6 +7,7 @@ import model.Cliente;
 import model.Escenario;
 import model.Espectaculo;
 import model.Seccion;
+import model.TipoSeccion;
 
 public class EscenarioPaneController {
 
@@ -28,6 +29,7 @@ public class EscenarioPaneController {
 	void handlePlatea1Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(0);
+		miSeccion.setMiTipo(TipoSeccion.PLATEA_1);
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 	}
 
@@ -35,6 +37,8 @@ public class EscenarioPaneController {
 	void handlePlatea2Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(1);
+		miSeccion.setMiTipo(TipoSeccion.PLATEA_2);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -43,6 +47,8 @@ public class EscenarioPaneController {
 	void handlePlatea3Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(2);
+		miSeccion.setMiTipo(TipoSeccion.PLATEA_3);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -51,6 +57,8 @@ public class EscenarioPaneController {
 	void handlePrimerPiso1Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(3);
+		miSeccion.setMiTipo(TipoSeccion.PRIMER_PISO_1);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -59,6 +67,8 @@ public class EscenarioPaneController {
 	void handlePrimerPiso2Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(4);
+		miSeccion.setMiTipo(TipoSeccion.PRIMER_PISO_2);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -67,6 +77,8 @@ public class EscenarioPaneController {
 	void handlePrimerPiso3Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(5);
+		miSeccion.setMiTipo(TipoSeccion.PRIMER_PISO_3);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -75,6 +87,8 @@ public class EscenarioPaneController {
 	void handleSegundoPiso1Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(6);
+		miSeccion.setMiTipo(TipoSeccion.SEGUNDO_PISO_1);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -83,6 +97,8 @@ public class EscenarioPaneController {
 	void handleSegundoPiso2Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(7);
+		miSeccion.setMiTipo(TipoSeccion.SEGUNDO_PISO_2);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 
 	}
@@ -91,6 +107,8 @@ public class EscenarioPaneController {
 	void handleSegundoPiso3Button() {
 		Escenario miEscenario = miEspectaculo.getMisEscenarios().get(0);
 		Seccion miSeccion = miEscenario.getMisSecciones().get(8);
+		miSeccion.setMiTipo(TipoSeccion.SEGUNDO_PISO_3);
+
 		ventanaPrincipal.cargarSillasPane(miCliente, miSeccion, miEspectaculo);
 	}
 

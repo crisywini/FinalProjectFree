@@ -177,7 +177,7 @@ public class Reserva implements Serializable {
 		Iterator<String> iterator = misBoletas.keySet().iterator();
 		String info = "";
 		while (iterator.hasNext())
-			info += "Boleta: " + misBoletas.get(iterator.next());
+			info += "Boleta: " + misBoletas.get(iterator.next()) + "\n";
 
 		return info;
 	}

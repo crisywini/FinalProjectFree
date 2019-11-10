@@ -51,7 +51,8 @@ public class ComprarBoletasPaneController {
 			miEspectaculo.agregarReserva(miReserva.getId());
 
 			String asunto = "Encuesta de satisfaccion";
-			String cuerpo = "Gracias por realizar la compra de las boletas: " + miReserva.toString()
+			String cuerpo = "Gracias por realizar la compra de las boletas: \n" + miReserva.toString()
+					+ "\nValor total: " + miReserva.getValorTotalReserva()
 					+ "\nPor favor realiza la encuesta en el siguiente link. "
 					+ "\nhttps://docs.google.com/forms/d/e/1FAIpQLScNMt2zkr6j1cJTkREpSlLAELN9LrGXr72ro8V3XH90WjUXLQ/viewform?usp=sf_link";
 			Correo.enviarConGMail(miCliente.getEmail(), asunto, cuerpo);

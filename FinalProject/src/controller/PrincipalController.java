@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
 
+import exceptions.EspectaculoNullException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -196,7 +197,7 @@ public class PrincipalController {
 		principalPane.setCenter(actualizarDatosUserPane);
 	}
 
-	public void cargarAgregarEspectaculoPane(Administrador adm) {
+	public void cargarAgregarEspectaculoPane(Administrador adm, AdminViewController adminView) {
 		if (agregarEspectaculoPane == null) {
 			try {
 				FXMLLoader cargador = new FXMLLoader();
@@ -205,6 +206,7 @@ public class PrincipalController {
 				agregarEspectaculoController = cargador.getController();
 				agregarEspectaculoController.setAdm(adm);
 				agregarEspectaculoController.setVentanaPrincipal(this);
+				agregarEspectaculoController.setAdminView(adminView);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -369,6 +371,16 @@ public class PrincipalController {
 
 	public void setPrincipalStage(Stage principalStage) {
 		this.principalStage = principalStage;
+	}
+	
+	public void actualizarListaEspectaculos()
+	{
+		principal.actualizarListaEspectaculos();
+	}
+	
+	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException
+	{
+		principal.eliminarEspectaculo(e);
 	}
 
 }

@@ -30,7 +30,7 @@ public class Boleteria implements Serializable {
 		Espectaculo miEspectaculoAux = new Espectaculo("Auxiliar", TipoEspectaculo.CONCIERTO);
 		misEspectaculos = new HashMap<String, Espectaculo>();
 		try {
-			agregarEspectaculo(miEspectaculoAux.getNombre(), miEspectaculoAux.getMiTipo());
+			agregarEspectaculo(miEspectaculoAux.getNombre(), miEspectaculoAux.getMiTipo(), new ArrayList<Date>());
 		} catch (EspectaculoRepetidoException e) {
 			e.printStackTrace();
 		}
@@ -243,10 +243,11 @@ public class Boleteria implements Serializable {
 	 * @throws EspectaculoRepetidoException si el espectaculo ya se encuentra en la
 	 *                                      boleteria
 	 */
-	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo, ArrayList<Date> fechas) throws EspectaculoRepetidoException {
 		if (estaElEspectaculo(nombre))
 			throw new EspectaculoRepetidoException("El espectaculo: " + nombre + " ya se encuentra en la boleteria");
 		Espectaculo newEspectaculo = new Espectaculo(nombre, miTipo);
+		newEspectaculo.setFechas(fechas);
 		misEspectaculos.put(nombre, newEspectaculo);
 		return true;
 	}
@@ -352,4 +353,5 @@ public class Boleteria implements Serializable {
 		}
 		return misClientesLista;
 	}
+	
 }

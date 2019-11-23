@@ -249,8 +249,8 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	@Override
-	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException {
-		return miBoleteria.agregarEspectaculo(nombre, miTipo);
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo, ArrayList<Date> fechas) throws EspectaculoRepetidoException {
+		return miBoleteria.agregarEspectaculo(nombre, miTipo, fechas);
 	}
 
 	@Override
@@ -261,6 +261,18 @@ public class Main extends Application implements IControlBoleteria {
 	@Override
 	public ArrayList<TipoEspectaculo> obtenerListadoTipoEspectaculo() {
 		return miBoleteria.obtenerListadoTipoEspectaculo();
+	}
+	
+	public void actualizarListaEspectaculos()
+	{
+		espectaculosData.clear();
+		espectaculosData.addAll(miBoleteria.obtenerListaEspectaculos());
+	}
+	
+	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException
+	{
+		miBoleteria.removerEspectaculo(e.getNombre());
+		actualizarListaEspectaculos();
 	}
 
 }

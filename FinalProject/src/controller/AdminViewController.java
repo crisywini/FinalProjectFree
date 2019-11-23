@@ -1,21 +1,17 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Observable;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import exceptions.EspectaculoNullException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Administrador;
 import model.Espectaculo;
 
 public class AdminViewController {
 
-	private ObservableList<Espectaculo> listEspectaculos;
 	private PrincipalController ventanaPrincipal;
 	private Administrador miAdmin;
 	
@@ -26,7 +22,7 @@ public class AdminViewController {
     private Button btnEstadisticas;
 
     @FXML
-    private TableView<?> tablaEventos;
+    private TableView<Espectaculo> tablaEventos;
 
     @FXML
     private Button btnAgregar;
@@ -38,20 +34,38 @@ public class AdminViewController {
     private Button btnVer;
     
     @FXML
+    private TableColumn<Espectaculo, String> columnaEvento;
+
+    @FXML
+    private TableColumn<Espectaculo, String> columnaTipo;
+
+    @FXML
+    private TableColumn<Espectaculo, String> columnaFecha1;
+
+    @FXML
+    private TableColumn<Espectaculo, String> columnaFecha2;
+    
+    @FXML
     void handleAgregarEspectaculo() 
     {
-    	ventanaPrincipal.cargarAgregarEspectaculoPane(miAdmin);
+    	ventanaPrincipal.cargarAgregarEspectaculoPane(miAdmin, this);
     }
 
     @FXML
-    void handleEliminarEspectaculo(ActionEvent event) {
-    	
+    void handleEliminarEspectaculo(ActionEvent event) throws EspectaculoNullException {
+    	if(isSelectedEspectaculo())
+    	{
+    		Espectaculo e = tablaEventos.getSelectionModel().getSelectedItem();
+    		ventanaPrincipal.eliminarEspectaculo(e);
+    	}
     }
 
     @FXML
     void handleVerEspectaculo() {
-
+    	
+    	
     }
+    
 
 	public PrincipalController getVentanaPrincipal() {
 		return ventanaPrincipal;
@@ -59,6 +73,7 @@ public class AdminViewController {
 
 	public void setVentanaPrincipal(PrincipalController ventanaPrincipal) {
 		this.ventanaPrincipal = ventanaPrincipal;
+		initTableEspectaculos();
 	}
 
 	public Administrador getMiAdmin() {
@@ -70,16 +85,14 @@ public class AdminViewController {
 	}
 	
 	public void initTableEspectaculos() {
-		nombreTableColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
-		// ImageView se crea un ImageView en Espectaculo el cual se le pone la ruta
-		// dependiendo el tipo
-		tipoTableColumn.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
-
-		ObservableList<Espectaculo> misEspectaculos = FXCollections
-				.observableArrayList(ventanaPrincipal.getPrincipal().obtenerListaEspectaculos());
-		espectaculosTableView.setItems(misEspectaculos);
+		columnaEvento.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
+		columnaTipo.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
+		columnaFecha1.setCellValueFactory(cellData -> cellData.getValue().fechasProperty());
+		tablaEventos.setItems(Main.espectaculosData);
+	}
+	
+	public boolean isSelectedEspectaculo() {
+		return !tablaEventos.getSelectionModel().isEmpty();
 	}
     
-    
-
 }

@@ -40,10 +40,12 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="tablaEventos" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tablaEventos" prefHeight="200.0" prefWidth="298.0">
               <columns>
-                <TableColumn prefWidth="172.0" text="C1" />
-                <TableColumn prefWidth="166.0" text="C2" />
+                <TableColumn fx:id="columnaEvento" prefWidth="97.0" text="Evento" />
+                <TableColumn fx:id="columnaTipo" minWidth="0.0" prefWidth="101.0" text="Tipo" />
+                  <TableColumn fx:id="columnaFecha1" prefWidth="73.0" text="Fecha 1" />
+                  <TableColumn fx:id="columnaFecha2" prefWidth="68.0" text="Fecha 2" />
               </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="300.0">

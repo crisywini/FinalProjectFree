@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import exceptions.EspectaculoRepetidoException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -15,7 +14,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.Administrador;
 import model.Date;
-import model.Espectaculo;
 import model.TipoEspectaculo;
 
 public class AgregarEspectaculoController {
@@ -48,7 +46,6 @@ public class AgregarEspectaculoController {
     @FXML
     void handleAceptarButton() throws EspectaculoRepetidoException 
     {
-    	Espectaculo e = new Espectaculo(txtNombre.getText(), boxTipo.getSelectionModel().getSelectedItem());
     	LocalDate localF1 = dtaFecha1.getValue();
     	LocalDate localF2 = dtaFecha2.getValue();
     	Date f1 = new Date(localF1.getDayOfMonth(), localF1.getMonthValue(), localF1.getYear());
@@ -57,11 +54,12 @@ public class AgregarEspectaculoController {
     	ArrayList<Date> fechas = new ArrayList<Date>();
     	fechas.add(f1);
     	fechas.add(f2);
-    	e.setFechas(fechas);
     	
-    	ventanaPrincipal.getPrincipal().agregarEspectaculo(e);
+    	ventanaPrincipal.getPrincipal().agregarEspectaculo(txtNombre.getText(), boxTipo.getSelectionModel().getSelectedItem(), fechas);
     	
     	ventanaPrincipal.showAlert("Espectaculo agregado con exito", "", "", AlertType.INFORMATION);
+    	
+    	ventanaPrincipal.actualizarListaEspectaculos();
     	
     	ventanaPrincipal.cargarAdminViewPane(adm);
     }
@@ -95,6 +93,16 @@ public class AgregarEspectaculoController {
 
 	public void setAdm(Administrador adm) {
 		this.adm = adm;
+	}
+	
+	public void setAdminView(AdminViewController vistaAdmin)
+	{
+		this.vistaAdmin = vistaAdmin;
+	}
+	
+	public void actualizarTable()
+	{
+		vistaAdmin.initTableEspectaculos();
 	}
 	
 	

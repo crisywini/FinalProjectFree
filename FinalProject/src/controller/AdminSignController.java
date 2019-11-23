@@ -6,7 +6,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import model.Administrador;
-import model.Cliente;
 
 public class AdminSignController {
 

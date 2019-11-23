@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import exceptions.EspectaculoNullException;
 import exceptions.EspectaculoRepetidoException;
+import model.Date;
 import model.Espectaculo;
 import model.TipoEspectaculo;
 
@@ -15,7 +16,7 @@ public interface IControlEspectaculo {
 
 	public Espectaculo removerEspectaculo(String nombre) throws EspectaculoNullException;
 
-	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo) throws EspectaculoRepetidoException;
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo, ArrayList<Date> fechas) throws EspectaculoRepetidoException;
 
 	public HashMap<String, Espectaculo> getMisEspectaculos();
 

@@ -307,9 +307,21 @@ public class Main extends Application implements IControlBoleteria {
 		espectaculosData.addAll(miBoleteria.obtenerListaEspectaculos());
 	}
 
-	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException {
-		miBoleteria.removerEspectaculo(e.getNombre());
+	public void eliminarEspectaculo(Espectaculo e) {
+		try {
+			miBoleteria.removerEspectaculo(e.getNombre());
+		} catch (EspectaculoNullException e1) {
+			showAlert(e1.getMessage(), "", "ERROR", AlertType.ERROR);
+		}
 		actualizarListaEspectaculos();
+	}
+
+	public void showAlert(String message, String headerText, String title, AlertType alertType) {
+		Alert alert = new Alert(alertType);
+		alert.setContentText(message);
+		alert.setTitle(title);
+		alert.setHeaderText(headerText);
+		alert.showAndWait();
 	}
 
 }

@@ -3,6 +3,7 @@ package controller;
 import exceptions.EspectaculoNullException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -53,22 +54,24 @@ public class AdminViewController {
 		if (isSelectedEspectaculo()) {
 			Espectaculo e = tablaEventos.getSelectionModel().getSelectedItem();
 			ventanaPrincipal.eliminarEspectaculo(e);
-		}
+		} else
+			ventanaPrincipal.showAlert("Debes seleccionar un espectaculo", "", "ADVERTENCIA", AlertType.WARNING);
 	}
 
 	@FXML
 	void handleVerEspectaculo() {
-
+		// REalizar ver espectaculo
 	}
 
 	@FXML
 	void handleVerEstadisticosButton() {
+		// REalizar Estadisticos
 
 	}
 
 	@FXML
 	void handleVolverButton() {
-
+		ventanaPrincipal.cargarMenu();
 	}
 
 	public PrincipalController getVentanaPrincipal() {

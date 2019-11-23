@@ -44,24 +44,30 @@ public class AgregarEspectaculoController {
 	private Button btnCancelar;
 
 	@FXML
-	void handleAceptarButton() throws EspectaculoRepetidoException {
-		LocalDate localF1 = dtaFecha1.getValue();
-		LocalDate localF2 = dtaFecha2.getValue();
-		Date f1 = new Date(localF1.getDayOfMonth(), localF1.getMonthValue(), localF1.getYear());
-		Date f2 = new Date(localF2.getDayOfMonth(), localF2.getMonthValue(), localF2.getYear());
+	void handleAceptarButton() {
+		if (isInputValid()) {
+			LocalDate localF1 = dtaFecha1.getValue();
+			LocalDate localF2 = dtaFecha2.getValue();
+			Date f1 = new Date(localF1.getDayOfMonth(), localF1.getMonthValue(), localF1.getYear());
+			Date f2 = new Date(localF2.getDayOfMonth(), localF2.getMonthValue(), localF2.getYear());
 
-		ArrayList<Date> fechas = new ArrayList<Date>();
-		fechas.add(f1);
-		fechas.add(f2);
+			ArrayList<Date> fechas = new ArrayList<Date>();
+			fechas.add(f1);
+			fechas.add(f2);
 
-		ventanaPrincipal.getPrincipal().agregarEspectaculo(txtNombre.getText(),
-				boxTipo.getSelectionModel().getSelectedItem(), fechas);
+			try {
+				ventanaPrincipal.getPrincipal().agregarEspectaculo(txtNombre.getText(),
+						boxTipo.getSelectionModel().getSelectedItem(), fechas);
+			} catch (EspectaculoRepetidoException e) {
+				ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
+			}
 
-		ventanaPrincipal.showAlert("Espectaculo agregado con exito", "", "", AlertType.INFORMATION);
+			ventanaPrincipal.showAlert("Espectaculo agregado con exito", "", "", AlertType.INFORMATION);
 
-		ventanaPrincipal.actualizarListaEspectaculos();
+			ventanaPrincipal.actualizarListaEspectaculos();
 
-		ventanaPrincipal.cargarAdminViewPane(adm);
+			ventanaPrincipal.cargarAdminViewPane(adm);
+		}
 	}
 
 	@FXML
@@ -101,6 +107,22 @@ public class AgregarEspectaculoController {
 
 	public void actualizarTable() {
 		vistaAdmin.initTableEspectaculos();
+	}
+
+	public boolean isInputValid() {
+		boolean isValid = false;
+		String errorMessage = "";
+		if (txtNombre.getText() == null || txtNombre.getText().length() == 0)
+			errorMessage += "Debe ingresar el nombre del espectaculo\n";
+		if (dtaFecha1.getValue() == null || dtaFecha2.getValue() == null)
+			errorMessage += "Debe ingresar alguna de las fechas\n";
+		if (boxTipo.getSelectionModel().getSelectedItem() == null)
+			errorMessage += "Debes seleccionar el tipo de Espectaculo\n";
+		if (errorMessage.length() == 0)
+			isValid = true;
+		else
+			ventanaPrincipal.showAlert(errorMessage, "", "ADVERTENCIA", AlertType.WARNING);
+		return isValid;
 	}
 
 }

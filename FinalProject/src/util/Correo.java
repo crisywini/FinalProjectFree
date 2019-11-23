@@ -29,7 +29,7 @@ public class Correo {
 		props.put("mail.smtp.host", "smtp.gmail.com"); // El servidor SMTP de Google
 		props.put("mail.smtp.user", remitente);
 		props.put("mail.smtp.clave", "sergiotoc2"); // La clave de la cuenta
-		props.put("mail.smtp.auth", "true"); // Usar autenticación mediante usuario y clave
+		props.put("mail.smtp.auth", "true"); // Usar autenticación m0ediante usuario y clave
 		props.put("mail.smtp.starttls.enable", "true"); // Para conectar de manera segura al servidor SMTP
 		props.put("mail.smtp.port", "587"); // El puerto SMTP seguro de Google
 		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");

@@ -116,6 +116,19 @@ public class UserSignUpController {
 			getVentanaPrincipal().cargarRegistrarUsuariosPane(miCliente, miSeccion, miEspectaculo, misBoletas);
 		else
 			getVentanaPrincipal().volverMenuPrincipal();
+		nombreField.setText("");
+		apellidoField.setText("");
+		idField.setText("");
+		datePicker.setValue(null);
+		generoComboBox.setValue(null);
+		direccionField.setText("");
+		correoField.setText("");
+		cuentaField.setText("");
+		estratoComboBox.setValue(null);
+		estadoCivilComboBox.setValue(null);
+		nivelDeEstudioComboBox.setValue(null);
+		passwordField.setText("");
+		ciudadDeResidenciaField.setText("");
 		Main.clienteData.clear();
 		Main.clienteData.addAll(ventanaPrincipal.getPrincipal().getMiBoleteria().obtenerListadoClientes());
 	}

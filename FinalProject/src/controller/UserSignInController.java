@@ -38,6 +38,8 @@ public class UserSignInController {
 
 	@FXML
 	void handleVolverButton() {
+		nickNameField.setText("");
+		passwordField.setText("");
 		ventanaPrincipal.volverMenuPrincipal();
 	}
 

@@ -13,25 +13,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.AgregarEspectaculoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarEspectaculoController">
    <children>
       <VBox alignment="CENTER" layoutX="14.0" layoutY="51.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="134.0" prefWidth="600.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="57.0" />
-                  <Label prefHeight="36.0" prefWidth="294.0" text="Agregar Espectaculo :">
+                  <Label prefHeight="36.0" prefWidth="294.0" text="Agregar Espectaculo ">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <GridPane prefHeight="221.0" prefWidth="600.0">
+            <GridPane prefHeight="234.0" prefWidth="509.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="294.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="406.0" minWidth="10.0" prefWidth="306.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="293.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="406.0" minWidth="10.0" prefWidth="307.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
@@ -43,7 +42,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Nombre :">
+                        <Label text="Nombre ">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -57,7 +56,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Fechas :">
+                        <Label text="Fechas ">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -76,7 +75,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label text="Tipo :">
+                        <Label text="Tipo ">
                            <font>
                               <Font size="14.0" />
                            </font>

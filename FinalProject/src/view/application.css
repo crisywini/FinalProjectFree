@@ -1,1 +1,25 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button{
+	-fx-background-radius: 20.0px;
+	-fx-font-family: "Dubai"; 
+	-fx-font-size: 10.0pt;
+}
+.label{
+	-fx-font-family: "Dubai";
+	-fx-font-size: 10.5pt;
+}
+.text-field{
+	-fx-background-radius: 20.0px;
+	-fx-font-size: 9.0pt;
+	-fx-font-family: "Dubai";
+}
+.radio-button{
+    -fx-background-radius: 20.0px;
+	-fx-font-size: 10.5pt;
+	-fx-font-family: "Dubai";
+}
+.combo-box{
+	-fx-background-radius: 20.0px;
+	-fx-font-size: 9.5pt;
+	-fx-font-family: "Dubai";
+}

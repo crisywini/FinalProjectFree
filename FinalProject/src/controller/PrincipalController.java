@@ -317,7 +317,6 @@ public class PrincipalController {
 				e.printStackTrace();
 			}
 		}
-		System.exit(0);
 	}
 
 	@FXML

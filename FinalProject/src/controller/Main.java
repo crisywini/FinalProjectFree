@@ -5,22 +5,42 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import exceptions.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.*;
 import persistencia.*;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 
 public class Main extends Application implements IControlBoleteria {
-	private Boleteria miBoleteria;
+	private static Boleteria miBoleteria;
 	public static final ObservableList<Espectaculo> espectaculosData = FXCollections.observableArrayList();
 	public static final ObservableList<Cliente> clienteData = FXCollections.observableArrayList();
+	static final EventHandler<WindowEvent> closer = new EventHandler<WindowEvent>() {
+
+		@Override
+		public void handle(WindowEvent event) {
+			if (elegirGuardar()) {
+				try {
+					serializarStatic();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			System.exit(0);
+		}
+	};
 
 	public Main() {
 		miBoleteria = new Boleteria();
@@ -49,6 +69,7 @@ public class Main extends Application implements IControlBoleteria {
 			controlador.setPrincipal(this);
 			controlador.setPrincipalStage(primaryStage);
 			primaryStage.setTitle("Boleteria");
+			primaryStage.setOnCloseRequest(closer);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -64,7 +85,7 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	public void setMiBoleteria(Boleteria miBoleteria) {
-		this.miBoleteria = miBoleteria;
+		Main.miBoleteria = miBoleteria;
 	}
 	// ------------------Persistencia------------
 
@@ -82,6 +103,10 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	public void serializarBoleteria() throws IOException {
+		Persistencia.serializarObjeto(Persistencia.BOLETERIA_RUTA_DAT, miBoleteria);
+	}
+
+	public static void serializarStatic() throws IOException {
 		Persistencia.serializarObjeto(Persistencia.BOLETERIA_RUTA_DAT, miBoleteria);
 	}
 
@@ -135,7 +160,20 @@ public class Main extends Application implements IControlBoleteria {
 		} else
 			crearArchivos();
 	}
+
 	// -----------------Services----------------
+	public static boolean elegirGuardar() {
+		boolean centinela;
+		Alert miAlert = new Alert(AlertType.CONFIRMATION);
+		miAlert.setTitle("Guardar?");
+		miAlert.setContentText("Desea guardar los datos?");
+		ButtonType buttonTypeOne = new ButtonType("Si");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+		miAlert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+		Optional<ButtonType> resultado = miAlert.showAndWait();
+		centinela = resultado.get() == buttonTypeOne;
+		return centinela;
+	}
 
 	@Override
 	public boolean estaElAdministrador(String id) {
@@ -249,7 +287,8 @@ public class Main extends Application implements IControlBoleteria {
 	}
 
 	@Override
-	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo, ArrayList<Date> fechas) throws EspectaculoRepetidoException {
+	public boolean agregarEspectaculo(String nombre, TipoEspectaculo miTipo, ArrayList<Date> fechas)
+			throws EspectaculoRepetidoException {
 		return miBoleteria.agregarEspectaculo(nombre, miTipo, fechas);
 	}
 
@@ -262,15 +301,13 @@ public class Main extends Application implements IControlBoleteria {
 	public ArrayList<TipoEspectaculo> obtenerListadoTipoEspectaculo() {
 		return miBoleteria.obtenerListadoTipoEspectaculo();
 	}
-	
-	public void actualizarListaEspectaculos()
-	{
+
+	public void actualizarListaEspectaculos() {
 		espectaculosData.clear();
 		espectaculosData.addAll(miBoleteria.obtenerListaEspectaculos());
 	}
-	
-	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException
-	{
+
+	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException {
 		miBoleteria.removerEspectaculo(e.getNombre());
 		actualizarListaEspectaculos();
 	}

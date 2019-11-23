@@ -12,59 +12,61 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="12.0" prefHeight="390.0" prefWidth="236.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="12.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="adminLabel" text="Administrador : Nombre Apellido">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="109.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/AdministradorAnalisis1.png" />
-               </image>
-            </ImageView>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox alignment="CENTER" prefHeight="390.0" prefWidth="236.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="btnEstadisticas" mnemonicParsing="false" text="Ver Estadisticas" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="233.0" layoutY="13.0" prefHeight="389.0" prefWidth="340.0" AnchorPane.leftAnchor="233.0">
-         <children>
-            <Label text="Administracion de Eventos">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TableView fx:id="tablaEventos" prefHeight="200.0" prefWidth="298.0">
-              <columns>
-                <TableColumn fx:id="columnaEvento" prefWidth="97.0" text="Evento" />
-                <TableColumn fx:id="columnaTipo" minWidth="0.0" prefWidth="101.0" text="Tipo" />
-                  <TableColumn fx:id="columnaFecha1" prefWidth="73.0" text="Fecha 1" />
-                  <TableColumn fx:id="columnaFecha2" prefWidth="68.0" text="Fecha 2" />
-              </columns>
-            </TableView>
-            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="300.0">
-               <children>
-                  <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleAgregarEspectaculo" text="Agregar" />
-                  <HBox alignment="CENTER" prefHeight="83.0" prefWidth="98.0">
+                  <Label fx:id="adminLabel" text="Administrador">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nombreAdminLabel" text="Label" />
+                  <ImageView fitHeight="109.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/AdministradorAnalisis1.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleEliminarEspectaculo" prefHeight="25.0" prefWidth="62.0" text="Eliminar" />
+                        <Button mnemonicParsing="false" onAction="#handleVerEstadisticosButton" text="Ver Estadisticas" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="99.0">
+                  <Button mnemonicParsing="false" onAction="#handleVolverButton" text="Volver al menu principal" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="389.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="176.0" text="Administracion de Eventos">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tablaEventos" prefHeight="252.0" prefWidth="352.0" style="-fx-background-radius: 20px;" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="columnaEvento" prefWidth="97.0" text="Evento" />
+                      <TableColumn fx:id="columnaTipo" minWidth="0.0" prefWidth="101.0" text="Tipo" />
+                        <TableColumn fx:id="columnaFecha1" prefWidth="73.0" text="Fecha 1" />
+                        <TableColumn fx:id="columnaFecha2" prefWidth="68.0" text="Fecha 2" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="300.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
+                        <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleAgregarEspectaculo" text="Agregar" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleEliminarEspectaculo" prefHeight="25.0" prefWidth="99.0" text="Eliminar" />
                         <Button fx:id="btnVer" mnemonicParsing="false" onAction="#handleVerEspectaculo" text="Ver" />
                      </children>
                   </HBox>
                </children>
-            </HBox>
+            </VBox>
+            <HBox prefHeight="400.0" prefWidth="46.0" />
          </children>
-      </VBox>
+      </HBox>
    </children>
    <opaqueInsets>
       <Insets />

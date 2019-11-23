@@ -7,6 +7,7 @@
 .label{
 	-fx-font-family: "Dubai";
 	-fx-font-size: 10.5pt;
+	-fx-font-weight: bold;
 }
 .text-field{
 	-fx-background-radius: 20.0px;
@@ -15,8 +16,10 @@
 }
 .radio-button{
     -fx-background-radius: 20.0px;
-	-fx-font-size: 10.5pt;
+	-fx-font-size: 11.5pt;
 	-fx-font-family: "Dubai";
+	-fx-font-weight: bold;
+	
 }
 .combo-box{
 	-fx-background-radius: 20.0px;

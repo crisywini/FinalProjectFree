@@ -97,7 +97,8 @@ public class AdminViewController {
 	}
 
 	public boolean isSelectedEspectaculo() {
-		return !tablaEventos.getSelectionModel().isEmpty();
+		int pos = tablaEventos.getSelectionModel().getSelectedIndex();
+		return pos != -1;
 	}
 
 }

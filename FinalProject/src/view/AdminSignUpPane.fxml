@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminSignUpController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(&quot;file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/FondoAdminSignUp.jpg&quot;);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminSignUpController">
    <children>
       <VBox alignment="CENTER" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0">
                <children>
-                  <Label text="Ingresar administrador" />
+                  <Label text="Ingresar administrador" textFill="WHITE" />
                </children>
             </HBox>
             <GridPane prefHeight="326.0" prefWidth="600.0">
@@ -37,27 +37,27 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Nombre" />
+                        <Label text="Nombre" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Apelllido" />
+                        <Label text="Apelllido" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Label text="id" />
+                        <Label text="id" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label text="Genero" />
+                        <Label text="Genero" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label text="Correo electronico" />
+                        <Label text="Correo electronico" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">

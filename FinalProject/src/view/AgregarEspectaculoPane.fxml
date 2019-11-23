@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarEspectaculoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(&quot;file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/FondoAgregarEspectaculoMedium.jpg&quot;);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarEspectaculoController">
    <children>
       <VBox alignment="CENTER" layoutX="14.0" layoutY="51.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="134.0" prefWidth="600.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="88.0" prefWidth="600.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="57.0" />
-                  <Label prefHeight="36.0" prefWidth="294.0" text="Agregar Espectaculo ">
+                  <Label prefHeight="36.0" prefWidth="294.0" text="Agregar Espectaculo " textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -42,7 +42,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Nombre ">
+                        <Label text="Nombre " textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -56,7 +56,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Fechas ">
+                        <Label text="Fechas " textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -75,7 +75,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label text="Tipo ">
+                        <Label text="Tipo " textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -98,7 +98,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelarButton" text="Cancelar">
+                        <Button mnemonicParsing="false" onAction="#handleCancelarButton" text="Atrás">
                            <font>
                               <Font size="13.0" />
                            </font>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="490.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EscenarioPaneController">
+<AnchorPane prefHeight="490.0" prefWidth="600.0" style="-fx-background-image: url(&quot;file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/FondoEscenario%20(2).jpg&quot;);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EscenarioPaneController">
    <children>
       <VBox alignment="CENTER" layoutX="250.0" layoutY="163.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -52,7 +52,7 @@
                         <Button layoutX="45.0" layoutY="160.0" mnemonicParsing="false" onAction="#handlePrimerPiso2Button" prefHeight="62.0" prefWidth="99.0" rotate="17.1" style="-fx-background-radius: 5px; -fx-background-color: #e7ec40;" text="Primer piso 2" />
                         <Button layoutX="162.0" layoutY="178.0" mnemonicParsing="false" onAction="#handlePrimerPiso1Button" prefHeight="62.0" prefWidth="99.0" style="-fx-background-radius: 5px; -fx-background-color: #e7ec40;" text="Primer piso 1" />
                         <Button layoutX="276.0" layoutY="160.0" mnemonicParsing="false" onAction="#handlePrimerPiso3Button" prefHeight="62.0" prefWidth="99.0" rotate="-17.1" style="-fx-background-radius: 5px; -fx-background-color: #e7ec40;" text="Primer piso 3" />
-                        <Button layoutX="162.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleSegundoPiso1Button" prefHeight="62.0" prefWidth="99.0" style="-fx-background-radius: 5px; -fx-background-color: #ec40e4;" text="Segundo piso 1" />
+                        <Button layoutX="157.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleSegundoPiso1Button" prefHeight="62.0" prefWidth="113.0" style="-fx-background-radius: 5px; -fx-background-color: #ec40e4;" text="Segundo piso 1" />
                         <Button layoutX="21.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleSegundoPiso2Button" prefHeight="62.0" prefWidth="113.0" rotate="18.1" style="-fx-background-radius: 5px; -fx-background-color: #ec40e4;" text="Segundo piso 2" />
                         <Button layoutX="281.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleSegundoPiso3Button" prefHeight="62.0" prefWidth="113.0" rotate="-18.1" style="-fx-background-radius: 5px; -fx-background-color: #ec40e4;" text="Segundo piso 3" />
                      </children>

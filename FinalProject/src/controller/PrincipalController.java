@@ -38,6 +38,7 @@ public class PrincipalController {
 	AnchorPane sillasPane;
 	AnchorPane registrarUsuariosPane;
 	AnchorPane comprarBoletasPane;
+	AnchorPane estadisticosPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -51,6 +52,7 @@ public class PrincipalController {
 	SillasPaneController sillasController;
 	RegistrarUsuariosPaneController registrarUsuariosController;
 	ComprarBoletasPaneController comprarBoletasController;
+	EstadisticosPaneController estadisticosPaneController;
 
 	@FXML
 	void initialize() {
@@ -295,6 +297,23 @@ public class PrincipalController {
 		principalPane.setCenter(comprarBoletasPane);
 	}
 
+	public void cargarEstadisticosPane(Espectaculo miEspectaculo, Administrador miAdministrador) {
+		if (estadisticosPane == null) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("../view/EstadisticosPane.fxml"));
+				estadisticosPane = (AnchorPane) loader.load();
+				estadisticosPaneController = loader.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		estadisticosPaneController.setMiAdministrador(miAdministrador);
+		estadisticosPaneController.setMiEspectaculo(miEspectaculo);
+		estadisticosPaneController.setVentanaPrincipal(this);
+		principalPane.setCenter(estadisticosPane);
+	}
+
 	public BorderPane getPrincipalPane() {
 		return principalPane;
 	}
@@ -371,14 +390,12 @@ public class PrincipalController {
 	public void setPrincipalStage(Stage principalStage) {
 		this.principalStage = principalStage;
 	}
-	
-	public void actualizarListaEspectaculos()
-	{
+
+	public void actualizarListaEspectaculos() {
 		principal.actualizarListaEspectaculos();
 	}
-	
-	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException
-	{
+
+	public void eliminarEspectaculo(Espectaculo e) throws EspectaculoNullException {
 		principal.eliminarEspectaculo(e);
 	}
 

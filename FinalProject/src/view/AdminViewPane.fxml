@@ -59,7 +59,6 @@
                      <children>
                         <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleAgregarEspectaculo" text="Agregar" />
                         <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleEliminarEspectaculo" prefHeight="25.0" prefWidth="99.0" text="Eliminar" />
-                        <Button fx:id="btnVer" mnemonicParsing="false" onAction="#handleVerEspectaculo" text="Ver" />
                      </children>
                   </HBox>
                </children>

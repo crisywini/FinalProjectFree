@@ -30,9 +30,6 @@ public class AdminViewController {
 	private Button btnEliminar;
 
 	@FXML
-	private Button btnVer;
-
-	@FXML
 	private TableColumn<Espectaculo, String> columnaEvento;
 
 	@FXML
@@ -59,14 +56,12 @@ public class AdminViewController {
 	}
 
 	@FXML
-	void handleVerEspectaculo() {
-		// REalizar ver espectaculo
-	}
-
-	@FXML
 	void handleVerEstadisticosButton() {
-		// REalizar Estadisticos
-
+		if (isSelectedEspectaculo()) {
+			Espectaculo miEspectaculo = tablaEventos.getSelectionModel().getSelectedItem();
+			ventanaPrincipal.cargarEstadisticosPane(miEspectaculo, miAdmin);
+		} else
+			ventanaPrincipal.showAlert("Debes seleccionar un espectaculo", "", "ADVERTENCIA", AlertType.WARNING);
 	}
 
 	@FXML

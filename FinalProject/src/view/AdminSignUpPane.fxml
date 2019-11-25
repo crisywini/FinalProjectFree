@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(&quot;file:///C:/Users/Crisi/Desktop/Proyectos_Java/Proyectos_Analisis/FinalWork/FinalProjectFree/FinalProject/src/images/FondoAdminSignUp.jpg&quot;);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminSignUpController">
    <children>
@@ -18,7 +20,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0">
                <children>
-                  <Label text="Ingresar administrador" textFill="WHITE" />
+                  <Label text="Ingresar administrador" />
                </children>
             </HBox>
             <GridPane prefHeight="326.0" prefWidth="600.0">
@@ -57,12 +59,28 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label text="Correo electronico" textFill="WHITE" />
+                        <Label text="Correo electronico">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.7285714285714285">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill></Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
-                        <Label text="Contrasenia" />
+                        <Label text="Contrasenia">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.7285714285714285">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill></Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">

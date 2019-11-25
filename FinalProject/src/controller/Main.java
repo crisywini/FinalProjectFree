@@ -69,6 +69,7 @@ public class Main extends Application implements IControlBoleteria {
 			controlador.setPrincipal(this);
 			controlador.setPrincipalStage(primaryStage);
 			primaryStage.setTitle("Boleteria");
+			primaryStage.setResizable(false);
 			primaryStage.setOnCloseRequest(closer);
 			primaryStage.setScene(scene);
 			primaryStage.show();

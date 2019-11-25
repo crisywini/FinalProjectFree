@@ -2,39 +2,71 @@ package model;
 
 import java.io.Serializable;
 
-public class Date implements Serializable
-{
+public class Date implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int day;
-	private static int month;
-	private static int year;
-	
-	public Date(int day, int month, int year) 
-	{
-		setDay(day);
-		setMonth(month);
-		setYear(year);
+	private int day;
+	private int month;
+	private int year;
+
+	public Date() {
+		this(0, 0, 00);
 	}
-	
-	public static int getDay() {
+
+	public Date(int day, int month, int year) {
+		this.day = day;
+		this.month = month;
+		this.year = year;
+	}
+
+	public int getDay() {
 		return day;
 	}
-	public static void setDay(int day) {
-		Date.day = day;
+
+	public void setDay(int day) {
+		this.day = day;
 	}
-	public static int getMonth() {
+
+	public int getMonth() {
 		return month;
 	}
-	public static void setMonth(int month) {
-		Date.month = month;
+
+	public void setMonth(int month) {
+		this.month = month;
 	}
-	public static int getYear() {
+
+	public int getYear() {
 		return year;
 	}
-	public static void setYear(int year) {
-		Date.year = year;
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	/**
+	 * Metodo equals para comparar fechas
+	 */
+	@Override
+	public boolean equals(Object obj) {
+
+		boolean centi = true;
+		Date fechaAux;
+		if (obj instanceof Date) {
+			fechaAux = (Date) obj;
+			if (fechaAux.day != this.day || fechaAux.month != this.month || fechaAux.year != this.year) {
+				centi = false;
+			}
+
+		}
+
+		return centi;
+	}
+
+	@Override
+	public String toString() {
+		String info = day + "/" + month + "/" + year;
+		return info;
 	}
 }

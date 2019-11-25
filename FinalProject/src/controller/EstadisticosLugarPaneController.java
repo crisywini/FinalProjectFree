@@ -1,11 +1,16 @@
 package controller;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
 import model.Administrador;
 import model.Espectaculo;
+import util.ApachePoi;
 
 public class EstadisticosLugarPaneController {
 	private PrincipalController ventanaPrincipal;
@@ -13,7 +18,7 @@ public class EstadisticosLugarPaneController {
 	private Espectaculo miEspectaculo;
 
 	@FXML
-	private ScatterChart<?, ?> scatterChart;
+	private ScatterChart<String, Number> scatterChart;
 
 	@FXML
 	private CategoryAxis xAxis;
@@ -40,6 +45,7 @@ public class EstadisticosLugarPaneController {
 
 	public void setVentanaPrincipal(PrincipalController ventanaPrincipal) {
 		this.ventanaPrincipal = ventanaPrincipal;
+		initScatterChart();
 	}
 
 	public Administrador getMiAdministrador() {
@@ -56,5 +62,37 @@ public class EstadisticosLugarPaneController {
 
 	public void setMiEspectaculo(Espectaculo miEspectaculo) {
 		this.miEspectaculo = miEspectaculo;
+	}
+
+	public void initScatterChart() {
+		scatterChart.getData().clear();
+		XYChart.Series people = new XYChart.Series();
+		people.setName("Personas");
+		ArrayList<ArrayList<String>> data = ApachePoi.readData(new File("src/util/EspectaculoRespuestasDataset.xlsx"));
+		int counterVeryGood = 0;
+		int counterGood = 0;
+		int counterNormal = 0;
+		int counterBad = 0;
+		int counterVeryBad = 0;
+		for (int i = 0; i < data.size(); i++) {
+			if (data.get(i).get(0).trim().equalsIgnoreCase(miEspectaculo.getNombre())) {
+				if (data.get(i).get(5).equalsIgnoreCase("Muy bueno"))
+					counterVeryGood++;
+				if (data.get(i).get(5).equalsIgnoreCase("Bueno"))
+					counterGood++;
+				if (data.get(i).get(5).equalsIgnoreCase("Normal"))
+					counterNormal++;
+				if (data.get(i).get(5).equalsIgnoreCase("Malo"))
+					counterBad++;
+				if (data.get(i).get(5).equalsIgnoreCase("Muy malo"))
+					counterVeryBad++;
+			}
+		}
+		people.getData().add(new XYChart.Data("Muy bueno", counterVeryGood));
+		people.getData().add(new XYChart.Data("Bueno", counterGood));
+		people.getData().add(new XYChart.Data("Normal", counterNormal));
+		people.getData().add(new XYChart.Data("Malo", counterBad));
+		people.getData().add(new XYChart.Data("Muy malo", counterVeryBad));
+		scatterChart.getData().add(people);
 	}
 }

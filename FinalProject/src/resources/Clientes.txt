@@ -1,2 +1,0 @@
-<Cristian,Giovanny,123456,Armenia,Bosques de Palermo,cgsanchezp@uqvirtual.edu.co,SOLTEROA, Estrato: ALTO,5/2/2000,HOMBRE,DOCTORADO>
-<Cristian,Sanchez,1234567,Armenia-Quindio,Bosques de Palermo,harmaharcri@hotmail.com,SOLTEROA, Estrato: ALTO,5/2/2000,HOMBRE,DOCTORADO>

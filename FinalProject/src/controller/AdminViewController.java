@@ -94,7 +94,8 @@ public class AdminViewController {
 	public void initTableEspectaculos() {
 		columnaEvento.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
 		columnaTipo.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
-		columnaFecha1.setCellValueFactory(cellData -> cellData.getValue().fechasProperty());
+		columnaFecha1.setCellValueFactory(cellData -> cellData.getValue().fechas1Property());
+		columnaFecha2.setCellValueFactory(cellData -> cellData.getValue().fechas2Property());
 		tablaEventos.setItems(Main.espectaculosData);
 	}
 

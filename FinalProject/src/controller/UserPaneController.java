@@ -77,7 +77,7 @@ public class UserPaneController {
 	public void initTableEspectaculos() {
 		nombreTableColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
 		tipoTableColumn.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
-		fechasTableColumn.setCellValueFactory(cellData -> cellData.getValue().fechasProperty());
+		fechasTableColumn.setCellValueFactory(cellData -> cellData.getValue().fechas1Property());
 		espectaculosTableView.setItems(Main.espectaculosData);
 	}
 

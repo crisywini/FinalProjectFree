@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import exceptions.AdministradorNoExistenteException;
 import exceptions.AdministradorRepetidoException;
 import javafx.collections.FXCollections;
@@ -113,6 +116,15 @@ public class AdminSignUpController {
 			errorMessage += "Debe seleccionar un genero\n";
 		if (correoField.getText() == null || correoField.getText().length() == 0)
 			errorMessage += "Debe ingresar el correo\n";
+		else {
+			Pattern pattern = Pattern.compile(
+					"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+			String email = correoField.getText();
+			Matcher mather = pattern.matcher(email);
+
+			if (!mather.find())
+				errorMessage += "El correo: " + email + " no es valido.\n";
+		}
 		if (passwordField.getText() == null || passwordField.getText().length() == 0)
 			errorMessage += "Debe ingresar una contrasenia\n";
 		if (errorMessage.length() == 0)

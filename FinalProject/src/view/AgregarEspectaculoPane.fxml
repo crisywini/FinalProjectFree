@@ -84,7 +84,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <ComboBox fx:id="boxTipo" prefWidth="150.0" promptText="Concierto" />
+                        <ComboBox fx:id="boxTipo" prefHeight="25.0" prefWidth="222.0" promptText="Elige el tipo de espectaculo" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">

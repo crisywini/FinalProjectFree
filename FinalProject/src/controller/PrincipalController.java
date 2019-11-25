@@ -379,7 +379,7 @@ public class PrincipalController {
 		if (calidadPrecioPane == null) {
 			try {
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("../view/EstadisticosCalidadPrecioPane.fxml"));
+				loader.setLocation(Main.class.getResource("../view/EstadisticosCalidadPrecio.fxml"));
 				calidadPrecioPane = (AnchorPane) loader.load();
 				calidadPrecioController = loader.getController();
 			} catch (Exception e) {

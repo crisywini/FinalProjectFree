@@ -46,27 +46,30 @@ public class AgregarEspectaculoController {
 	@FXML
 	void handleAceptarButton() {
 		if (isInputValid()) {
-			LocalDate localF1 = dtaFecha1.getValue();
-			LocalDate localF2 = dtaFecha2.getValue();
-			Date f1 = new Date(localF1.getDayOfMonth(), localF1.getMonthValue(), localF1.getYear());
-			Date f2 = new Date(localF2.getDayOfMonth(), localF2.getMonthValue(), localF2.getYear());
-
-			ArrayList<Date> fechas = new ArrayList<Date>();
-			fechas.add(f1);
-			fechas.add(f2);
 
 			try {
+				LocalDate localF1 = dtaFecha1.getValue();
+				LocalDate localF2 = dtaFecha2.getValue();
+				Date f1 = new Date(localF1.getDayOfMonth(), localF1.getMonthValue(), localF1.getYear());
+				Date f2 = new Date(localF2.getDayOfMonth(), localF2.getMonthValue(), localF2.getYear());
+
+				ArrayList<Date> fechas = new ArrayList<Date>();
+				fechas.add(f1);
+				fechas.add(f2);
 				ventanaPrincipal.getPrincipal().agregarEspectaculo(txtNombre.getText(),
 						boxTipo.getSelectionModel().getSelectedItem(), fechas);
+				ventanaPrincipal.showAlert("Espectaculo agregado con exito", "", "", AlertType.INFORMATION);
+
+				ventanaPrincipal.actualizarListaEspectaculos();
+
+				ventanaPrincipal.cargarAdminViewPane(adm);
+				dtaFecha1.setValue(null);
+				dtaFecha2.setValue(null);
+				txtNombre.setText("");
+				boxTipo.setValue(null);
 			} catch (EspectaculoRepetidoException e) {
 				ventanaPrincipal.showAlert(e.getMessage(), "", "ERROR", AlertType.ERROR);
 			}
-
-			ventanaPrincipal.showAlert("Espectaculo agregado con exito", "", "", AlertType.INFORMATION);
-
-			ventanaPrincipal.actualizarListaEspectaculos();
-
-			ventanaPrincipal.cargarAdminViewPane(adm);
 		}
 	}
 
@@ -124,5 +127,4 @@ public class AgregarEspectaculoController {
 			ventanaPrincipal.showAlert(errorMessage, "", "ADVERTENCIA", AlertType.WARNING);
 		return isValid;
 	}
-
 }

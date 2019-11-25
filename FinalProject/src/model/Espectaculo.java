@@ -274,8 +274,18 @@ public class Espectaculo implements Serializable {
 	 * 
 	 * @return un {@link StringProperty}
 	 */
-	public StringProperty fechasProperty() {
+	public StringProperty fechas1Property() {
 		return new SimpleStringProperty(fechas.get(0).toString() + " ");
+	}
+
+	/**
+	 * Metodo que permite obtener un {@link StringProperty} con la informacion de la
+	 * segunda fecha
+	 * 
+	 * @return un {@link StringProperty}
+	 */
+	public StringProperty fechas2Property() {
+		return new SimpleStringProperty(fechas.get(1).toString() + " ");
 	}
 
 	public void initSecciones() {

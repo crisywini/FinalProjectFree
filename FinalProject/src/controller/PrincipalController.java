@@ -39,6 +39,11 @@ public class PrincipalController {
 	AnchorPane registrarUsuariosPane;
 	AnchorPane comprarBoletasPane;
 	AnchorPane estadisticosPane;
+	AnchorPane atencionPane;
+	AnchorPane atraccionPane;
+	AnchorPane estadisticosLugarPane;
+	AnchorPane calidadPrecioPane;
+	AnchorPane estadisticosSistemasPane;
 	MenuPaneController menuController;
 	UserSignInController userSignInController;
 	AdminSignUpController adminSignUpController;
@@ -53,6 +58,11 @@ public class PrincipalController {
 	RegistrarUsuariosPaneController registrarUsuariosController;
 	ComprarBoletasPaneController comprarBoletasController;
 	EstadisticosPaneController estadisticosPaneController;
+	AtencionPaneController atencionController;
+	AtraccionPaneController atraccionController;
+	EstadisticosLugarPaneController lugarController;
+	EstadisticosCalidadPrecioController calidadPrecioController;
+	EstadisticosSistemaPaneController estadisticosSistemaController;
 
 	@FXML
 	void initialize() {
@@ -312,6 +322,91 @@ public class PrincipalController {
 		estadisticosPaneController.setMiEspectaculo(miEspectaculo);
 		estadisticosPaneController.setVentanaPrincipal(this);
 		principalPane.setCenter(estadisticosPane);
+	}
+
+	public void cargarAtencionPane(Espectaculo miEspectaculo, Administrador miAdministrador) {
+		if (atencionPane == null) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("../view/AtencionPane.fxml"));
+				atencionPane = (AnchorPane) loader.load();
+				atencionController = loader.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		atencionController.setMiAdmin(miAdministrador);
+		atencionController.setMiEspectaculo(miEspectaculo);
+		atencionController.setVentanaPrincipal(this);
+		principalPane.setCenter(atencionPane);
+	}
+
+	public void cargarAtraccion(Administrador miAdministrador, Espectaculo miEspectaculo) {
+		if (atraccionPane == null) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("../view/AtraccionPane.fxml"));
+				atraccionPane = loader.load();
+				atraccionController = loader.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		atraccionController.setMiAdministrador(miAdministrador);
+		atraccionController.setMiEspectaculo(miEspectaculo);
+		atraccionController.setVentanaPrincipal(this);
+		principalPane.setCenter(atraccionPane);
+	}
+
+	public void cargarLugarPane(Administrador miAdministrador, Espectaculo miEspectaculo) {
+		if (estadisticosLugarPane == null) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("../view/EstadisticosLugarPane.fxml"));
+				estadisticosLugarPane = (AnchorPane) loader.load();
+				lugarController = loader.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		lugarController.setMiAdministrador(miAdministrador);
+		lugarController.setMiEspectaculo(miEspectaculo);
+		lugarController.setVentanaPrincipal(this);
+		principalPane.setCenter(estadisticosLugarPane);
+	}
+
+	public void cargarCalidadPrecioPane(Administrador miAdministrador, Espectaculo miEspectaculo) {
+		if (calidadPrecioPane == null) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("../view/EstadisticosCalidadPrecioPane.fxml"));
+				calidadPrecioPane = (AnchorPane) loader.load();
+				calidadPrecioController = loader.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		calidadPrecioController.setMiAdministrador(miAdministrador);
+		calidadPrecioController.setMiEspectaculo(miEspectaculo);
+		calidadPrecioController.setVentanaPrincipal(this);
+		principalPane.setCenter(calidadPrecioPane);
+	}
+
+	public void cargarEstadisticosSistemaPane(Administrador miAdministrador, Espectaculo miEspectaculo) {
+		if (estadisticosSistemasPane == null) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("../view/EstadisticosSistemaPane.fxml"));
+				estadisticosSistemasPane = (AnchorPane) loader.load();
+				estadisticosSistemaController = loader.getController();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		estadisticosSistemaController.setMiAdministrador(miAdministrador);
+		estadisticosSistemaController.setMiEspectaculo(miEspectaculo);
+		estadisticosSistemaController.setVentanaPrincipal(this);
+		principalPane.setCenter(estadisticosSistemasPane);
 	}
 
 	public BorderPane getPrincipalPane() {

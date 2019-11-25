@@ -1,7 +1,7 @@
 package controller;
 
 import exceptions.EspectaculoNullException;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -47,12 +47,16 @@ public class AdminViewController {
 	}
 
 	@FXML
-	void handleEliminarEspectaculo(ActionEvent event) throws EspectaculoNullException {
+	void handleEliminarEspectaculo() {
 		if (isSelectedEspectaculo()) {
 			Espectaculo e = tablaEventos.getSelectionModel().getSelectedItem();
-			ventanaPrincipal.eliminarEspectaculo(e);
+			try {
+				ventanaPrincipal.eliminarEspectaculo(e);
+			} catch (EspectaculoNullException e1) {
+				ventanaPrincipal.showAlert(e1.getMessage(), "", "ERROR", AlertType.ERROR);
+			}
 		} else
-			ventanaPrincipal.showAlert("Debes seleccionar un espectaculo", "", "ADVERTENCIA", AlertType.WARNING);
+			ventanaPrincipal.showAlert("Debes seleccionar un espectaculo!", "", "ADVERTENCIA", AlertType.WARNING);
 	}
 
 	@FXML

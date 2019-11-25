@@ -1,19 +1,19 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
 import model.Administrador;
 import model.Espectaculo;
 
-public class AtencionPaneController {
+public class EstadisticosLugarPaneController {
 	private PrincipalController ventanaPrincipal;
-	private Administrador miAdmin;
+	private Administrador miAdministrador;
 	private Espectaculo miEspectaculo;
 
 	@FXML
-	private BarChart<?, ?> barChart;
+	private ScatterChart<?, ?> scatterChart;
 
 	@FXML
 	private CategoryAxis xAxis;
@@ -23,14 +23,14 @@ public class AtencionPaneController {
 
 	@FXML
 	void handleAtrasButton() {
-		ventanaPrincipal.cargarEstadisticosPane(miEspectaculo, miAdmin);
+		ventanaPrincipal.cargarEstadisticosPane(miEspectaculo, miAdministrador);
 	}
 
 	@FXML
 	void initialize() {
-		assert barChart != null : "fx:id=\"barChart\" was not injected: check your FXML file 'AtencionPane.fxml'.";
-		assert xAxis != null : "fx:id=\"xAxis\" was not injected: check your FXML file 'AtencionPane.fxml'.";
-		assert yAxis != null : "fx:id=\"yAxis\" was not injected: check your FXML file 'AtencionPane.fxml'.";
+		assert scatterChart != null : "fx:id=\"scatterChart\" was not injected: check your FXML file 'EstadisticosLugarPane.fxml'.";
+		assert xAxis != null : "fx:id=\"xAxis\" was not injected: check your FXML file 'EstadisticosLugarPane.fxml'.";
+		assert yAxis != null : "fx:id=\"yAxis\" was not injected: check your FXML file 'EstadisticosLugarPane.fxml'.";
 
 	}
 
@@ -42,12 +42,12 @@ public class AtencionPaneController {
 		this.ventanaPrincipal = ventanaPrincipal;
 	}
 
-	public Administrador getMiAdmin() {
-		return miAdmin;
+	public Administrador getMiAdministrador() {
+		return miAdministrador;
 	}
 
-	public void setMiAdmin(Administrador miAdmin) {
-		this.miAdmin = miAdmin;
+	public void setMiAdministrador(Administrador miAdministrador) {
+		this.miAdministrador = miAdministrador;
 	}
 
 	public Espectaculo getMiEspectaculo() {

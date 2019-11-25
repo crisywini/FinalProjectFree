@@ -1,47 +1,26 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import model.Administrador;
 import model.Espectaculo;
 
-public class EstadisticosPaneController {
+public class AtraccionPaneController {
 	private PrincipalController ventanaPrincipal;
 	private Administrador miAdministrador;
 	private Espectaculo miEspectaculo;
 
 	@FXML
-	void handleAtencionButton() {
-		ventanaPrincipal.cargarAtencionPane(miEspectaculo, miAdministrador);
-	}
+	private PieChart pieChart;
 
 	@FXML
-	void handleAtraccionButton() {
-		ventanaPrincipal.cargarAtraccion(miAdministrador, miEspectaculo);
-	}
-
-	@FXML
-	void handleAtrasButton() {
-		ventanaPrincipal.cargarAdminViewPane(miAdministrador);
-	}
-
-	@FXML
-	void handleCalidadPrecioButton() {
-		ventanaPrincipal.cargarCalidadPrecioPane(miAdministrador, miEspectaculo);
-	}
-
-	@FXML
-	void handleLugarButton() {
-		ventanaPrincipal.cargarLugarPane(miAdministrador, miEspectaculo);
-	}
-
-	@FXML
-	void handleSistemaButton() {
-		ventanaPrincipal.cargarEstadisticosSistemaPane(miAdministrador, miEspectaculo);
+	void handleAtrásButton() {
+		ventanaPrincipal.cargarEstadisticosPane(miEspectaculo, miAdministrador);
 	}
 
 	@FXML
 	void initialize() {
-
+		assert pieChart != null : "fx:id=\"pieChart\" was not injected: check your FXML file 'AtraccionPane.fxml'.";
 	}
 
 	public PrincipalController getVentanaPrincipal() {

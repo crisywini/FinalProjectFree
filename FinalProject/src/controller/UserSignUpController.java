@@ -73,7 +73,7 @@ public class UserSignUpController {
 	@FXML
 	void handleAgregarButton() {
 		if (isInputValid()) {
-			Cuenta nuevaCuenta = new Cuenta(0, cuentaField.getText());
+			Cuenta nuevaCuenta = new Cuenta(750000, cuentaField.getText());
 			Date fechaDeNacimiento = new Date(datePicker.getValue().getDayOfMonth(),
 					datePicker.getValue().getMonthValue(), datePicker.getValue().getYear());
 			Cliente miClienteNuevo = null;

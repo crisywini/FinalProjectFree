@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 import model.Boleta;
 import model.Cliente;
 import model.Espectaculo;
@@ -19,6 +20,9 @@ public class RegistrarUsuariosPaneController {
 	private Espectaculo miEspectaculo;
 	private HashMap<String, Cliente> misClientes = new HashMap<String, Cliente>();
 	private HashMap<String, Boleta> misBoletas;
+
+	@FXML
+	private AnchorPane pane;
 	@FXML
 	private TableView<Cliente> clienteTableView;
 
@@ -80,6 +84,7 @@ public class RegistrarUsuariosPaneController {
 		assert nombreTableColumn != null : "fx:id=\"nombreTableColumn\" was not injected: check your FXML file 'RegistrarUsuariosPane.fxml'.";
 		assert apellidoTableColumn != null : "fx:id=\"apellidoTableColumn\" was not injected: check your FXML file 'RegistrarUsuariosPane.fxml'.";
 		assert idTableColumn != null : "fx:id=\"idTableColumn\" was not injected: check your FXML file 'RegistrarUsuariosPane.fxml'.";
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoCliente (2).jpg\")");
 	}
 
 	public void initTable() {

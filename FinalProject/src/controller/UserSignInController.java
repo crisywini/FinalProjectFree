@@ -1,15 +1,25 @@
 package controller;
 
 import exceptions.ClienteNoExistenteException;
+
 import javafx.fxml.FXML;
 
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import model.Cliente;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UserSignInController {
 	private PrincipalController ventanaPrincipal;
+	@FXML
+	private AnchorPane pane;
+
+	@FXML
+	private ImageView image;
+
 	@FXML
 	private TextField nickNameField;
 
@@ -47,6 +57,8 @@ public class UserSignInController {
 	void initialize() {
 		assert nickNameField != null : "fx:id=\"nickNameField\" was not injected: check your FXML file 'UserSignInPane.fxml'.";
 		assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'UserSignInPane.fxml'.";
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoClienteSignIn.jpg\")");
+		image.setImage(new Image("file:src/images/ClienteAnalisis.png"));
 	}
 
 	public boolean isInputValid() {

@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import model.Administrador;
 import model.Genero;
 
@@ -19,6 +20,8 @@ public class AdminSignUpController {
 
 	private PrincipalController ventanaPrincipal;
 	private ObservableList<Genero> misGeneros;
+	@FXML
+	private AnchorPane pane;
 
 	@FXML
 	private TextField nombreField;
@@ -77,7 +80,7 @@ public class AdminSignUpController {
 		assert correoField != null : "fx:id=\"correoField\" was not injected: check your FXML file 'AdminSignUpPane.fxml'.";
 		assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'AdminSignUpPane.fxml'.";
 		assert generoComboBox != null : "fx:id=\"generoComboBox\" was not injected: check your FXML file 'AdminSignUpPane.fxml'.";
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoAdminSignUp.jpg\")");
 	}
 
 	public PrincipalController getVentanaPrincipal() {

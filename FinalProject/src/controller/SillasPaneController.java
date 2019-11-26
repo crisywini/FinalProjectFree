@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Boleta;
@@ -43,6 +44,8 @@ public class SillasPaneController {
 		}
 
 	};
+	@FXML
+	private AnchorPane pane;
 
 	@FXML
 	private Label seccionEspectaculoLabel;
@@ -65,7 +68,7 @@ public class SillasPaneController {
 
 	@FXML
 	void initialize() {
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoEscenario(2).jpg\")");
 	}
 
 	public void initSillasButton() {

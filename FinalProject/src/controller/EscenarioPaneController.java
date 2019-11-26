@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import model.Cliente;
 import model.Escenario;
 import model.Espectaculo;
@@ -14,6 +15,8 @@ public class EscenarioPaneController {
 	private PrincipalController ventanaPrincipal;
 	private Cliente miCliente;
 	private Espectaculo miEspectaculo;
+	@FXML
+	private AnchorPane pane;
 	@FXML
 	private Label nombreEspectaculoLabel;
 
@@ -116,6 +119,7 @@ public class EscenarioPaneController {
 	void initialize() {
 		assert nombreEspectaculoLabel != null : "fx:id=\"nombreEspectaculoLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
 		assert tipoEspectaculoLabel != null : "fx:id=\"tipoEspectaculoLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoEscenario(2).jpg\")");
 	}
 
 	public PrincipalController getVentanaPrincipal() {

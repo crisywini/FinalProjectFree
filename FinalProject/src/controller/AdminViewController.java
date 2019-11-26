@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import model.Administrador;
 import model.Espectaculo;
 
@@ -15,6 +18,10 @@ public class AdminViewController {
 
 	private PrincipalController ventanaPrincipal;
 	private Administrador miAdmin;
+	@FXML
+	private AnchorPane pane;
+	@FXML
+	private ImageView image;
 	@FXML
 	private Label nombreAdminLabel;
 	@FXML
@@ -102,6 +109,23 @@ public class AdminViewController {
 	public boolean isSelectedEspectaculo() {
 		int pos = tablaEventos.getSelectionModel().getSelectedIndex();
 		return pos != -1;
+	}
+
+	@FXML
+	void initialize() {
+		assert pane != null : "fx:id=\"pane\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert adminLabel != null : "fx:id=\"adminLabel\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert nombreAdminLabel != null : "fx:id=\"nombreAdminLabel\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert image != null : "fx:id=\"image\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert tablaEventos != null : "fx:id=\"tablaEventos\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert columnaEvento != null : "fx:id=\"columnaEvento\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert columnaTipo != null : "fx:id=\"columnaTipo\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert columnaFecha1 != null : "fx:id=\"columnaFecha1\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert columnaFecha2 != null : "fx:id=\"columnaFecha2\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert btnAgregar != null : "fx:id=\"btnAgregar\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		assert btnEliminar != null : "fx:id=\"btnEliminar\" was not injected: check your FXML file 'AdminViewPane.fxml'.";
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoAdminPane.jpg\")");
+		image.setImage(new Image("file:src/images/AdministradorAnalisis1.png"));
 	}
 
 }

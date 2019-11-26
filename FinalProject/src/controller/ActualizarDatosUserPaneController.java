@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import model.Cliente;
 import model.EstadoCivil;
 import model.EstratoSocioeconomico;
@@ -19,6 +20,8 @@ import model.NivelDeEstudio;
 public class ActualizarDatosUserPaneController {
 
 	private PrincipalController ventanaPrincipal;
+	@FXML
+	private AnchorPane pane;
 	@FXML
 	private TextField nombreField;
 
@@ -64,7 +67,7 @@ public class ActualizarDatosUserPaneController {
 
 	@FXML
 	void initialize() {
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoActualizarDAtos.jpg\")");
 	}
 
 	@FXML

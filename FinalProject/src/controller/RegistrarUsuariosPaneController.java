@@ -84,7 +84,7 @@ public class RegistrarUsuariosPaneController {
 		assert nombreTableColumn != null : "fx:id=\"nombreTableColumn\" was not injected: check your FXML file 'RegistrarUsuariosPane.fxml'.";
 		assert apellidoTableColumn != null : "fx:id=\"apellidoTableColumn\" was not injected: check your FXML file 'RegistrarUsuariosPane.fxml'.";
 		assert idTableColumn != null : "fx:id=\"idTableColumn\" was not injected: check your FXML file 'RegistrarUsuariosPane.fxml'.";
-		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoCliente (2).jpg\")");
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoCliente(2).jpg\")");
 	}
 
 	public void initTable() {

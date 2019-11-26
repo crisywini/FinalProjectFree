@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import model.*;
 
@@ -30,6 +31,8 @@ public class UserSignUpController {
 	private Espectaculo miEspectaculo;
 	private Seccion miSeccion;
 	private HashMap<String, Boleta> misBoletas;
+	@FXML
+	private AnchorPane pane;
 
 	@FXML
 	private TextField nombreField;
@@ -142,6 +145,7 @@ public class UserSignUpController {
 		assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'UserSignUpPane.fxml'.";
 		assert generoComboBox != null : "fx:id=\"generoComboBox\" was not injected: check your FXML file 'UserSignUpPane.fxml'.";
 		assert datePicker != null : "fx:id=\"datePicker\" was not injected: check your FXML file 'UserSignUpPane.fxml'.";
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoClienteSignUp.jpg\")");
 	}
 
 	/**
@@ -162,16 +166,14 @@ public class UserSignUpController {
 			errorMessage += "Debe seleccionar un genero\n";
 		if (correoField.getText() == null || correoField.getText().length() == 0)
 			errorMessage += "Debe ingresar el correo\n";
-		else
-		{
-			Pattern pattern = Pattern
-	                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-	                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-	        String email = correoField.getText();
-	        Matcher mather = pattern.matcher(email);
+		else {
+			Pattern pattern = Pattern.compile(
+					"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+			String email = correoField.getText();
+			Matcher mather = pattern.matcher(email);
 
-	        if (!mather.find())
-	        	errorMessage += "El correo: "+email+" no es valido.\n";
+			if (!mather.find())
+				errorMessage += "El correo: " + email + " no es valido.\n";
 		}
 		if (passwordField.getText() == null || passwordField.getText().length() == 0)
 			errorMessage += "Debe ingresar una contrasenia\n";

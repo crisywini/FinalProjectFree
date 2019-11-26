@@ -9,6 +9,7 @@ import exceptions.LimiteExcedidoException;
 import exceptions.ReservaRepetidaException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import model.Boleta;
 import model.Cliente;
@@ -28,6 +29,8 @@ public class ComprarBoletasPaneController {
 	private HashMap<String, Boleta> misBoletas;
 	private Reserva miReserva;
 	private boolean isCoberturaSelected;
+	@FXML
+	private AnchorPane pane;
 
 	@FXML
 	private Label idLabel;
@@ -100,6 +103,8 @@ public class ComprarBoletasPaneController {
 		assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
 		assert puestosLabel != null : "fx:id=\"puestosLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
 		assert costoTotalLabel != null : "fx:id=\"costoTotalLabel\" was not injected: check your FXML file 'ComprarBoletasPane.fxml'.";
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoComprarBoletas.jpg\")");
+
 	}
 
 	public PrincipalController getVentanaPrincipal() {

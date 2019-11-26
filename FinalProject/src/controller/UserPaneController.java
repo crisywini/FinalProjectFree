@@ -5,13 +5,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Cliente;
 import model.Espectaculo;
 
 public class UserPaneController {
 	private PrincipalController ventanaPrincipal;
 	private Cliente miCliente;
+	@FXML
+	private AnchorPane pane;
+	@FXML
+	private ImageView image;
 
 	@FXML
 	private Label userNameLabel;
@@ -53,7 +60,8 @@ public class UserPaneController {
 		assert espectaculosTableView != null : "fx:id=\"espectaculosTableView\" was not injected: check your FXML file 'UserPane.fxml'.";
 		assert nombreTableColumn != null : "fx:id=\"nombreTableColumn\" was not injected: check your FXML file 'UserPane.fxml'.";
 		assert tipoTableColumn != null : "fx:id=\"tipoTableColumn\" was not injected: check your FXML file 'UserPane.fxml'.";
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoCliente(2).jpg\")");
+		image.setImage(new Image("file:src/images/ClienteAnalisis.png"));
 	}
 
 	public PrincipalController getVentanaPrincipal() {

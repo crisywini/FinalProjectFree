@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import model.Administrador;
 import model.Date;
 import model.TipoEspectaculo;
@@ -24,6 +25,8 @@ public class AgregarEspectaculoController {
 	private Administrador adm;
 
 	private ObservableList<TipoEspectaculo> tiposEspectaculos;
+	@FXML
+	private AnchorPane pane;
 
 	@FXML
 	private TextField txtNombre;
@@ -86,7 +89,7 @@ public class AgregarEspectaculoController {
 		assert boxTipo != null : "fx:id=\"boxTipo\" was not injected: check your FXML file 'AgregarEspectaculoPane.fxml'.";
 		assert btnAceptar != null : "fx:id=\"btnAceptar\" was not injected: check your FXML file 'AgregarEspectaculoPane.fxml'.";
 		assert btnCancelar != null : "fx:id=\"btnCancelar\" was not injected: check your FXML file 'AgregarEspectaculoPane.fxml'.";
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoAgregarEspectaculoMedium.jpg\")");
 	}
 
 	public PrincipalController getVentanaPrincipal() {

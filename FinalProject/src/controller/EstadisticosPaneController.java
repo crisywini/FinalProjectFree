@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import model.Administrador;
 import model.Espectaculo;
 
@@ -8,6 +9,8 @@ public class EstadisticosPaneController {
 	private PrincipalController ventanaPrincipal;
 	private Administrador miAdministrador;
 	private Espectaculo miEspectaculo;
+	@FXML
+	private AnchorPane pane;
 
 	@FXML
 	void handleAtencionButton() {
@@ -41,7 +44,7 @@ public class EstadisticosPaneController {
 
 	@FXML
 	void initialize() {
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoAdminPane.jpg\")");
 	}
 
 	public PrincipalController getVentanaPrincipal() {

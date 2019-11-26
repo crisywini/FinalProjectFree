@@ -4,12 +4,19 @@ import exceptions.AdministradorNoExistenteException;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import model.Administrador;
 
 public class AdminSignController {
 
 	private PrincipalController ventanaPrincipal;
+	@FXML
+	private AnchorPane pane;
+	@FXML
+	private ImageView image;
 	@FXML
 	private TextField nickNameField;
 
@@ -22,16 +29,14 @@ public class AdminSignController {
 			try {
 				Administrador miAdmin = getVentanaPrincipal().getPrincipal()
 						.obtenerAdministrador(nickNameField.getText());
-				if(verifyPassword(miAdmin))
-				{
+				if (verifyPassword(miAdmin)) {
 					ventanaPrincipal.showAlert("Bienvenido: " + miAdmin.getNombre(), "", "Bienvenido",
 							AlertType.INFORMATION);
 					ventanaPrincipal.cargarAdminViewPane(miAdmin);
 				}
 				nickNameField.setText("");
 				passwordField.setText("");
-				
-				
+
 			} catch (AdministradorNoExistenteException e) {
 				ventanaPrincipal.showAlert(e.getMessage(), "", "Error", AlertType.ERROR);
 			}
@@ -42,7 +47,8 @@ public class AdminSignController {
 	void initialize() {
 		assert nickNameField != null : "fx:id=\"nickNameField\" was not injected: check your FXML file 'AdminSignPane.fxml'.";
 		assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'AdminSignPane.fxml'.";
-
+		pane.setStyle("-fx-background-image: url(\"file:src/images/FondoAdminSignIn(2).jpg\")");
+		image.setImage(new Image("file:src/images/AdministradorAnalisis1.png"));
 	}
 
 	@FXML
@@ -63,7 +69,7 @@ public class AdminSignController {
 			getVentanaPrincipal().showAlert(errorMessage, "", "Error", AlertType.WARNING);
 		return isValid;
 	}
-	
+
 	public boolean verifyPassword(Administrador miAdmin) {
 		boolean isCorrect = true;
 		String passwordClient = miAdmin.getContrasenia();
